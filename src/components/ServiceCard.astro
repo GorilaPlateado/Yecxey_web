@@ -1,0 +1,67 @@
+---
+import type { Service } from "@/data/services";
+import type { Lang } from "@/i18n/index";
+import { t } from "@/i18n/index";
+
+export interface Props {
+  service: Service;
+  lang: Lang;
+  featured?: boolean;
+}
+
+const { service, lang, featured = false } = Astro.props;
+const tr = t(lang);
+
+const href = lang === "es"
+  ? `/es/servicios/${service.slugEs}/`
+  : `/en/services/${service.slug}/`;
+---
+
+<article
+  class={`card group flex flex-col h-full ${featured ? "ring-2 ring-secondary/20" : ""}`}
+  aria-label={service.title[lang]}
+>
+  <!-- Image -->
+  <div class="relative overflow-hidden aspect-[16/9] bg-gray-100">
+    <img
+      src={service.image}
+      alt={service.imageAlt[lang]}
+      width="480"
+      height="270"
+      loading="lazy"
+      decoding="async"
+      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+      onerror="this.onerror=null;this.src='/images/services/placeholder.webp'"
+    />
+    {featured && (
+      <div class="absolute top-3 left-3">
+        <span class="badge-secondary text-xs font-bold">
+          {lang === "es" ? "Destacado" : "Featured"}
+        </span>
+      </div>
+    )}
+    <div class="absolute top-3 right-3 text-2xl" aria-hidden="true">
+      {service.icon}
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="flex flex-col flex-1 p-6">
+    <h3 class="text-primary font-bold text-lg mb-2 group-hover:text-primary-light transition-colors">
+      {service.title[lang]}
+    </h3>
+    <p class="text-muted text-sm leading-relaxed flex-1 mb-4">
+      {service.shortDescription[lang]}
+    </p>
+    <a
+      href={href}
+      class="btn-outline text-sm py-2 px-4 w-full justify-center"
+      aria-label={`${tr.services.learnMore}: ${service.title[lang]}`}
+    >
+      {tr.services.learnMore}
+      <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </div>
+</article>

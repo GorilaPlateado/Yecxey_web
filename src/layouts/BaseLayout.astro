@@ -1,0 +1,84 @@
+---
+import SEO from "@/components/SEO.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import MobileActionBar from "@/components/MobileActionBar.astro";
+import Analytics from "@/components/Analytics.astro";
+import site from "@/config/site";
+import type { Lang } from "@/i18n/index";
+import "@/styles/global.css";
+
+export interface Props {
+  title: string;
+  description: string;
+  lang: Lang;
+  canonicalUrl: string;
+  alternateUrl?: string;
+  ogImage?: string;
+  ogType?: "website" | "article";
+  noIndex?: boolean;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
+  bodyClass?: string;
+}
+
+const {
+  title,
+  description,
+  lang,
+  canonicalUrl,
+  alternateUrl,
+  ogImage,
+  ogType,
+  noIndex,
+  structuredData,
+  bodyClass = "",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <SEO
+      title={title}
+      description={description}
+      lang={lang}
+      canonicalUrl={canonicalUrl}
+      alternateUrl={alternateUrl}
+      ogImage={ogImage}
+      ogType={ogType}
+      noIndex={noIndex}
+      structuredData={structuredData}
+    />
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <!-- Sitemap reference -->
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Inter font — clean, professional, great readability -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <Analytics />
+  </head>
+  <body class={`min-h-screen flex flex-col ${bodyClass}`}>
+    <!-- Skip to main content — keyboard accessibility -->
+    <a href="#main-content" class="skip-link">
+      {lang === "es" ? "Ir al contenido principal" : "Skip to main content"}
+    </a>
+
+    <Header lang={lang} currentPath={Astro.url.pathname} />
+
+    <main id="main-content" class="flex-1 pb-20 md:pb-0" tabindex="-1">
+      <slot />
+    </main>
+
+    <Footer lang={lang} />
+
+    <!-- Mobile sticky CTA bar — only visible on mobile/tablet -->
+    <MobileActionBar lang={lang} />
+  </body>
+</html>

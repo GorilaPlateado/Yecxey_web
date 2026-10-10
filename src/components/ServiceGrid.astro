@@ -1,0 +1,152 @@
+---
+import { activeServices, featuredServices } from "@/data/services";
+import { t } from "@/i18n/index";
+import type { Lang } from "@/i18n/index";
+
+export interface Props {
+  lang: Lang;
+  featuredOnly?: boolean;
+  limit?: number;
+  title?: string;
+  subtitle?: string;
+  variant?: "grid" | "list";
+}
+const { lang, featuredOnly = false, limit, variant = "grid" } = Astro.props;
+const tr = t(lang);
+
+let services = featuredOnly ? featuredServices : activeServices;
+if (limit) services = services.slice(0, limit);
+
+const servicesPath = lang === "es" ? `/es/servicios/` : `/en/services/`;
+---
+
+<section class="py-14 md:py-20 bg-white" aria-labelledby="services-home-heading">
+  <div class="container">
+
+    <!-- Section header — matches design layout -->
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+      <div>
+        <span class="section-label">
+          {lang === "es" ? "Nuestros Servicios" : "Our Services"}
+        </span>
+        <h2 id="services-home-heading" class="text-2xl md:text-3xl lg:text-4xl font-black text-dark leading-tight">
+          {lang === "es"
+            ? "Asistencia en Carretera\npara Camiones Comerciales"
+            : "Roadside Assistance\nfor Commercial Trucks"}
+        </h2>
+        <p class="text-muted mt-2 text-sm max-w-md">
+          {lang === "es"
+            ? "Desde reparaciones menores hasta emergencias graves, estamos aquí para regresarle a la ruta con el mínimo tiempo de inactividad."
+            : "From minor repairs to major issues, we're here to help you get back on the road with minimal downtime."}
+        </p>
+      </div>
+      <a href={servicesPath} class="hidden md:inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-accent transition-colors flex-shrink-0">
+        {lang === "es" ? "Ver todos los servicios" : "See all services"}
+        <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Two-column layout matching design: text left, service cards right -->
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
+
+      <!-- Left: service cards grid (desktop) / list (mobile) -->
+      <div class="lg:col-span-3">
+        {/* Desktop grid — 2×2 photo cards */}
+        <div class="hidden md:grid grid-cols-2 gap-4">
+          {services.slice(0, 4).map((service) => {
+            const slug = lang === "es" ? service.slugEs : service.slug;
+            const href = lang === "es" ? `/es/servicios/${slug}/` : `/en/services/${slug}/`;
+            return (
+              <a href={href} class="group relative rounded-xl overflow-hidden aspect-square bg-primary block">
+                <img
+                  src={service.image}
+                  alt={service.imageAlt[lang]}
+                  width="280" height="280"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  onerror="this.onerror=null;this.src='/images/services/placeholder.webp'"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/20 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-4">
+                  <p class="text-white font-bold text-sm leading-tight">{service.title[lang]}</p>
+                  <p class="text-white/70 text-xs mt-0.5">{service.shortDescription[lang].substring(0, 50)}...</p>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+
+        {/* Mobile — show all as rows */}
+        <div class="md:hidden space-y-2">
+          {services.map((service) => {
+            const slug = lang === "es" ? service.slugEs : service.slug;
+            const href = lang === "es" ? `/es/servicios/${slug}/` : `/en/services/${slug}/`;
+            return (
+              <a href={href} class="service-row group" aria-label={service.title[lang]}>
+                <div class="w-14 h-14 rounded-lg overflow-hidden bg-primary flex-shrink-0">
+                  <img
+                    src={service.image}
+                    alt=""
+                    width="56" height="56"
+                    loading="lazy"
+                    class="w-full h-full object-cover"
+                    onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-2xl\'>' + '{service.icon}' + '</div>'"
+                  />
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="font-bold text-dark text-sm">{service.title[lang]}</p>
+                  <p class="text-muted text-xs mt-0.5 truncate">{service.shortDescription[lang]}</p>
+                </div>
+                <svg aria-hidden="true" class="w-5 h-5 text-muted group-hover:text-accent transition-colors flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Right column: remaining services as list */}
+      <div class="hidden lg:flex lg:col-span-2 flex-col gap-2">
+        {services.map((service, i) => {
+          const slug = lang === "es" ? service.slugEs : service.slug;
+          const href = lang === "es" ? `/es/servicios/${slug}/` : `/en/services/${slug}/`;
+          return (
+            <a href={href} class="service-row group" aria-label={service.title[lang]}>
+              <div class="w-12 h-12 rounded-lg overflow-hidden bg-primary flex-shrink-0">
+                <img
+                  src={service.image}
+                  alt=""
+                  width="48" height="48"
+                  loading="lazy"
+                  class="w-full h-full object-cover"
+                  onerror="this.onerror=null;this.style.display='none'"
+                />
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="font-bold text-dark text-sm">{service.title[lang]}</p>
+                <p class="text-muted text-xs mt-0.5 truncate">{service.shortDescription[lang]}</p>
+              </div>
+              <svg aria-hidden="true" class="w-5 h-5 text-muted group-hover:text-accent transition-colors flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+
+    <!-- Mobile: view all -->
+    <div class="mt-6 md:hidden">
+      <a href={servicesPath} class="btn bg-primary text-white hover:bg-primary-light w-full justify-center">
+        {lang === "es" ? "Ver Todos los Servicios" : "View All Services"}
+        <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

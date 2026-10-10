@@ -1,0 +1,74 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import business from "@/data/business";
+import site from "@/config/site";
+
+const lang = "en";
+const canonicalUrl = `${site.url}/en/privacy-policy/`;
+const alternateUrl = `${site.url}/es/politica-de-privacidad/`;
+const today = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+---
+
+<BaseLayout
+  title={`Privacy Policy — ${business.name}`}
+  description="Privacy Policy for GY Roadside Solutions LLC website."
+  lang={lang}
+  canonicalUrl={canonicalUrl}
+  alternateUrl={alternateUrl}
+  noIndex={false}
+>
+  <Breadcrumbs lang={lang} items={[{ label: "Privacy Policy" }]} />
+
+  <section class="section">
+    <div class="container max-w-3xl">
+      <h1 class="text-primary mb-2">Privacy Policy</h1>
+      <p class="text-muted text-sm mb-10">Last Updated: {today}</p>
+
+      <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-10 text-sm text-yellow-800">
+        ⚠️ This privacy policy is a template. Review with legal counsel before publishing.
+      </div>
+
+      <div class="prose space-y-6 text-dark">
+        <section>
+          <h2 class="text-primary">1. Information We Collect</h2>
+          <p>When you use our contact form, we may collect the following information: your name, phone number, email address, location, vehicle information, and service description. This information is used solely to respond to your service request.</p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">2. How We Use Your Information</h2>
+          <p>We use the information you provide to contact you regarding your roadside assistance request. We do not sell, rent, or share your personal information with third parties for marketing purposes.</p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">3. Contact Form</h2>
+          <p>Our contact form submissions are processed by Web3Forms. Please review <a href="https://web3forms.com/privacy" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Web3Forms' Privacy Policy</a> for information on how form data is handled.</p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">4. Cookies</h2>
+          <p>This website does not use tracking cookies by default. If analytics tools (Google Analytics, Google Tag Manager) are enabled, they may set cookies. Analytics are only active when configured with a valid tracking ID.</p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">5. Third-Party Links</h2>
+          <p>Our website may contain links to Google Maps, Google Business Profile, Facebook, Instagram, and TikTok. These services have their own privacy policies, and we are not responsible for their practices.</p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">6. Data Security</h2>
+          <p>We take reasonable precautions to protect your information. However, no method of transmission over the Internet is 100% secure.</p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">7. Contact</h2>
+          <p>
+            If you have questions about this Privacy Policy, contact us at:<br />
+            <a href={`mailto:${business.email}`} class="text-primary hover:underline">{business.email}</a><br />
+            <a href={`tel:${business.phone}`} class="text-primary hover:underline">{business.phoneDisplay}</a>
+          </p>
+        </section>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

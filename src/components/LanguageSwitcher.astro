@@ -1,0 +1,41 @@
+---
+import { getAlternatePath } from "@/i18n/index";
+import type { Lang } from "@/i18n/index";
+
+export interface Props {
+  lang: Lang;
+  currentPath: string;
+  variant?: "default" | "mobile";
+}
+const { lang, currentPath, variant = "default" } = Astro.props;
+const alternatePath = getAlternatePath(currentPath, lang);
+const altLang: Lang = lang === "en" ? "es" : "en";
+---
+
+{variant === "default" && (
+  <div class="flex items-center gap-1 text-sm font-bold" aria-label="Language selector">
+    <span class={lang === "en" ? "text-accent" : "text-white/50"}>EN</span>
+    <span class="text-white/30" aria-hidden="true">|</span>
+    <a
+      href={alternatePath}
+      hreflang={altLang}
+      lang={altLang}
+      class={lang === "es" ? "text-accent" : "text-white/50 hover:text-white transition-colors"}
+      aria-label={`Switch to ${altLang === "es" ? "Español" : "English"}`}
+    >
+      ES
+    </a>
+  </div>
+)}
+
+{variant === "mobile" && (
+  <a
+    href={alternatePath}
+    hreflang={altLang}
+    lang={altLang}
+    class="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-lg border border-white/20 text-white text-sm font-bold hover:border-accent hover:text-accent transition-colors"
+    aria-label={`Switch to ${altLang === "es" ? "Español" : "English"}`}
+  >
+    🌐 {altLang === "es" ? "Español" : "English"}
+  </a>
+)}

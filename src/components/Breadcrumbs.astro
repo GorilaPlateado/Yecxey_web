@@ -1,0 +1,74 @@
+---
+import { t } from "@/i18n/index";
+import type { Lang } from "@/i18n/index";
+import site from "@/config/site";
+
+export interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+export interface Props {
+  lang: Lang;
+  items: BreadcrumbItem[];
+}
+
+const { lang, items } = Astro.props;
+const tr = t(lang);
+
+// Build JSON-LD BreadcrumbList
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: tr.breadcrumbs.home,
+      item: `${site.url}/${lang}/`,
+    },
+    ...items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 2,
+      name: item.label,
+      ...(item.href ? { item: `${site.url}${item.href}` } : {}),
+    })),
+  ],
+};
+---
+
+<nav aria-label={lang === "es" ? "Ruta de navegación" : "Breadcrumb"} class="py-3 border-b border-border bg-white">
+  <div class="container">
+    <ol class="flex flex-wrap items-center gap-1 text-sm list-none m-0 p-0" role="list">
+      <!-- Home -->
+      <li class="flex items-center gap-1">
+        <a href={`/${lang}/`} class="text-muted hover:text-primary transition-colors">
+          <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+          </svg>
+          <span class="sr-only">{tr.breadcrumbs.home}</span>
+        </a>
+      </li>
+
+      {items.map((item, index) => (
+        <li class="flex items-center gap-1">
+          <svg aria-hidden="true" class="w-4 h-4 text-border flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+          {item.href && index < items.length - 1 ? (
+            <a href={item.href} class="text-muted hover:text-primary transition-colors truncate max-w-[200px]">
+              {item.label}
+            </a>
+          ) : (
+            <span class="text-dark font-medium truncate max-w-[200px]" aria-current="page">
+              {item.label}
+            </span>
+          )}
+        </li>
+      ))}
+    </ol>
+  </div>
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />

@@ -1,0 +1,58 @@
+---
+/**
+ * Generic Button component.
+ * Usage:
+ *   <Button href="/en/contact-us/" variant="primary">Contact Us</Button>
+ *   <Button href="tel:+12143027757" variant="secondary" external>Call Now</Button>
+ */
+export interface Props {
+  href?: string;
+  variant?: "primary" | "outline" | "white" | "ghost";
+  external?: boolean;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
+  class?: string;
+  ariaLabel?: string;
+}
+
+const {
+  href,
+  variant = "primary",
+  external = false,
+  type = "button",
+  disabled = false,
+  class: extraClass = "",
+  ariaLabel,
+} = Astro.props;
+
+const variantClass = {
+  primary: "btn-primary",
+  outline:  "btn-outline",
+  white:   "btn-white",
+  ghost:   "btn-ghost",
+}[variant];
+
+const externalProps = external
+  ? { target: "_blank", rel: "noopener noreferrer" }
+  : {};
+---
+
+{href ? (
+  <a
+    href={href}
+    class={`${variantClass} ${extraClass}`}
+    aria-label={ariaLabel}
+    {...externalProps}
+  >
+    <slot />
+  </a>
+) : (
+  <button
+    type={type}
+    class={`${variantClass} ${extraClass}`}
+    disabled={disabled}
+    aria-label={ariaLabel}
+  >
+    <slot />
+  </button>
+)}

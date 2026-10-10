@@ -1,0 +1,481 @@
+---
+/**
+ * ContactForm — Web3Forms integration.
+ * Works on ALL static hosting: Netlify, Vercel, Cloudflare Pages, Hostinger,
+ * SiteGround, GoDaddy, cPanel, VPS — no server or SMTP required.
+ *
+ * To activate:
+ * 1. Go to https://web3forms.com (free)
+ * 2. Enter client email → get Access Key
+ * 3. Update src/config/contact.ts with the real Access Key
+ * 4. Run npm run build and deploy
+ * 5. Send test and confirm receipt
+ */
+import { activeServices } from "@/data/services";
+import { t } from "@/i18n/index";
+import type { Lang } from "@/i18n/index";
+import business from "@/data/business";
+import { contactConfig } from "@/config/contact";
+
+// site import removed — not needed after refactor
+
+export interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const tr = t(lang);
+const f = tr.contact.form;
+
+const usStates = [
+  "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA",
+  "HI","ID","IL","IN","IA","KS","KY","LA","ME","MD",
+  "MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ",
+  "NM","NY","NC","ND","OH","OK","OR","PA","RI","SC",
+  "SD","TN","TX","UT","VT","VA","WA","WV","WI","WY",
+];
+
+const privacyPath = lang === "es"
+  ? `/${lang}/politica-de-privacidad/`
+  : `/${lang}/privacy-policy/`;
+
+const isConfigured = contactConfig.accessKey !== "YOUR_WEB3FORMS_ACCESS_KEY";
+---
+
+{!isConfigured && (
+  <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-6 text-sm text-yellow-800">
+    <p class="font-bold mb-1">⚙️ Web3Forms not yet configured</p>
+    <p>Update <code>src/config/contact.ts</code> with your Access Key from <a href="https://web3forms.com" target="_blank" rel="noopener" class="underline">web3forms.com</a>.</p>
+  </div>
+)}
+
+<div class="card p-6 md:p-8">
+  <!-- Success state -->
+  <div
+    id="form-success"
+    class="hidden bg-success/10 border border-success/30 rounded-xl p-8 text-center"
+    role="alert"
+    aria-live="polite"
+    aria-atomic="true"
+  >
+    <svg aria-hidden="true" class="w-14 h-14 text-success mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+    </svg>
+    <h3 class="text-success font-bold text-xl mb-2">{f.successTitle}</h3>
+    <p class="text-dark mb-4">{f.successMessage}</p>
+    <a href={`tel:${business.phone}`} class="btn-primary">
+      <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.948V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+      </svg>
+      {business.phoneDisplay}
+    </a>
+  </div>
+
+  <!-- Error state -->
+  <div
+    id="form-error"
+    class="hidden bg-error/10 border border-error/30 rounded-xl p-4 mb-6"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+  >
+    <p class="text-error font-semibold">{f.errorTitle}</p>
+    <p class="text-dark text-sm mt-1">
+      {f.errorMessage}
+      <a href={`tel:${business.phone}`} class="text-secondary font-semibold hover:underline ml-1">
+        {business.phoneDisplay}
+      </a>
+    </p>
+  </div>
+
+  <!-- Form -->
+  <form
+    id="contact-form"
+    method="POST"
+    action={contactConfig.web3FormsEndpoint}
+    novalidate
+    class="space-y-5"
+    aria-label={tr.contact.subtitle}
+  >
+    <!-- Web3Forms required hidden fields -->
+    <input type="hidden" name="access_key" value={contactConfig.accessKey} />
+    <input type="hidden" name="subject" value={`New Roadside Assistance Request — ${business.name}`} />
+    <input type="hidden" name="from_name" value={business.name} />
+    <input type="hidden" name="redirect" value={contactConfig.redirectUrl || ""} />
+
+    <!-- Honeypot anti-spam (Web3Forms native) -->
+    <input
+      type="checkbox"
+      name="botcheck"
+      class="hidden"
+      style="display:none"
+      tabindex="-1"
+      aria-hidden="true"
+    />
+
+    <!-- Grid: Name + Phone -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div>
+        <label for="full-name" class="form-label">
+          {f.fullName} <span class="text-error" aria-label={f.required}>*</span>
+        </label>
+        <input
+          type="text"
+          id="full-name"
+          name="name"
+          class="form-input"
+          placeholder={f.fullNamePlaceholder}
+          required
+          autocomplete="name"
+          aria-required="true"
+          aria-describedby="full-name-error"
+        />
+        <span id="full-name-error" class="form-error hidden" role="alert"></span>
+      </div>
+
+      <div>
+        <label for="phone" class="form-label">
+          {f.phone} <span class="text-error" aria-label={f.required}>*</span>
+        </label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          class="form-input"
+          placeholder={f.phonePlaceholder}
+          required
+          autocomplete="tel"
+          aria-required="true"
+          aria-describedby="phone-error"
+          inputmode="tel"
+        />
+        <span id="phone-error" class="form-error hidden" role="alert"></span>
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div>
+      <label for="email" class="form-label">{f.email}</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        class="form-input"
+        placeholder={f.emailPlaceholder}
+        autocomplete="email"
+        inputmode="email"
+        aria-describedby="email-error"
+      />
+      <span id="email-error" class="form-error hidden" role="alert"></span>
+    </div>
+
+    <!-- Service type + State -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div>
+        <label for="service-type" class="form-label">
+          {f.serviceType} <span class="text-error" aria-label={f.required}>*</span>
+        </label>
+        <select
+          id="service-type"
+          name="service_type"
+          class="form-input"
+          required
+          aria-required="true"
+          aria-describedby="service-type-error"
+        >
+          <option value="">{f.serviceTypePlaceholder}</option>
+          {activeServices.map((s) => (
+            <option value={s.slug}>{s.title[lang]}</option>
+          ))}
+          <option value="other">{lang === "es" ? "Otro" : "Other"}</option>
+        </select>
+        <span id="service-type-error" class="form-error hidden" role="alert"></span>
+      </div>
+
+      <div>
+        <label for="state" class="form-label">
+          {f.state} <span class="text-error" aria-label={f.required}>*</span>
+        </label>
+        <select
+          id="state"
+          name="state"
+          class="form-input"
+          required
+          aria-required="true"
+          aria-describedby="state-error"
+        >
+          <option value="">{f.statePlaceholder}</option>
+          {usStates.map((s) => (
+            <option value={s}>{s}</option>
+          ))}
+        </select>
+        <span id="state-error" class="form-error hidden" role="alert"></span>
+      </div>
+    </div>
+
+    <!-- Location -->
+    <div>
+      <label for="location" class="form-label">
+        {f.location} <span class="text-error" aria-label={f.required}>*</span>
+      </label>
+      <input
+        type="text"
+        id="location"
+        name="location"
+        class="form-input"
+        placeholder={f.locationPlaceholder}
+        required
+        aria-required="true"
+        aria-describedby="location-error"
+      />
+      <span id="location-error" class="form-error hidden" role="alert"></span>
+    </div>
+
+    <!-- Truck info -->
+    <div>
+      <label for="truck-info" class="form-label">{f.truckInfo}</label>
+      <input
+        type="text"
+        id="truck-info"
+        name="truck_info"
+        class="form-input"
+        placeholder={f.truckInfoPlaceholder}
+        autocomplete="off"
+      />
+    </div>
+
+    <!-- Problem description -->
+    <div>
+      <label for="problem-description" class="form-label">
+        {f.problemDescription} <span class="text-error" aria-label={f.required}>*</span>
+      </label>
+      <textarea
+        id="problem-description"
+        name="message"
+        rows="4"
+        class="form-input resize-y"
+        placeholder={f.problemDescriptionPlaceholder}
+        required
+        aria-required="true"
+        aria-describedby="problem-description-error"
+      ></textarea>
+      <span id="problem-description-error" class="form-error hidden" role="alert"></span>
+    </div>
+
+    <!-- Contact preference -->
+    <fieldset>
+      <legend class="form-label">{f.contactPreference}</legend>
+      <div class="flex flex-wrap gap-4 mt-2">
+        {[
+          { value: "phone", label: f.contactPreferencePhone },
+          { value: "text",  label: f.contactPreferenceText  },
+          { value: "email", label: f.contactPreferenceEmail },
+        ].map(({ value, label }) => (
+          <label class="flex items-center gap-2 cursor-pointer text-sm font-medium text-dark">
+            <input
+              type="radio"
+              name="contact_preference"
+              value={value}
+              class="w-4 h-4 accent-primary"
+            />
+            {label}
+          </label>
+        ))}
+      </div>
+    </fieldset>
+
+    <!-- Privacy consent -->
+    <div>
+      <label class="flex items-start gap-3 cursor-pointer">
+        <input
+          type="checkbox"
+          id="privacy-consent"
+          name="privacy_consent"
+          value="yes"
+          class="mt-0.5 w-4 h-4 accent-primary flex-shrink-0"
+          required
+          aria-required="true"
+          aria-describedby="privacy-consent-error"
+        />
+        <span class="text-sm text-muted leading-relaxed">
+          {f.privacyConsent}{" "}
+          <a
+            href={privacyPath}
+            class="text-primary hover:underline font-medium"
+            target="_blank"
+            rel="noopener"
+          >
+            {f.privacyLink}
+          </a>
+        </span>
+      </label>
+      <span id="privacy-consent-error" class="form-error hidden" role="alert"></span>
+    </div>
+
+    <!-- Submit -->
+    <button
+      type="submit"
+      id="form-submit-btn"
+      class="btn-primary w-full text-base py-4 font-bold"
+      aria-describedby="form-live-status"
+    >
+      <svg
+        id="btn-icon-send"
+        aria-hidden="true"
+        class="w-5 h-5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+      </svg>
+      <svg
+        id="btn-icon-loading"
+        aria-hidden="true"
+        class="w-5 h-5 hidden animate-spin"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+      </svg>
+      <span id="btn-label">{f.submit}</span>
+    </button>
+
+    <p
+      id="form-live-status"
+      class="sr-only"
+      aria-live="polite"
+      aria-atomic="true"
+    ></p>
+  </form>
+</div>
+
+<script define:vars={{
+  msgRequired:  lang === "es" ? "Este campo es requerido." : "This field is required.",
+  msgEmail:     lang === "es" ? "Ingrese un correo electrónico válido." : "Please enter a valid email address.",
+  msgPhone:     lang === "es" ? "Ingrese un número de teléfono válido." : "Please enter a valid phone number.",
+  msgPrivacy:   lang === "es" ? "Debe aceptar la política de privacidad." : "You must accept the privacy policy.",
+  msgSubmitting: lang === "es" ? "Enviando..." : "Sending...",
+  web3FormsEndpoint: contactConfig.web3FormsEndpoint,
+}}>
+  const form  = document.getElementById("contact-form");
+  const successEl = document.getElementById("form-success");
+  const errorEl   = document.getElementById("form-error");
+  const submitBtn = document.getElementById("form-submit-btn");
+  const btnLabel  = document.getElementById("btn-label");
+  const liveStatus = document.getElementById("form-live-status");
+  const iconSend   = document.getElementById("btn-icon-send");
+  const iconLoad   = document.getElementById("btn-icon-loading");
+  const originalLabel = btnLabel?.textContent ?? "";
+
+  // ── Helpers ──────────────────────────────────────────────
+  function showFieldError(id, msg) {
+    const field = document.getElementById(id);
+    const err   = document.getElementById(id + "-error");
+    if (!field || !err) return;
+    field.classList.add("form-input-error");
+    field.setAttribute("aria-invalid", "true");
+    err.textContent = msg;
+    err.classList.remove("hidden");
+  }
+
+  function clearFieldError(id) {
+    const field = document.getElementById(id);
+    const err   = document.getElementById(id + "-error");
+    if (!field || !err) return;
+    field.classList.remove("form-input-error");
+    field.removeAttribute("aria-invalid");
+    err.textContent = "";
+    err.classList.add("hidden");
+  }
+
+  function setLoading(loading) {
+    if (!submitBtn || !btnLabel) return;
+    submitBtn.disabled = loading;
+    btnLabel.textContent = loading ? msgSubmitting : originalLabel;
+    iconSend?.classList.toggle("hidden", loading);
+    iconLoad?.classList.toggle("hidden", !loading);
+    if (liveStatus) liveStatus.textContent = loading ? msgSubmitting : "";
+  }
+
+  // ── Validation ───────────────────────────────────────────
+  function validate() {
+    let valid = true;
+
+    ["full-name","phone","service-type","state","location","problem-description"].forEach((id) => {
+      const el = document.getElementById(id);
+      const val = el instanceof HTMLInputElement || el instanceof HTMLSelectElement || el instanceof HTMLTextAreaElement
+        ? el.value.trim() : "";
+      if (!val) { showFieldError(id, msgRequired); valid = false; }
+      else clearFieldError(id);
+    });
+
+    // Email — optional but validated if filled
+    const emailEl = document.getElementById("email");
+    if (emailEl instanceof HTMLInputElement && emailEl.value.trim()) {
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim())) {
+        showFieldError("email", msgEmail); valid = false;
+      } else clearFieldError("email");
+    } else clearFieldError("email");
+
+    // Phone format
+    const phoneEl = document.getElementById("phone");
+    if (phoneEl instanceof HTMLInputElement && phoneEl.value.trim()) {
+      if (!/^[\d\s\-\+\(\)]{7,}$/.test(phoneEl.value.trim())) {
+        showFieldError("phone", msgPhone); valid = false;
+      }
+    }
+
+    // Privacy
+    const privacyEl = document.getElementById("privacy-consent");
+    if (!(privacyEl instanceof HTMLInputElement) || !privacyEl.checked) {
+      showFieldError("privacy-consent", msgPrivacy); valid = false;
+    } else clearFieldError("privacy-consent");
+
+    return valid;
+  }
+
+  // ── Submit ───────────────────────────────────────────────
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    if (!validate()) {
+      const firstInvalid = form.querySelector("[aria-invalid='true']");
+      if (firstInvalid instanceof HTMLElement) firstInvalid.focus();
+      return;
+    }
+
+    setLoading(true);
+    errorEl?.classList.add("hidden");
+
+    try {
+      const data = new FormData(form);
+      const res = await fetch(web3FormsEndpoint, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
+      const json = await res.json();
+
+      if (res.ok && json.success) {
+        form.classList.add("hidden");
+        successEl?.classList.remove("hidden");
+        successEl?.focus();
+        if (liveStatus) liveStatus.textContent = "";
+      } else {
+        throw new Error(json.message || "Submission failed");
+      }
+    } catch {
+      errorEl?.classList.remove("hidden");
+      errorEl?.scrollIntoView({ behavior: "smooth", block: "center" });
+      setLoading(false);
+    }
+  });
+
+  // Real-time error clearing
+  form?.querySelectorAll("input, select, textarea").forEach((el) => {
+    el.addEventListener("input",  () => { if (el.id) clearFieldError(el.id); });
+    el.addEventListener("change", () => { if (el.id) clearFieldError(el.id); });
+  });
+</script>

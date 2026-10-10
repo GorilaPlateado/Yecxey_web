@@ -1,0 +1,88 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import business from "@/data/business";
+import site from "@/config/site";
+
+const lang = "es";
+const canonicalUrl = `${site.url}/es/nosotros/`;
+const alternateUrl = `${site.url}/en/about-us/`;
+---
+
+<BaseLayout
+  title={`Nosotros — ${business.name}`}
+  description="Conozca GY Roadside Solutions LLC — asistencia profesional en carretera para camiones comerciales disponible las 24 horas en todo Estados Unidos."
+  lang={lang}
+  canonicalUrl={canonicalUrl}
+  alternateUrl={alternateUrl}
+>
+  <Breadcrumbs lang={lang} items={[{ label: "Nosotros" }]} />
+
+  <section class="section" aria-labelledby="about-heading">
+    <div class="container max-w-4xl">
+      <div class="section-heading text-left mb-10">
+        <h1 id="about-heading" class="text-primary">Sobre GY Roadside Solutions LLC</h1>
+        <span class="heading-accent !mx-0" aria-hidden="true"></span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+        <div>
+          <h2 class="text-primary mb-4">Nuestra Misión</h2>
+          <p class="text-muted leading-relaxed mb-4">
+            GY Roadside Solutions LLC está dedicada a brindar asistencia en carretera rápida, confiable y profesional, así como servicios de reparación móvil para camiones comerciales en todo Estados Unidos.
+          </p>
+          <p class="text-muted leading-relaxed">
+            Entendemos que cada minuto que su camión está fuera de la carretera le cuesta dinero. Por eso estamos disponibles las 24 horas del día para regresarlo a la ruta lo más rápido posible.
+          </p>
+        </div>
+        <div class="bg-light rounded-2xl overflow-hidden aspect-video">
+          <img
+            src="/images/about/about-us.webp"
+            alt="Equipo y camión de servicio de GY Roadside Solutions LLC"
+            width="600"
+            height="400"
+            class="w-full h-full object-cover"
+            loading="lazy"
+            onerror="this.onerror=null;this.parentElement.classList.add('flex','items-center','justify-center');this.style.display='none';this.parentElement.innerHTML+='<p class=\'text-muted text-center p-8\'>[FOTO — a proporcionar por el cliente]</p>'"
+          />
+        </div>
+      </div>
+
+      <!-- Values -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
+        {[
+          { icon: "⚡", title: "Rapidez", desc: "Respondemos rápido porque sabemos que el tiempo es dinero en la carretera." },
+          { icon: "🤝", title: "Confiabilidad", desc: "Disponibles 24/7, todos los días del año — cuando más nos necesita." },
+          { icon: "🔧", title: "Profesionalismo", desc: "Técnicos experimentados con el equipo adecuado para camiones comerciales." },
+        ].map((v) => (
+          <div class="card p-6 text-center">
+            <div class="text-4xl mb-3" aria-hidden="true">{v.icon}</div>
+            <h3 class="font-bold text-dark mb-2">{v.title}</h3>
+            <p class="text-muted text-sm">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Placeholder content notice -->
+      <div class="bg-yellow-50 border border-yellow-200 rounded-2xl p-6 text-sm text-yellow-800 space-y-2">
+        <p class="font-bold">📋 Contenido pendiente del cliente:</p>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Historia de la empresa y cómo fue fundada</li>
+          <li>Años de experiencia y trayectoria</li>
+          <li>Tipos de clientes atendidos (flotas, operadores independientes, etc.)</li>
+          <li>Diferenciadores frente a la competencia</li>
+          <li>Fotografías del equipo, camiones y herramientas</li>
+          <li>Certificaciones de seguridad y detalles del seguro</li>
+          <li>Área de servicio exacta y estados cubiertos</li>
+        </ul>
+      </div>
+
+      <!-- CTA -->
+      <div class="mt-12 text-center">
+        <a href={`tel:${business.phone}`} class="btn-primary text-lg py-4 px-10">
+          Llamar — {business.phoneDisplay}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

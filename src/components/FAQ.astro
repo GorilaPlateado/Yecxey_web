@@ -1,0 +1,98 @@
+---
+import type { Lang } from "@/i18n/index";
+
+export interface FAQItem {
+  q: { en: string; es: string };
+  a: { en: string; es: string };
+}
+
+export interface Props {
+  lang: Lang;
+  items: FAQItem[];
+  title?: string;
+  headingLevel?: "h2" | "h3";
+}
+
+const { lang, items, title, headingLevel = "h2" } = Astro.props;
+
+if (items.length === 0) return;
+
+const defaultTitle = lang === "es" ? "Preguntas Frecuentes" : "Frequently Asked Questions";
+const sectionTitle = title ?? defaultTitle;
+
+// JSON-LD FAQPage schema
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: items.map((item) => ({
+    "@type": "Question",
+    name: item.q[lang],
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.a[lang],
+    },
+  })),
+};
+
+const HeadingTag = headingLevel;
+---
+
+<section class="section-sm bg-light" aria-labelledby="faq-heading">
+  <div class="container max-w-3xl">
+    <HeadingTag id="faq-heading" class="text-primary text-center mb-8">
+      {sectionTitle}
+    </HeadingTag>
+
+    <div class="space-y-3" role="list">
+      {items.map((item, index) => (
+        <div class="card" role="listitem">
+          <div>
+            <button
+              type="button"
+              class="w-full flex items-center justify-between gap-4 px-6 py-4 text-left font-semibold text-dark hover:text-primary transition-colors"
+              aria-expanded="false"
+              aria-controls={`faq-answer-${index}`}
+              id={`faq-question-${index}`}
+            >
+              <span>{item.q[lang]}</span>
+              <svg
+                aria-hidden="true"
+                class="w-5 h-5 flex-shrink-0 text-secondary transition-transform duration-200 faq-icon"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div
+              id={`faq-answer-${index}`}
+              role="region"
+              aria-labelledby={`faq-question-${index}`}
+              class="hidden px-6 pb-4"
+            >
+              <p class="text-muted leading-relaxed">{item.a[lang]}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>("[aria-controls^='faq-answer-']").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const expanded = btn.getAttribute("aria-expanded") === "true";
+      const answerId = btn.getAttribute("aria-controls")!;
+      const answer = document.getElementById(answerId);
+      const icon = btn.querySelector<SVGElement>(".faq-icon");
+
+      btn.setAttribute("aria-expanded", String(!expanded));
+      answer?.classList.toggle("hidden");
+      icon?.classList.toggle("rotate-180");
+    });
+  });
+</script>

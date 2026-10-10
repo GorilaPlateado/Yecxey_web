@@ -1,0 +1,73 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import business from "@/data/business";
+import site from "@/config/site";
+
+const lang = "es";
+const canonicalUrl = `${site.url}/es/politica-de-privacidad/`;
+const alternateUrl = `${site.url}/en/privacy-policy/`;
+const today = new Date().toLocaleDateString("es-US", { year: "numeric", month: "long", day: "numeric" });
+---
+
+<BaseLayout
+  title={`Política de Privacidad — ${business.name}`}
+  description="Política de Privacidad del sitio web de GY Roadside Solutions LLC."
+  lang={lang}
+  canonicalUrl={canonicalUrl}
+  alternateUrl={alternateUrl}
+>
+  <Breadcrumbs lang={lang} items={[{ label: "Política de Privacidad" }]} />
+
+  <section class="section">
+    <div class="container max-w-3xl">
+      <h1 class="text-primary mb-2">Política de Privacidad</h1>
+      <p class="text-muted text-sm mb-10">Última Actualización: {today}</p>
+
+      <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-10 text-sm text-yellow-800">
+        ⚠️ Esta política de privacidad es una plantilla. Revise con asesor legal antes de publicar.
+      </div>
+
+      <div class="prose space-y-6 text-dark">
+        <section>
+          <h2 class="text-primary">1. Información que Recopilamos</h2>
+          <p>Cuando utiliza nuestro formulario de contacto, podemos recopilar la siguiente información: su nombre, número de teléfono, dirección de correo electrónico, ubicación, información del vehículo y descripción del servicio. Esta información se utiliza únicamente para responder a su solicitud de servicio.</p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">2. Cómo Usamos su Información</h2>
+          <p>Utilizamos la información que proporciona para contactarle en relación con su solicitud de asistencia en carretera. No vendemos, alquilamos ni compartimos su información personal con terceros con fines de marketing.</p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">3. Formulario de Contacto</h2>
+          <p>Los envíos del formulario de contacto son procesados por Web3Forms. Consulte la <a href="https://web3forms.com/privacy" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Política de Privacidad de Web3Forms</a> para obtener información sobre cómo se manejan los datos del formulario.</p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">4. Cookies</h2>
+          <p>Este sitio web no utiliza cookies de seguimiento por defecto. Si se habilitan herramientas de análisis (Google Analytics, Google Tag Manager), estas pueden establecer cookies. Los análisis solo están activos cuando se configuran con un ID de seguimiento válido.</p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">5. Enlaces a Terceros</h2>
+          <p>Nuestro sitio web puede contener enlaces a Google Maps, Google Business Profile, Facebook, Instagram y TikTok. Estos servicios tienen sus propias políticas de privacidad y no somos responsables de sus prácticas.</p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">6. Seguridad de los Datos</h2>
+          <p>Tomamos precauciones razonables para proteger su información. Sin embargo, ningún método de transmisión por Internet es 100% seguro.</p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">7. Contacto</h2>
+          <p>
+            Si tiene preguntas sobre esta Política de Privacidad, contáctenos en:<br />
+            <a href={`mailto:${business.email}`} class="text-primary hover:underline">{business.email}</a><br />
+            <a href={`tel:${business.phone}`} class="text-primary hover:underline">{business.phoneDisplay}</a>
+          </p>
+        </section>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

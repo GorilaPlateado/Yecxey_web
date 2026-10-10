@@ -1,0 +1,89 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import ReviewCard from "@/components/ReviewCard.astro";
+import { confirmedReviews, getAverageRating } from "@/data/reviews";
+import business from "@/data/business";
+import site from "@/config/site";
+
+const lang = "es";
+const canonicalUrl = `${site.url}/es/resenas/`;
+const alternateUrl = `${site.url}/en/reviews/`;
+const avgRating = getAverageRating();
+
+const pageSchema = avgRating !== null ? {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: business.name,
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: avgRating,
+    reviewCount: confirmedReviews.length,
+  },
+} : undefined;
+---
+
+<BaseLayout
+  title={`Reseñas de Clientes — ${business.name}`}
+  description="Lee las reseñas de clientes de GY Roadside Solutions LLC. Asistencia profesional en carretera para camiones comerciales. Llame al (214) 302-7757."
+  lang={lang}
+  canonicalUrl={canonicalUrl}
+  alternateUrl={alternateUrl}
+  structuredData={pageSchema}
+>
+  <Breadcrumbs lang={lang} items={[{ label: "Reseñas" }]} />
+
+  <section class="section" aria-labelledby="reviews-heading">
+    <div class="container">
+      <div class="section-heading">
+        <h1 id="reviews-heading" class="text-primary">Reseñas de Clientes</h1>
+        <p class="text-muted text-lg max-w-2xl mx-auto">
+          Reseñas reales de conductores a quienes hemos ayudado en la carretera.
+        </p>
+        <span class="heading-accent" aria-hidden="true"></span>
+      </div>
+
+      {confirmedReviews.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+          {confirmedReviews.map((review) => (
+            <ReviewCard review={review} lang={lang} />
+          ))}
+        </div>
+      ) : (
+        <div class="max-w-xl mx-auto mt-12 text-center">
+          <div class="card p-10">
+            <div class="text-5xl mb-4" aria-hidden="true">⭐</div>
+            <h2 class="text-dark font-bold text-xl mb-3">
+              Las reseñas de nuestros clientes aparecerán aquí próximamente.
+            </h2>
+            <p class="text-muted mb-6">
+              Estamos orgullosos del servicio que brindamos. Vuelva pronto para ver las reseñas de nuestros clientes.
+            </p>
+            {business.googleBusinessProfileUrl && (
+              <a
+                href={business.googleBusinessProfileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-outline"
+              >
+                Dejar una Reseña en Google
+              </a>
+            )}
+          </div>
+        </div>
+      )}
+
+      <!-- CTA -->
+      <div class="mt-14 text-center">
+        <p class="text-muted text-lg mb-6">¿Tuvo una buena experiencia? Nos encantaría saberlo.</p>
+        {business.googleBusinessProfileUrl ? (
+          <a href={business.googleBusinessProfileUrl} target="_blank" rel="noopener noreferrer" class="btn-primary">
+            Dejar una Reseña en Google
+          </a>
+        ) : (
+          <p class="text-muted text-sm">[URL de Google Business Profile — confirmar con cliente]</p>
+        )}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

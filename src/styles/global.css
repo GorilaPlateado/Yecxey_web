@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    @apply bg-light text-dark font-sans antialiased;
+    line-height: 1.6;
+  }
+
+  :focus-visible {
+    outline: 2px solid #F5C518;
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  .skip-link {
+    @apply sr-only;
+  }
+  .skip-link:focus {
+    @apply not-sr-only fixed top-4 left-4 z-50 bg-accent text-dark px-4 py-2 rounded-lg font-bold text-sm;
+  }
+
+  h1 { @apply font-bold leading-tight; }
+  h2 { @apply font-bold leading-tight; }
+  h3 { @apply font-semibold leading-snug; }
+  img { @apply max-w-full h-auto; }
+  a  { @apply transition-colors duration-200; }
+}
+
+@layer components {
+
+  /* ── Layout ───────────────────────────────────────── */
+  .container {
+    @apply w-full max-w-container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  .section     { @apply py-16 md:py-20 lg:py-24; }
+  .section-sm  { @apply py-10 md:py-14; }
+
+  /* ── Buttons ──────────────────────────────────────── */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 font-bold rounded-lg
+           px-6 py-3 text-base transition-all duration-200 cursor-pointer
+           min-h-[48px] min-w-[48px]
+           focus-visible:outline-2 focus-visible:outline-offset-2
+           disabled:opacity-60 disabled:cursor-not-allowed
+           active:scale-95;
+  }
+
+  /* Yellow — primary CTA (Call Now) */
+  .btn-primary {
+    @apply btn bg-accent text-dark hover:bg-accent-light
+           focus-visible:outline-accent shadow-cta;
+  }
+
+  /* Dark outline — secondary (Our Services) */
+  .btn-outline {
+    @apply btn bg-transparent border-2 border-white text-white
+           hover:bg-white hover:text-dark
+           focus-visible:outline-white;
+  }
+
+  /* Dark outline on light bg */
+  .btn-outline-dark {
+    @apply btn bg-transparent border-2 border-primary text-primary
+           hover:bg-primary hover:text-white
+           focus-visible:outline-primary;
+  }
+
+  /* White button */
+  .btn-white {
+    @apply btn bg-white text-dark hover:bg-gray-100
+           focus-visible:outline-white;
+  }
+
+  /* ── Cards ────────────────────────────────────────── */
+  .card {
+    @apply bg-white rounded-xl shadow-card hover:shadow-card-hover
+           transition-shadow duration-300 overflow-hidden;
+  }
+
+  /* Service list item (mobile style — row layout) */
+  .service-row {
+    @apply flex items-center gap-4 p-4 bg-white rounded-xl border border-border
+           hover:border-accent hover:shadow-card transition-all duration-200 cursor-pointer;
+  }
+
+  /* ── Forms ────────────────────────────────────────── */
+  .form-label {
+    @apply block text-sm font-semibold text-dark mb-1.5;
+  }
+  .form-input {
+    @apply w-full rounded-lg border border-border bg-white px-4 py-3 text-dark
+           placeholder:text-muted
+           focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none
+           transition-colors duration-200 min-h-[48px];
+  }
+  .form-input-error {
+    @apply border-error focus:border-error focus:ring-error/20;
+  }
+  .form-error {
+    @apply text-error text-sm mt-1 flex items-center gap-1;
+  }
+
+  /* ── Badges ───────────────────────────────────────── */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide;
+  }
+  .badge-accent  { @apply badge bg-accent text-dark; }
+  .badge-primary { @apply badge bg-primary text-white; }
+
+  /* ── Section headings ─────────────────────────────── */
+  .section-label {
+    @apply text-accent text-xs font-bold uppercase tracking-widest mb-2 block;
+  }
+  .section-heading {
+    @apply text-center mb-12;
+  }
+  .heading-accent {
+    @apply block w-12 h-1 bg-accent rounded-full mx-auto mt-3;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+}

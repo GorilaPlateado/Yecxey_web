@@ -1,0 +1,98 @@
+---
+import { t } from "@/i18n/index";
+import type { Lang } from "@/i18n/index";
+
+export interface Props {
+  lang: Lang;
+  currentPath: string;
+  variant?: "desktop" | "mobile" | "footer";
+}
+const { lang, currentPath, variant = "desktop" } = Astro.props;
+const tr = t(lang);
+
+const servicesPath = lang === "es" ? `/${lang}/servicios/`         : `/${lang}/services/`;
+const aboutPath    = lang === "es" ? `/${lang}/nosotros/`          : `/${lang}/about-us/`;
+const areaPath     = lang === "es" ? `/${lang}/area-de-servicio/`  : `/${lang}/service-area/`;
+const reviewsPath  = lang === "es" ? `/${lang}/resenas/`           : `/${lang}/reviews/`;
+const contactPath  = lang === "es" ? `/${lang}/contacto/`          : `/${lang}/contact-us/`;
+
+const navItems = [
+  { label: tr.nav.home,        href: `/${lang}/` },
+  { label: tr.nav.services,    href: servicesPath, hasDropdown: true },
+  { label: tr.nav.aboutUs,     href: aboutPath },
+  { label: tr.nav.serviceArea, href: areaPath },
+  { label: tr.nav.reviews,     href: reviewsPath },
+  { label: tr.nav.contact,     href: contactPath },
+];
+
+function isActive(href: string): boolean {
+  if (href === `/${lang}/`) return currentPath === href || currentPath === `/${lang}`;
+  return currentPath.startsWith(href);
+}
+---
+
+{variant === "desktop" && (
+  <ul class="flex items-center gap-0 list-none m-0 p-0" role="list">
+    {navItems.map((item) => (
+      <li>
+        <a
+          href={item.href}
+          class:list={[
+            "flex items-center gap-1 px-3 py-2 text-sm font-semibold rounded-lg transition-colors duration-150",
+            isActive(item.href)
+              ? "text-accent"
+              : "text-white/80 hover:text-white hover:bg-white/5"
+          ]}
+          aria-current={isActive(item.href) ? "page" : undefined}
+        >
+          {item.label}
+          {item.hasDropdown && (
+            <svg aria-hidden="true" class="w-3.5 h-3.5 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+            </svg>
+          )}
+        </a>
+        {/* Underline indicator for active */}
+        {isActive(item.href) && (
+          <div class="h-0.5 bg-accent rounded-full mx-3 -mt-1" aria-hidden="true"></div>
+        )}
+      </li>
+    ))}
+  </ul>
+)}
+
+{variant === "mobile" && (
+  <ul class="flex flex-col list-none m-0 p-0" role="list">
+    {navItems.map((item) => (
+      <li>
+        <a
+          href={item.href}
+          class:list={[
+            "flex items-center gap-3 px-3 py-3.5 rounded-lg text-base font-semibold transition-colors duration-150",
+            isActive(item.href)
+              ? "text-accent bg-white/5"
+              : "text-white/80 hover:text-white hover:bg-white/5"
+          ]}
+          aria-current={isActive(item.href) ? "page" : undefined}
+        >
+          {isActive(item.href) && (
+            <span class="w-1 h-5 bg-accent rounded-full flex-shrink-0" aria-hidden="true"></span>
+          )}
+          {item.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+)}
+
+{variant === "footer" && (
+  <ul class="flex flex-col gap-2 list-none m-0 p-0" role="list">
+    {navItems.map((item) => (
+      <li>
+        <a href={item.href} class="text-white/60 hover:text-white transition-colors text-sm">
+          {item.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+)}

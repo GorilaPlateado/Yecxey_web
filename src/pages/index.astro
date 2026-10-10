@@ -1,0 +1,33 @@
+---
+/**
+ * Root page — meta-refresh redirect to /en/
+ * Works on all static hosts without server-side redirects.
+ * Also provides visible links for accessibility.
+ */
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GY Roadside Solutions LLC</title>
+    <meta http-equiv="refresh" content="0;url=/en/" />
+    <link rel="canonical" href="/en/" />
+    <!-- Immediate JS redirect (faster than meta-refresh) -->
+    <script>window.location.replace("/en/");</script>
+  </head>
+  <body style="font-family:system-ui,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;background:#f8fafc;">
+    <div style="text-align:center;padding:2rem;">
+      <h1 style="color:#1B3A8C;margin-bottom:1rem;">GY Roadside Solutions LLC</h1>
+      <p style="margin-bottom:1.5rem;color:#64748b;">Select your language / Seleccione su idioma:</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="/en/" style="background:#1B3A8C;color:white;padding:0.75rem 2rem;border-radius:0.75rem;text-decoration:none;font-weight:700;">
+          English
+        </a>
+        <a href="/es/" style="background:#C8102E;color:white;padding:0.75rem 2rem;border-radius:0.75rem;text-decoration:none;font-weight:700;">
+          Español
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+# Build output
+dist/
+.output/
+
+# Dependencies
+node_modules/
+
+# Environment variables — NEVER commit .env
+.env
+.env.local
+.env.*.local
+
+# Astro cache
+.astro/
+
+# Freebuff app state (databases, ids) — never commit
+.freebuff/
+
+# Local QA screenshots
+screenshots/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*

@@ -1,0 +1,88 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import business from "@/data/business";
+import site from "@/config/site";
+
+const lang = "en";
+const canonicalUrl = `${site.url}/en/about-us/`;
+const alternateUrl = `${site.url}/es/nosotros/`;
+---
+
+<BaseLayout
+  title={`About Us — ${business.name}`}
+  description="Learn about GY Roadside Solutions LLC — professional commercial truck roadside assistance available 24/7 across the United States."
+  lang={lang}
+  canonicalUrl={canonicalUrl}
+  alternateUrl={alternateUrl}
+>
+  <Breadcrumbs lang={lang} items={[{ label: "About Us" }]} />
+
+  <section class="section" aria-labelledby="about-heading">
+    <div class="container max-w-4xl">
+      <div class="section-heading text-left mb-10">
+        <h1 id="about-heading" class="text-primary">About GY Roadside Solutions LLC</h1>
+        <span class="heading-accent !mx-0" aria-hidden="true"></span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+        <div>
+          <h2 class="text-primary mb-4">Our Mission</h2>
+          <p class="text-muted leading-relaxed mb-4">
+            GY Roadside Solutions LLC is dedicated to providing fast, reliable, and professional roadside assistance and mobile repair services for commercial trucks across the United States.
+          </p>
+          <p class="text-muted leading-relaxed">
+            We understand that every minute your truck is off the road costs you money. That's why we're available 24 hours a day to get you back on the road as quickly as possible.
+          </p>
+        </div>
+        <div class="bg-light rounded-2xl overflow-hidden aspect-video">
+          <img
+            src="/images/about/about-us.webp"
+            alt="GY Roadside Solutions LLC team and service truck"
+            width="600"
+            height="400"
+            class="w-full h-full object-cover"
+            loading="lazy"
+            onerror="this.onerror=null;this.parentElement.classList.add('flex','items-center','justify-center');this.style.display='none';this.parentElement.innerHTML+='<p class=\'text-muted text-center p-8\'>[PHOTO — to be provided by client]</p>'"
+          />
+        </div>
+      </div>
+
+      <!-- Values -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
+        {[
+          { icon: "⚡", title: "Speed", desc: "We respond fast because we know time is money on the road." },
+          { icon: "🤝", title: "Reliability", desc: "Available 24/7, every day of the year — when you need us most." },
+          { icon: "🔧", title: "Professionalism", desc: "Experienced technicians with the right equipment for commercial trucks." },
+        ].map((v) => (
+          <div class="card p-6 text-center">
+            <div class="text-4xl mb-3" aria-hidden="true">{v.icon}</div>
+            <h3 class="font-bold text-dark mb-2">{v.title}</h3>
+            <p class="text-muted text-sm">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Placeholder content -->
+      <div class="bg-yellow-50 border border-yellow-200 rounded-2xl p-6 text-sm text-yellow-800 space-y-2">
+        <p class="font-bold">📋 Content pending from client:</p>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Company history and founding story</li>
+          <li>Years of experience and background</li>
+          <li>Types of clients served (fleets, owner-operators, etc.)</li>
+          <li>Differentiators vs. competitors</li>
+          <li>Photos of team, trucks, and equipment</li>
+          <li>Safety certifications and insurance details</li>
+          <li>Exact service area and states covered</li>
+        </ul>
+      </div>
+
+      <!-- CTA -->
+      <div class="mt-12 text-center">
+        <a href={`tel:${business.phone}`} class="btn-primary text-lg py-4 px-10">
+          Call Us — {business.phoneDisplay}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

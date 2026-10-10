@@ -1,0 +1,87 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import serviceAreas from "@/data/serviceAreas";
+import business from "@/data/business";
+import site from "@/config/site";
+
+const lang = "en";
+const canonicalUrl = `${site.url}/en/service-area/`;
+const alternateUrl = `${site.url}/es/area-de-servicio/`;
+---
+
+<BaseLayout
+  title={`Service Area — ${business.name}`}
+  description="GY Roadside Solutions LLC provides commercial truck roadside assistance across multiple US states. Call (214) 302-7757 to confirm coverage in your area."
+  lang={lang}
+  canonicalUrl={canonicalUrl}
+  alternateUrl={alternateUrl}
+>
+  <Breadcrumbs lang={lang} items={[{ label: "Service Area" }]} />
+
+  <section class="section" aria-labelledby="area-heading">
+    <div class="container">
+      <div class="section-heading">
+        <h1 id="area-heading" class="text-primary">Service Area</h1>
+        <p class="text-muted text-lg max-w-2xl mx-auto">
+          GY Roadside Solutions LLC provides commercial truck roadside assistance across the United States. Contact us to confirm coverage in your specific location.
+        </p>
+        <span class="heading-accent" aria-hidden="true"></span>
+      </div>
+
+      <!-- Coverage note -->
+      <div class="max-w-3xl mx-auto mt-10">
+        <div class="bg-primary/5 border border-primary/20 rounded-2xl p-6 mb-10 text-center">
+          <p class="text-primary font-bold text-lg mb-2">Not sure if we cover your area?</p>
+          <p class="text-muted mb-4">Call us and we'll let you know if we can reach you.</p>
+          <a href={`tel:${business.phone}`} class="btn-primary">
+            Call (214) 302-7757
+          </a>
+        </div>
+
+        {serviceAreas.length > 0 && serviceAreas.some(a => a.confirmed) ? (
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {serviceAreas.filter(a => a.confirmed).map((area) => (
+              <div class="card p-5 flex items-center gap-3">
+                <div class="w-10 h-10 bg-secondary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <svg aria-hidden="true" class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-semibold text-dark">{area.city}</p>
+                  <p class="text-muted text-sm">{area.state}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div class="bg-yellow-50 border border-yellow-200 rounded-2xl p-6 text-sm text-yellow-800">
+            <p class="font-bold mb-2">📋 Service areas pending confirmation from client.</p>
+            <p>Once confirmed, specific cities and states will be listed here. Call us to verify coverage in your location.</p>
+          </div>
+        )}
+
+        <!-- Google Maps embed placeholder -->
+        {business.googleMapsUrl ? (
+          <div class="mt-10 rounded-2xl overflow-hidden border border-border aspect-video">
+            <iframe
+              src={business.googleMapsUrl}
+              width="100%"
+              height="100%"
+              style="border:0"
+              allowfullscreen
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="GY Roadside Solutions LLC service area map"
+            ></iframe>
+          </div>
+        ) : (
+          <div class="mt-10 bg-light rounded-2xl border border-border flex items-center justify-center aspect-video">
+            <p class="text-muted text-center p-8">[GOOGLE MAPS EMBED — configure PUBLIC_GOOGLE_MAPS_URL in .env]</p>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

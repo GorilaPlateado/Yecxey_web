@@ -1,0 +1,48 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ServiceCard from "@/components/ServiceCard.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import { activeServices } from "@/data/services";
+import business from "@/data/business";
+import site from "@/config/site";
+
+const lang = "en";
+const canonicalUrl = `${site.url}/en/services/`;
+const alternateUrl = `${site.url}/es/servicios/`;
+---
+
+<BaseLayout
+  title={`Our Services — ${business.name}`}
+  description="Professional commercial truck roadside assistance services: tire change, jump start, fuel delivery, brake service, reefer maintenance, oil change. Available 24/7. Call (214) 302-7757."
+  lang={lang}
+  canonicalUrl={canonicalUrl}
+  alternateUrl={alternateUrl}
+>
+  <Breadcrumbs lang={lang} items={[{ label: "Services" }]} />
+
+  <section class="section" aria-labelledby="services-page-heading">
+    <div class="container">
+      <div class="section-heading">
+        <h1 id="services-page-heading" class="text-primary">Our Services</h1>
+        <p class="text-muted text-lg max-w-2xl mx-auto">
+          Professional mobile roadside assistance and repair services for commercial trucks — available 24 hours a day.
+        </p>
+        <span class="heading-accent" aria-hidden="true"></span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+        {activeServices.map((service) => (
+          <ServiceCard service={service} lang={lang} featured={service.featured} />
+        ))}
+      </div>
+
+      <!-- CTA -->
+      <div class="mt-16 text-center">
+        <p class="text-muted text-lg mb-6">Don't see what you need? Call us directly.</p>
+        <a href={`tel:${business.phone}`} class="btn-primary text-lg py-4 px-10">
+          Call (214) 302-7757
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

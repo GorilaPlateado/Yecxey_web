@@ -1,0 +1,47 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ServiceCard from "@/components/ServiceCard.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import { activeServices } from "@/data/services";
+import business from "@/data/business";
+import site from "@/config/site";
+
+const lang = "es";
+const canonicalUrl = `${site.url}/es/servicios/`;
+const alternateUrl = `${site.url}/en/services/`;
+---
+
+<BaseLayout
+  title={`Nuestros Servicios — ${business.name}`}
+  description="Servicios profesionales de asistencia en carretera para camiones comerciales: cambio de llanta, arranque, combustible, frenos, mantenimiento reefer, cambio de aceite. Disponible 24/7. Llame al (214) 302-7757."
+  lang={lang}
+  canonicalUrl={canonicalUrl}
+  alternateUrl={alternateUrl}
+>
+  <Breadcrumbs lang={lang} items={[{ label: "Servicios" }]} />
+
+  <section class="section" aria-labelledby="services-page-heading">
+    <div class="container">
+      <div class="section-heading">
+        <h1 id="services-page-heading" class="text-primary">Nuestros Servicios</h1>
+        <p class="text-muted text-lg max-w-2xl mx-auto">
+          Servicios profesionales de asistencia en carretera y reparación móvil para camiones comerciales — disponibles las 24 horas.
+        </p>
+        <span class="heading-accent" aria-hidden="true"></span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+        {activeServices.map((service) => (
+          <ServiceCard service={service} lang={lang} featured={service.featured} />
+        ))}
+      </div>
+
+      <div class="mt-16 text-center">
+        <p class="text-muted text-lg mb-6">¿No encuentra lo que necesita? Llámenos directamente.</p>
+        <a href={`tel:${business.phone}`} class="btn-primary text-lg py-4 px-10">
+          Llamar (214) 302-7757
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

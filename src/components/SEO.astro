@@ -1,0 +1,107 @@
+---
+import site from "@/config/site";
+import business from "@/data/business";
+
+export interface Props {
+  title: string;
+  description: string;
+  lang: "en" | "es";
+  canonicalUrl: string;
+  alternateUrl?: string;
+  ogImage?: string;
+  ogType?: "website" | "article";
+  noIndex?: boolean;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  lang,
+  canonicalUrl,
+  alternateUrl,
+  ogImage = site.ogImage,
+  ogType = "website",
+  noIndex = false,
+  structuredData,
+} = Astro.props;
+
+const fullTitle = title.includes(business.name)
+  ? title
+  : `${title} | ${business.name}`;
+
+const fullOgImage = ogImage.startsWith("http")
+  ? ogImage
+  : `${site.url}${ogImage}`;
+
+const altLang     = lang === "en" ? "es" : "en";
+const altLangFull = lang === "en" ? "es-US" : "en-US";
+const curLangFull = lang === "en" ? "en-US" : "es-US";
+
+const sameAs = [
+  business.social.facebook,
+  business.social.instagram,
+  business.social.tiktok,
+].filter((v): v is string => Boolean(v));
+
+const localBizSchema = {
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "AutomotiveBusiness"],
+  name: business.name,
+  url: site.url,
+  telephone: business.phone,
+  email: business.email,
+  openingHours: "Mo-Su 00:00-23:59",
+  priceRange: "$$",
+  currenciesAccepted: "USD",
+  paymentAccepted: "Cash, Credit Card",
+  areaServed: { "@type": "Country", name: "United States" },
+  sameAs,
+};
+
+const schemas: Record<string, unknown>[] = structuredData
+  ? Array.isArray(structuredData)
+    ? structuredData
+    : [structuredData]
+  : [localBizSchema];
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+{noIndex && <meta name="robots" content="noindex, nofollow" />}
+
+<link rel="canonical" href={canonicalUrl} />
+{alternateUrl && (
+  <link rel="alternate" hreflang={altLangFull} href={alternateUrl} />
+)}
+<link rel="alternate" hreflang={curLangFull}  href={canonicalUrl} />
+<link rel="alternate" hreflang="x-default"    href={`${site.url}/en/`} />
+
+<meta property="og:type"              content={ogType} />
+<meta property="og:url"               content={canonicalUrl} />
+<meta property="og:title"             content={fullTitle} />
+<meta property="og:description"       content={description} />
+<meta property="og:image"             content={fullOgImage} />
+<meta property="og:image:alt"         content={`${business.name} — ${title}`} />
+<meta property="og:site_name"         content={business.name} />
+<meta property="og:locale"            content={curLangFull} />
+{alternateUrl && (
+  <meta property="og:locale:alternate" content={altLangFull} />
+)}
+
+<meta name="twitter:card"        content="summary_large_image" />
+<meta name="twitter:title"       content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image"       content={fullOgImage} />
+
+<meta name="theme-color" content={site.themeColor} />
+
+{site.analytics.gscVerification && (
+  <meta name="google-site-verification" content={site.analytics.gscVerification} />
+)}
+
+{schemas.map((schema) => (
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+))}
