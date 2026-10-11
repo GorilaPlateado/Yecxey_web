@@ -16,6 +16,7 @@ export interface Service {
   shortDescription: { en: string; es: string };
   description: { en: string; es: string };
   image: string;
+  imageWide: string;
   imageAlt: { en: string; es: string };
   icon: string;
   active: boolean;
@@ -43,9 +44,10 @@ const services: Service[] = [
       es: "GY Roadside Solutions LLC ofrece servicios profesionales de cambio de neumáticos en sitio para camiones y tráilers comerciales. Ya sea un reventón en la autopista o una llanta ponchada en una gasolinera, nuestros técnicos van hasta donde usted está con el equipo necesario para manejar todos los tamaños de llantas comerciales. Atendemos configuraciones de eje doble y sencillo para regresarlo a la carretera lo más rápido posible.",
     },
     image: "/images/services/tire-change.webp",
+    imageWide: "/images/services/tire-change-wide.webp",
     imageAlt: {
-      en: "Technician performing a tire change on a commercial truck on the roadside",
-      es: "Técnico realizando cambio de neumático en un camión comercial en la carretera",
+      en: "3D illustration of a commercial truck tire mounted with an impact wrench",
+      es: "Ilustración 3D de una llanta de camión con un impacto para cambio de neumáticos",
     },
     icon: "🔧",
     active: true,
@@ -91,9 +93,10 @@ const services: Service[] = [
       es: "¿Batería muerta en su camión comercial? GY Roadside Solutions LLC envía un técnico a su ubicación para brindar un arranque de emergencia profesional. Contamos con equipo de alto rendimiento diseñado para camiones comerciales, semirremolques y motores diésel grandes. Disponible las 24 horas.",
     },
     image: "/images/services/jump-start.webp",
+    imageWide: "/images/services/jump-start-wide.webp",
     imageAlt: {
-      en: "Jump start service being performed on a heavy-duty commercial truck",
-      es: "Servicio de arranque de emergencia siendo realizado en un camión comercial pesado",
+      en: "3D illustration of a truck battery with jumper cable clamps for a jump start",
+      es: "Ilustración 3D de una batería de camión con pinzas de cables para arranque de emergencia",
     },
     icon: "⚡",
     active: true,
@@ -129,9 +132,10 @@ const services: Service[] = [
       es: "¿Se quedó sin diésel en la carretera? GY Roadside Solutions LLC entrega combustible de emergencia directamente a su camión comercial. Proveemos el combustible suficiente para llegar a la gasolinera más cercana o a su destino. Disponible las 24 horas para minimizar el tiempo inactivo de su flota.",
     },
     image: "/images/services/fuel-delivery.webp",
+    imageWide: "/images/services/fuel-delivery-wide.webp",
     imageAlt: {
-      en: "Emergency fuel delivery to a commercial truck stranded on the highway",
-      es: "Entrega de combustible de emergencia a un camión comercial varado en la autopista",
+      en: "3D illustration of a fuel nozzle with a diesel drop for emergency fuel delivery",
+      es: "Ilustración 3D de una boquilla de combustible con una gota de diésel para entrega de emergencia",
     },
     icon: "⛽",
     active: true,
@@ -167,9 +171,10 @@ const services: Service[] = [
       es: "Los problemas de frenos en un camión comercial son una preocupación de seguridad grave. GY Roadside Solutions LLC ofrece servicios móviles de inspección y reparación de frenos para camiones y tráilers comerciales. Nuestros técnicos pueden diagnosticar y atender problemas de frenos en sitio para ayudarle a regresar a la carretera de forma segura. Disponible las 24 horas.",
     },
     image: "/images/services/brake-service.webp",
+    imageWide: "/images/services/brake-service-wide.webp",
     imageAlt: {
-      en: "Technician performing mobile brake service on a commercial truck",
-      es: "Técnico realizando servicio de frenos móvil en un camión comercial",
+      en: "3D illustration of a ventilated brake disc with caliper",
+      es: "Ilustración 3D de un disco de freno ventilado con pinza",
     },
     icon: "🛑",
     active: true,
@@ -205,9 +210,10 @@ const services: Service[] = [
       es: "Mantenga su carga refrigerada protegida con los servicios de mantenimiento de refrigeración de GY Roadside Solutions LLC. Ofrecemos mantenimiento y reparación móvil de unidades de refrigeración en camiones y tráilers comerciales. Una unidad reefer defectuosa puede comprometer toda su carga — llámenos para asistencia rápida en sitio.",
     },
     image: "/images/services/reefer-maintenance.webp",
+    imageWide: "/images/services/reefer-maintenance-wide.webp",
     imageAlt: {
-      en: "Mobile reefer unit maintenance service on a refrigerated commercial truck",
-      es: "Servicio de mantenimiento de unidad reefer en un camión refrigerado comercial",
+      en: "3D illustration of a refrigeration unit with an ice crystal snowflake",
+      es: "Ilustración 3D de una unidad de refrigeración con un copo de hielo",
     },
     icon: "❄️",
     active: true,
@@ -243,9 +249,10 @@ const services: Service[] = [
       es: "GY Roadside Solutions LLC ofrece servicios de cambio de aceite móvil para camiones comerciales. Evite ir al taller y cambie su aceite en el lugar donde se encuentre — ya sea en una gasolinera, almacén o en la carretera. Utilizamos aceites y filtros de grado comercial adecuados para motores diésel de uso intensivo. Disponible las 24 horas.",
     },
     image: "/images/services/oil-change-service.webp",
+    imageWide: "/images/services/oil-change-service-wide.webp",
     imageAlt: {
-      en: "Mobile oil change service being performed on a commercial truck",
-      es: "Servicio de cambio de aceite móvil siendo realizado en un camión comercial",
+      en: "3D illustration of an oil jug with a wrench for a truck oil change",
+      es: "Ilustración 3D de un bidón de aceite con una llave para cambio de aceite de camión",
     },
     icon: "🛢️",
     active: true,

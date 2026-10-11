@@ -14,20 +14,45 @@ const tr_source = {
   Yelp: lang === "es" ? "Reseña de Yelp" : "Yelp Review",
   Direct: lang === "es" ? "Reseña directa" : "Direct Review",
 };
+
+// Up to two initials for the avatar
+const initials = review.name
+  .split(" ")
+  .filter(Boolean)
+  .map((w) => w[0])
+  .slice(0, 2)
+  .join("")
+  .toUpperCase();
+
+// Human-readable localized date (e.g. "Sep 18, 2026" / "18 sep 2026")
+const dateFormatted = new Intl.DateTimeFormat(lang === "es" ? "es-MX" : "en-US", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+}).format(new Date(`${review.date}T00:00:00`));
 ---
 
 <article
-  class="card p-6 flex flex-col gap-4 h-full"
+  class="card group relative flex h-full flex-col p-6 md:p-7 transition-transform duration-300 hover:-translate-y-1"
   aria-label={`${lang === "es" ? "Reseña de" : "Review by"} ${review.name}`}
   itemscope
   itemtype="https://schema.org/Review"
 >
+  <!-- Top accent bar -->
+  <span class="absolute inset-x-0 top-0 h-1 bg-accent" aria-hidden="true"></span>
+
+  <!-- Decorative quote glyph -->
+  <span
+    class="pointer-events-none absolute right-5 top-3 select-none font-serif text-7xl leading-none text-primary/10"
+    aria-hidden="true"
+  >&rdquo;</span>
+
   <!-- Stars -->
   <div class="flex items-center gap-1" aria-label={`${review.rating} ${lang === "es" ? "estrellas de 5" : "stars out of 5"}`}>
     {Array.from({ length: 5 }).map((_, i) => (
       <svg
         aria-hidden="true"
-        class={`w-5 h-5 ${i < review.rating ? "text-yellow-400" : "text-gray-200"}`}
+        class={`w-5 h-5 ${i < review.rating ? "text-accent" : "text-gray-200"}`}
         fill="currentColor"
         viewBox="0 0 20 20"
       >
@@ -37,19 +62,25 @@ const tr_source = {
   </div>
 
   <!-- Review text -->
-  <blockquote class="flex-1 text-dark text-sm leading-relaxed italic" itemprop="reviewBody">
-    "{review.text[lang]}"
+  <blockquote class="relative mt-4 flex-1 text-dark leading-relaxed" itemprop="reviewBody">
+    &ldquo;{review.text[lang]}&rdquo;
   </blockquote>
 
   <!-- Author + meta -->
-  <footer class="flex items-center justify-between gap-2 pt-3 border-t border-border">
-    <div itemprop="author" itemscope itemtype="https://schema.org/Person">
-      <p class="font-semibold text-dark text-sm" itemprop="name">{review.name}</p>
-      <p class="text-muted text-xs">{review.location}</p>
+  <footer class="mt-6 flex items-center justify-between gap-3 border-t border-border pt-5">
+    <div class="flex items-center gap-3" itemprop="author" itemscope itemtype="https://schema.org/Person">
+      <span
+        class="grid h-11 w-11 flex-shrink-0 place-items-center rounded-full bg-primary text-sm font-bold text-white"
+        aria-hidden="true"
+      >{initials}</span>
+      <div>
+        <p class="text-sm font-semibold leading-tight text-dark" itemprop="name">{review.name}</p>
+        <p class="text-xs text-muted">{review.location}</p>
+      </div>
     </div>
     <div class="flex flex-col items-end gap-1">
       <span class="badge-primary text-xs">{tr_source[review.source]}</span>
-      <time class="text-muted text-xs" datetime={review.date}>{review.date}</time>
+      <time class="text-xs text-muted" datetime={review.date}>{dateFormatted}</time>
     </div>
   </footer>
 </article>

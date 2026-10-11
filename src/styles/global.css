@@ -19,7 +19,7 @@
   }
 
   body {
-    @apply bg-light text-dark font-sans antialiased;
+    @apply bg-light text-gray-900 font-sans antialiased;
     line-height: 1.6;
   }
 
@@ -121,7 +121,7 @@
   .badge {
     @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide;
   }
-  .badge-accent  { @apply badge bg-accent text-dark; }
+  .badge-accent  { @apply badge bg-accent text-primary font-medium; }
   .badge-primary { @apply badge bg-primary text-white; }
 
   /* ── Section headings ─────────────────────────────── */

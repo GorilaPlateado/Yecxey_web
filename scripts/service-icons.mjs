@@ -12,7 +12,7 @@
  * Usage: node scripts/service-icons.mjs
  */
 
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, writeFile, access } from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
 
@@ -137,12 +137,22 @@ async function main() {
   await mkdir(ICON_DIR, { recursive: true });
   await mkdir(IMG_DIR, { recursive: true });
 
+  // Client photos own the service cards (see client-photos.mjs). A "<slug>-wide.webp"
+  // sibling marks a client-owned card: only its SVG icon is refreshed, never the WebP.
+  const exists = (p) => access(p).then(() => true, () => false);
+
   for (const [slug, iconName] of Object.entries(ICONS)) {
     const svg = await fetchIcon(iconName);
 
     // Save standalone brand-colored SVG icon
     const iconSvg = svg.replace(/currentColor/g, YELLOW);
     await writeFile(path.join(ICON_DIR, `${slug}.svg`), iconSvg, "utf8");
+
+    const clientOwned = await exists(path.join(IMG_DIR, `${slug}-wide.webp`));
+    if (clientOwned) {
+      console.log(`↷ ${slug}  (icon refreshed, card owned by client-photos.mjs)`);
+      continue;
+    }
 
     // Render 16:9 card WebP (quality 82, sharp default compression)
     const card = cardSvg(svg);

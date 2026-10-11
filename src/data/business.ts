@@ -18,16 +18,24 @@ const business = {
   website: import.meta.env.PUBLIC_SITE_URL || "https://gyroadsidesolutions.com",
 
   // ── Location ─────────────────────────────────────────────
-  address: "[BUSINESS_ADDRESS]",
-  city: "[CITY]",
-  state: "[STATE]",
-  stateCode: "[STATE_CODE]",
-  zipCode: "[ZIP_CODE]",
+  address: "14500 Dallas Parkway",
+  city: "Dallas",
+  state: "Texas",
+  stateCode: "TX",
+  zipCode: "75254",
   country: "US",
+  /** Coordinates from the client-provided Google Maps location link */
+  latitude: 32.9460607,
+  longitude: -96.8216914,
 
   // ── Maps & Profiles ──────────────────────────────────────
+  /** Embeddable map URL (used as iframe src on Service Area pages) */
   googleMapsUrl:
-    import.meta.env.PUBLIC_GOOGLE_MAPS_URL || "",
+    import.meta.env.PUBLIC_GOOGLE_MAPS_URL ||
+    "https://www.google.com/maps?q=32.9460607,-96.8216914&output=embed",
+  /** Canonical human-facing Google Maps link (directions / hasMap) */
+  googleMapsLink:
+    "https://www.google.com/maps/search/?api=1&query=32.9460607,-96.8216914",
   googleBusinessProfileUrl:
     import.meta.env.PUBLIC_GOOGLE_BUSINESS_PROFILE_URL || "",
   /** Leave empty until confirmed; will hide WhatsApp button */

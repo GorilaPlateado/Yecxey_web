@@ -55,6 +55,20 @@ const localBizSchema = {
   priceRange: "$$",
   currenciesAccepted: "USD",
   paymentAccepted: "Cash, Credit Card",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: business.address,
+    addressLocality: business.city,
+    addressRegion: business.stateCode,
+    postalCode: business.zipCode,
+    addressCountry: business.country,
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: business.latitude,
+    longitude: business.longitude,
+  },
+  hasMap: business.googleMapsLink,
   areaServed: { "@type": "Country", name: "United States" },
   sameAs,
 };

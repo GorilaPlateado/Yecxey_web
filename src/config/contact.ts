@@ -12,7 +12,7 @@
  * 6. Send a test submission and confirm receipt.
  */
 export const contactConfig = {
-  accessKey: "YOUR_WEB3FORMS_ACCESS_KEY",
+  accessKey: "REDACTED",
   destinationEmail: "service@gyroadsidesolutions.com",
   web3FormsEndpoint: "https://api.web3forms.com/submit",
   formName: "GY Roadside Solutions — Contact Form",
