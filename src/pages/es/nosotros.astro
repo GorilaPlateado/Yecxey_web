@@ -1,17 +1,54 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import AboutGallery from "@/components/AboutGallery.astro";
 import business from "@/data/business";
 import site from "@/config/site";
 
 const lang = "es";
 const canonicalUrl = `${site.url}/es/nosotros/`;
 const alternateUrl = `${site.url}/en/about-us/`;
+
+const sections = [
+  {
+    n: "01",
+    title: "Historia de la empresa",
+    paras: [
+      "GY Roadside Solutions LLC nació de un sueño personal de emprender y del deseo de construir un negocio propio. La idea surgió como un proyecto compartido entre el fundador y su esposa, con la ilusión de crear algo propio y desarrollar una empresa para el futuro.",
+      "Hoy, GY Roadside Solutions LLC se enfoca en brindar asistencia confiable en carretera para vehículos ligeros, camiones comerciales y remolques estándar en el área metropolitana de Dallas–Fort Worth y sus alrededores. Nuestro objetivo es ofrecer un servicio práctico y confiable a los conductores siempre que necesiten asistencia en carretera.",
+    ],
+  },
+  {
+    n: "02",
+    title: "Experiencia y trayectoria",
+    paras: [
+      "GY Roadside Solutions LLC cuenta con un año de experiencia brindando asistencia en carretera. Nos enfocamos en ofrecer un servicio práctico y confiable para ayudar a los conductores de vehículos ligeros y camiones comerciales a regresar a la carretera de la manera más segura y eficiente posible.",
+    ],
+  },
+  {
+    n: "03",
+    title: "Tipos de clientes",
+    paras: [
+      "GY Roadside Solutions LLC ofrece servicios a conductores particulares, transportistas independientes, propietarios-operadores y profesionales del transporte comercial en el área metropolitana de Dallas–Fort Worth y sus alrededores.",
+      "Nuestro objetivo es establecer relaciones sólidas y duraderas con conductores particulares y transportistas independientes, al mismo tiempo que buscamos oportunidades para colaborar con empresas de transporte y operadores de flotas que necesiten asistencia confiable en carretera para sus vehículos.",
+      "Estamos comprometidos con el crecimiento de nuestra empresa mediante un servicio profesional, confiable y práctico.",
+    ],
+  },
+  {
+    n: "04",
+    title: "Qué nos diferencia",
+    paras: [
+      "En GY Roadside Solutions LLC creemos que la asistencia en carretera es mucho más que reparar un vehículo. Se trata de ayudar a las personas que quedan varadas en la carretera, muchas veces lejos de casa y enfrentándose a dificultades inesperadas.",
+      "Creemos que cada conductor merece recibir un trato amable, humilde, paciente y respetuoso. Nos esforzamos por ofrecer un servicio profesional y de calidad, comunicarnos con honestidad y dar lo mejor de nosotros en cada llamada.",
+      "Somos una empresa en crecimiento, pero nuestro compromiso es sencillo: estar al lado de cada cliente. Porque en la carretera nadie debería sentirse solo cuando más necesita ayuda.",
+    ],
+  },
+];
 ---
 
 <BaseLayout
   title={`Nosotros — ${business.name}`}
-  description="Conozca GY Roadside Solutions LLC — asistencia profesional en carretera para camiones comerciales disponible las 24 horas en todo Estados Unidos."
+  description="Conozca la historia de GY Roadside Solutions LLC — asistencia confiable en carretera para vehículos ligeros, camiones comerciales y remolques en el área de Dallas–Fort Worth. Disponibles 24/7."
   lang={lang}
   canonicalUrl={canonicalUrl}
   alternateUrl={alternateUrl}
@@ -19,66 +56,42 @@ const alternateUrl = `${site.url}/en/about-us/`;
   <Breadcrumbs lang={lang} items={[{ label: "Nosotros" }]} />
 
   <section class="section" aria-labelledby="about-heading">
-    <div class="container max-w-4xl">
+    <div class="container max-w-3xl">
+      <!-- Intro -->
       <div class="section-heading text-left mb-10">
+        <span class="section-label">Quiénes somos</span>
         <h1 id="about-heading" class="text-primary">Sobre GY Roadside Solutions LLC</h1>
         <span class="heading-accent !mx-0" aria-hidden="true"></span>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-        <div>
-          <h2 class="text-primary mb-4">Nuestra Misión</h2>
-          <p class="text-muted leading-relaxed mb-4">
-            GY Roadside Solutions LLC está dedicada a brindar asistencia en carretera rápida, confiable y profesional, así como servicios de reparación móvil para camiones comerciales en todo Estados Unidos.
-          </p>
-          <p class="text-muted leading-relaxed">
-            Entendemos que cada minuto que su camión está fuera de la carretera le cuesta dinero. Por eso estamos disponibles las 24 horas del día para regresarlo a la ruta lo más rápido posible.
-          </p>
-        </div>
-        <div class="bg-light rounded-2xl overflow-hidden aspect-video">
-          <img
-            src="/images/about/about-us.webp"
-            alt="Equipo y camión de servicio de GY Roadside Solutions LLC"
-            width="600"
-            height="400"
-            class="w-full h-full object-cover"
-            loading="lazy"
-            onerror="this.onerror=null;this.parentElement.classList.add('flex','items-center','justify-center');this.style.display='none';this.parentElement.innerHTML+='<p class=\'text-muted text-center p-8\'>[FOTO — a proporcionar por el cliente]</p>'"
-          />
-        </div>
+      <p class="text-lg text-dark leading-relaxed mb-10">
+        Una empresa de asistencia en carretera fundada por una familia, construida sobre una idea simple: brindar a los conductores una ayuda confiable y honesta — dondequiera que el camino los lleve.
+      </p>
+
+      <!-- Premium photo gallery -->
+      <div class="mb-16">
+        <AboutGallery lang={lang} />
       </div>
 
-      <!-- Values -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
-        {[
-          { icon: "⚡", title: "Rapidez", desc: "Respondemos rápido porque sabemos que el tiempo es dinero en la carretera." },
-          { icon: "🤝", title: "Confiabilidad", desc: "Disponibles 24/7, todos los días del año — cuando más nos necesita." },
-          { icon: "🔧", title: "Profesionalismo", desc: "Técnicos experimentados con el equipo adecuado para camiones comerciales." },
-        ].map((v) => (
-          <div class="card p-6 text-center">
-            <div class="text-4xl mb-3" aria-hidden="true">{v.icon}</div>
-            <h3 class="font-bold text-dark mb-2">{v.title}</h3>
-            <p class="text-muted text-sm">{v.desc}</p>
+      <!-- Content sections -->
+      {sections.map((s) => (
+        <article class="mb-12">
+          <div class="mb-5 flex items-center gap-4">
+            <span class="grid h-11 w-11 flex-shrink-0 place-items-center rounded-full bg-primary text-base font-bold text-accent" aria-hidden="true">{s.n}</span>
+            <h2 class="text-primary text-2xl">{s.title}</h2>
           </div>
-        ))}
-      </div>
-
-      <!-- Placeholder content notice -->
-      <div class="bg-yellow-50 border border-yellow-200 rounded-2xl p-6 text-sm text-yellow-800 space-y-2">
-        <p class="font-bold">📋 Contenido pendiente del cliente:</p>
-        <ul class="list-disc pl-5 space-y-1">
-          <li>Historia de la empresa y cómo fue fundada</li>
-          <li>Años de experiencia y trayectoria</li>
-          <li>Tipos de clientes atendidos (flotas, operadores independientes, etc.)</li>
-          <li>Diferenciadores frente a la competencia</li>
-          <li>Fotografías del equipo, camiones y herramientas</li>
-          <li>Certificaciones de seguridad y detalles del seguro</li>
-          <li>Área de servicio exacta y estados cubiertos</li>
-        </ul>
-      </div>
+          <div class="space-y-4 border-l-2 border-accent/50 pl-6">
+            {s.paras.map((p) => (
+              <p class="text-muted leading-relaxed">{p}</p>
+            ))}
+          </div>
+        </article>
+      ))}
 
       <!-- CTA -->
-      <div class="mt-12 text-center">
+      <div class="mt-14 rounded-2xl bg-primary px-6 py-10 text-center">
+        <h2 class="text-xl font-bold text-white mb-2">¿Necesita asistencia en carretera confiable?</h2>
+        <p class="text-white/80 mb-6">Estamos al lado de cada cliente — disponibles 24/7 en Dallas–Fort Worth y sus alrededores.</p>
         <a href={`tel:${business.phone}`} class="btn-primary text-lg py-4 px-10">
           Llamar — {business.phoneDisplay}
         </a>

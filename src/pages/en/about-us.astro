@@ -1,17 +1,54 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import AboutGallery from "@/components/AboutGallery.astro";
 import business from "@/data/business";
 import site from "@/config/site";
 
 const lang = "en";
 const canonicalUrl = `${site.url}/en/about-us/`;
 const alternateUrl = `${site.url}/es/nosotros/`;
+
+const sections = [
+  {
+    n: "01",
+    title: "Company History and Founding Story",
+    paras: [
+      "GY Roadside Solutions LLC was founded from a personal dream of entrepreneurship and the desire to build an independent business. The idea began as a shared vision between the founder and his wife to create something of their own and build a business for the future.",
+      "Today, GY Roadside Solutions LLC focuses on providing reliable roadside assistance for light-duty vehicles, commercial trucks, and standard trailers throughout the Dallas–Fort Worth metropolitan area and surrounding communities. Our goal is to provide practical, dependable service to drivers whenever they need roadside assistance.",
+    ],
+  },
+  {
+    n: "02",
+    title: "Experience and Background",
+    paras: [
+      "GY Roadside Solutions LLC has one year of experience providing roadside assistance. We focus on practical, reliable support to help drivers of light-duty vehicles and commercial trucks get back on the road as safely and efficiently as possible.",
+    ],
+  },
+  {
+    n: "03",
+    title: "Types of Clients Served",
+    paras: [
+      "GY Roadside Solutions LLC serves individual motorists, independent truck drivers, owner-operators, and commercial transportation professionals throughout the Dallas–Fort Worth metropolitan area and surrounding communities.",
+      "Our goal is to build strong, long-term relationships with individual drivers while creating opportunities to partner with trucking companies and fleet operators that need dependable roadside assistance for their vehicles.",
+      "We are committed to growing our business by providing professional, reliable, and practical roadside support.",
+    ],
+  },
+  {
+    n: "04",
+    title: "What Makes Us Different",
+    paras: [
+      "At GY Roadside Solutions LLC, we believe roadside assistance is about more than fixing a vehicle. It is about helping people who find themselves stranded on the road, often far from home and facing unexpected difficulties.",
+      "We believe every driver deserves to be treated with kindness, humility, patience, and respect. We strive to provide professional, quality service, honest communication, and our very best effort with every call, helping drivers get back on the road and continue toward their destinations with as little disruption as possible.",
+      "We are a growing company, but our commitment is simple: to stand by every customer. Because on the road, no one should feel alone when they need help the most.",
+    ],
+  },
+];
 ---
 
 <BaseLayout
   title={`About Us — ${business.name}`}
-  description="Learn about GY Roadside Solutions LLC — professional commercial truck roadside assistance available 24/7 across the United States."
+  description="Learn the story of GY Roadside Solutions LLC — reliable roadside assistance for light-duty vehicles, commercial trucks, and trailers in the Dallas–Fort Worth area. Available 24/7."
   lang={lang}
   canonicalUrl={canonicalUrl}
   alternateUrl={alternateUrl}
@@ -19,66 +56,42 @@ const alternateUrl = `${site.url}/es/nosotros/`;
   <Breadcrumbs lang={lang} items={[{ label: "About Us" }]} />
 
   <section class="section" aria-labelledby="about-heading">
-    <div class="container max-w-4xl">
+    <div class="container max-w-3xl">
+      <!-- Intro -->
       <div class="section-heading text-left mb-10">
+        <span class="section-label">Who we are</span>
         <h1 id="about-heading" class="text-primary">About GY Roadside Solutions LLC</h1>
         <span class="heading-accent !mx-0" aria-hidden="true"></span>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-        <div>
-          <h2 class="text-primary mb-4">Our Mission</h2>
-          <p class="text-muted leading-relaxed mb-4">
-            GY Roadside Solutions LLC is dedicated to providing fast, reliable, and professional roadside assistance and mobile repair services for commercial trucks across the United States.
-          </p>
-          <p class="text-muted leading-relaxed">
-            We understand that every minute your truck is off the road costs you money. That's why we're available 24 hours a day to get you back on the road as quickly as possible.
-          </p>
-        </div>
-        <div class="bg-light rounded-2xl overflow-hidden aspect-video">
-          <img
-            src="/images/about/about-us.webp"
-            alt="GY Roadside Solutions LLC team and service truck"
-            width="600"
-            height="400"
-            class="w-full h-full object-cover"
-            loading="lazy"
-            onerror="this.onerror=null;this.parentElement.classList.add('flex','items-center','justify-center');this.style.display='none';this.parentElement.innerHTML+='<p class=\'text-muted text-center p-8\'>[PHOTO — to be provided by client]</p>'"
-          />
-        </div>
+      <p class="text-lg text-dark leading-relaxed mb-10">
+        A family-founded roadside assistance company built on a simple idea: giving drivers dependable, honest help — wherever the road takes them.
+      </p>
+
+      <!-- Premium photo gallery -->
+      <div class="mb-16">
+        <AboutGallery lang={lang} />
       </div>
 
-      <!-- Values -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
-        {[
-          { icon: "⚡", title: "Speed", desc: "We respond fast because we know time is money on the road." },
-          { icon: "🤝", title: "Reliability", desc: "Available 24/7, every day of the year — when you need us most." },
-          { icon: "🔧", title: "Professionalism", desc: "Experienced technicians with the right equipment for commercial trucks." },
-        ].map((v) => (
-          <div class="card p-6 text-center">
-            <div class="text-4xl mb-3" aria-hidden="true">{v.icon}</div>
-            <h3 class="font-bold text-dark mb-2">{v.title}</h3>
-            <p class="text-muted text-sm">{v.desc}</p>
+      <!-- Content sections -->
+      {sections.map((s) => (
+        <article class="mb-12">
+          <div class="mb-5 flex items-center gap-4">
+            <span class="grid h-11 w-11 flex-shrink-0 place-items-center rounded-full bg-primary text-base font-bold text-accent" aria-hidden="true">{s.n}</span>
+            <h2 class="text-primary text-2xl">{s.title}</h2>
           </div>
-        ))}
-      </div>
-
-      <!-- Placeholder content -->
-      <div class="bg-yellow-50 border border-yellow-200 rounded-2xl p-6 text-sm text-yellow-800 space-y-2">
-        <p class="font-bold">📋 Content pending from client:</p>
-        <ul class="list-disc pl-5 space-y-1">
-          <li>Company history and founding story</li>
-          <li>Years of experience and background</li>
-          <li>Types of clients served (fleets, owner-operators, etc.)</li>
-          <li>Differentiators vs. competitors</li>
-          <li>Photos of team, trucks, and equipment</li>
-          <li>Safety certifications and insurance details</li>
-          <li>Exact service area and states covered</li>
-        </ul>
-      </div>
+          <div class="space-y-4 border-l-2 border-accent/50 pl-6">
+            {s.paras.map((p) => (
+              <p class="text-muted leading-relaxed">{p}</p>
+            ))}
+          </div>
+        </article>
+      ))}
 
       <!-- CTA -->
-      <div class="mt-12 text-center">
+      <div class="mt-14 rounded-2xl bg-primary px-6 py-10 text-center">
+        <h2 class="text-xl font-bold text-white mb-2">Need reliable roadside assistance?</h2>
+        <p class="text-white/80 mb-6">We stand by every customer — available 24/7 in Dallas–Fort Worth and beyond.</p>
         <a href={`tel:${business.phone}`} class="btn-primary text-lg py-4 px-10">
           Call Us — {business.phoneDisplay}
         </a>
