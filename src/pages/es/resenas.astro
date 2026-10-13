@@ -1,35 +1,30 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
-import ReviewCard from "@/components/ReviewCard.astro";
-import { confirmedReviews, getAverageRating } from "@/data/reviews";
 import business from "@/data/business";
 import site from "@/config/site";
+import {
+  GOOGLE_BUSINESS_PROFILE_URL,
+  GOOGLE_REVIEW_LINK,
+  isProfileConfigured,
+  isReviewLinkConfigured,
+} from "@/config/reviews";
 
 const lang = "es";
 const canonicalUrl = `${site.url}/es/resenas/`;
 const alternateUrl = `${site.url}/en/reviews/`;
-const avgRating = getAverageRating();
 
-const pageSchema = avgRating !== null ? {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: business.name,
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: avgRating,
-    reviewCount: confirmedReviews.length,
-  },
-} : undefined;
+// Los enlaces abren en otra pestaña solo cuando hay una URL real (ver src/config/reviews.ts).
+const profileLive = isProfileConfigured();
+const reviewLive = isReviewLinkConfigured();
 ---
 
 <BaseLayout
   title={`Reseñas de Clientes — ${business.name}`}
-  description="Lee las reseñas de clientes de GY Roadside Solutions LLC. Asistencia profesional en carretera para camiones comerciales. Llame al (214) 302-7757."
+  description="Lee las reseñas verificadas de clientes de GY Roadside Solutions LLC en nuestro Google Business Profile. Asistencia profesional en carretera para camiones comerciales. Llame al (214) 302-7757."
   lang={lang}
   canonicalUrl={canonicalUrl}
   alternateUrl={alternateUrl}
-  structuredData={pageSchema}
 >
   <Breadcrumbs lang={lang} items={[{ label: "Reseñas" }]} />
 
@@ -38,51 +33,70 @@ const pageSchema = avgRating !== null ? {
       <div class="section-heading">
         <h1 id="reviews-heading" class="text-primary">Reseñas de Clientes</h1>
         <p class="text-muted text-lg max-w-2xl mx-auto">
-          Lo que los conductores dicen sobre nuestro servicio de asistencia en carretera.
+          Opiniones auténticas y verificadas de clientes reales.
         </p>
         <span class="heading-accent" aria-hidden="true"></span>
       </div>
 
-      {confirmedReviews.length > 0 ? (
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-          {confirmedReviews.map((review) => (
-            <ReviewCard review={review} lang={lang} />
-          ))}
-        </div>
-      ) : (
-        <div class="max-w-xl mx-auto mt-12 text-center">
-          <div class="card p-10">
-            <div class="text-5xl mb-4" aria-hidden="true">⭐</div>
-            <h2 class="text-dark font-bold text-xl mb-3">
-              Las reseñas de nuestros clientes aparecerán aquí próximamente.
-            </h2>
-            <p class="text-muted mb-6">
-              Estamos orgullosos del servicio que brindamos. Vuelva pronto para ver las reseñas de nuestros clientes.
+      <div class="max-w-2xl mx-auto mt-12">
+        <div class="card p-8 text-center md:p-12">
+          <!-- Google badge -->
+          <div class="mb-6 flex justify-center">
+            <svg viewBox="0 0 48 48" class="h-14 w-14" role="img" aria-label="Google" focusable="false">
+              <path fill="#FFC107" d="M43.611,20.083H40V20H24v8h11.304c-1.649,4.657-6.081,8-11.304,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/>
+              <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,19.06,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.688,8.337,6.306,14.691z"/>
+              <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.314,35.093,26.794,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/>
+              <path fill="#1976D2" d="M43.611,20.083H40V20H24v8h11.304c-0.792,2.237-2.23,4.166-4.087,5.571l6.19,5.238C36.964,39.205,44,34,44,24C44,22.163,43.862,21.35,43.611,20.083z"/>
+            </svg>
+          </div>
+
+          <h2 class="text-primary font-bold text-2xl mb-4">Verificado por Google</h2>
+
+          <p class="text-dark/80 text-lg leading-relaxed mb-8">
+            Todas las reseñas de clientes están verificadas a través de Google
+            Business Profile. Creemos en la transparencia y solo mostramos
+            opiniones auténticas de clientes reales.
+          </p>
+
+          <!-- Estado temporal hasta que el cliente conecte un Google Business Profile real -->
+          {!profileLive && (
+            <p class="rounded-lg bg-light border border-border px-4 py-3 text-sm text-muted mb-8">
+              Las reseñas de Google aparecerán aquí una vez que el perfil de
+              empresa esté verificado y las reseñas de los clientes estén
+              disponibles.
             </p>
-            {business.googleBusinessProfileUrl && (
-              <a
-                href={business.googleBusinessProfileUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn-outline"
-              >
-                Dejar una Reseña en Google
-              </a>
-            )}
+          )}
+
+          <div class="flex flex-col justify-center gap-4 sm:flex-row">
+            <!-- TODO: el enlace proviene de src/config/reviews.ts → GOOGLE_BUSINESS_PROFILE_URL -->
+            <a
+              href={GOOGLE_BUSINESS_PROFILE_URL}
+              target={profileLive ? "_blank" : undefined}
+              rel={profileLive ? "noopener noreferrer" : undefined}
+              class="btn-primary"
+            >
+              Lee nuestras reseñas de Google
+            </a>
+
+            <!-- TODO: el enlace proviene de src/config/reviews.ts → GOOGLE_REVIEW_LINK -->
+            <a
+              href={GOOGLE_REVIEW_LINK}
+              target={reviewLive ? "_blank" : undefined}
+              rel={reviewLive ? "noopener noreferrer" : undefined}
+              class="btn-outline-dark"
+            >
+              Deja una reseña
+            </a>
           </div>
         </div>
-      )}
 
-      <!-- CTA -->
-      <div class="mt-14 text-center">
-        <p class="text-muted text-lg mb-6">¿Tuvo una buena experiencia? Nos encantaría saberlo.</p>
-        {business.googleBusinessProfileUrl ? (
-          <a href={business.googleBusinessProfileUrl} target="_blank" rel="noopener noreferrer" class="btn-primary">
-            Dejar una Reseña en Google
+        <!-- CTA de conversión (conservado) -->
+        <div class="mt-12 text-center">
+          <p class="text-muted text-lg mb-4">¿Necesitas asistencia en carretera ahora mismo?</p>
+          <a href={`tel:${business.phone}`} class="btn-outline-dark">
+            Llame al {business.phoneDisplay}
           </a>
-        ) : (
-          <p class="text-muted text-sm">[URL de Google Business Profile — confirmar con cliente]</p>
-        )}
+        </div>
       </div>
     </div>
   </section>
