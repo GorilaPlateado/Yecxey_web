@@ -1,0 +1,95 @@
+---
+import type { Lang } from "@/i18n/index";
+import {
+  GOOGLE_BUSINESS_PROFILE_URL,
+  isProfileConfigured,
+} from "@/config/reviews";
+
+export interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const profileLive = isProfileConfigured();
+const reviewsPage = lang === "es" ? "/es/resenas/" : "/en/reviews/";
+const profileTarget = profileLive ? "_blank" : undefined;
+const profileRel = profileLive ? "noopener noreferrer" : undefined;
+
+// Google "G" 4-color mark
+const googleG = `<path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.2-2.27H12v4.51h6.42a5.5 5.5 0 01-2.38 3.61v3h3.86c2.26-2.08 3.59-5.15 3.59-8.85z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.14-4.07 1.14-3.12 0-5.77-2.11-6.71-4.94H1.4v3.09A11.99 11.99 0 0012 24z"/><path fill="#FBBC05" d="M5.29 14.29a7.2 7.2 0 010-4.58V6.62H1.4a12 12 0 000 10.76l3.89-3.09z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.69 1.4 6.62l3.89 3.09C6.23 6.88 8.88 4.75 12 4.75z"/>`;
+---
+
+<section class="reviews-cta" aria-labelledby="reviews-cta-heading">
+  <div class="container relative z-10">
+    <div class="reviews-inner">
+      <div class="reviews-mark" aria-hidden="true">
+        <svg class="w-9 h-9" viewBox="0 0 24 24"><Fragment set:html={googleG} /></svg>
+      </div>
+      <div class="reviews-copy">
+        <h2 id="reviews-cta-heading" class="reviews-title">
+          {lang === "es" ? "Reseñas verificadas en Google" : "Verified reviews on Google"}
+        </h2>
+        <p class="reviews-sub">
+          {lang === "es"
+            ? "Lea las opiniones reales de conductores, publicadas en nuestro Perfil de Empresa de Google."
+            : "Read authentic feedback from drivers, published on our Google Business Profile."}
+        </p>
+      </div>
+      <div class="reviews-actions">
+        <a
+          href={profileLive ? GOOGLE_BUSINESS_PROFILE_URL : reviewsPage}
+          target={profileTarget}
+          rel={profileRel}
+          class="reviews-btn"
+        >
+          {lang === "es" ? "Ver reseñas" : "Read our reviews"}
+          <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews-cta {
+    padding: 3.5rem 0;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .reviews-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  @media (min-width: 900px) {
+    .reviews-inner { flex-direction: row; justify-content: space-between; text-align: left; gap: 2rem; }
+    .reviews-copy { flex: 1; }
+  }
+  .reviews-mark {
+    display: grid; place-items: center;
+    width: 3.75rem; height: 3.75rem; border-radius: 1rem;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 12px 26px -16px rgba(13, 27, 46, 0.4);
+    flex-shrink: 0;
+  }
+  .reviews-title { color: #0D1B2E; font-size: 1.5rem; font-weight: 900; }
+  .reviews-sub { color: #556374; margin-top: 0.35rem; line-height: 1.55; }
+  .reviews-actions { flex-shrink: 0; }
+  .reviews-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.9rem 1.6rem;
+    border-radius: 0.9rem;
+    background: #0D1B2E;
+    color: #fff;
+    font-weight: 800;
+    min-height: 48px;
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+  .reviews-btn:hover { background: #1A2F4A; transform: translateY(-2px); }
+</style>

@@ -58,7 +58,9 @@ const business = {
 
   // ── Social ───────────────────────────────────────────────
   social: {
-    facebook:  "https://www.facebook.com/GYRoadsideSolutionsLLC",
+    // Verified live pages (2026-10-11). Facebook uses the numeric /p/ URL because
+    // the vanity "GYRoadsideSolutionsLLC" is not claimed and does not resolve.
+    facebook:  "https://www.facebook.com/p/GY-Roadside-Solutions-LLC-61590469525945/",
     instagram: "https://www.instagram.com/gyroadsidesolutions",
     tiktok:    "https://www.tiktok.com/@gy.roadside.solutions",
     linkedin:  "",

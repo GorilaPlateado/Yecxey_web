@@ -4,8 +4,15 @@ const site = {
   supportedLangs: ["en", "es"] as const,
   twitterHandle: "",
   ogImage: "/images/og-default.webp",
-  themeColor: "#1B3A8C",
+  // Matches the primary brand navy (tailwind `primary` / `#0D1B2E`) so the
+  // browser UI, theme-color meta and manifest stay consistent.
+  themeColor: "#0D1B2E",
 
+  // Analytics & Search Console are intentionally DISABLED: every field is empty
+  // until the client provides real IDs. With empty values, Analytics.astro and
+  // the google-site-verification meta render nothing (no third-party requests).
+  // To enable later, set PUBLIC_GA_ID / PUBLIC_GTM_ID / PUBLIC_GSC_VERIFICATION
+  // in the environment (see .env.example) — no code change required.
   analytics: {
     gaId:            import.meta.env.PUBLIC_GA_ID            ?? "",
     gtmId:           import.meta.env.PUBLIC_GTM_ID           ?? "",

@@ -19,14 +19,14 @@ const servicesPath = lang === "es" ? `/${lang}/servicios/` : `/${lang}/services/
     <img
       src="/images/hero/hero-truck.webp"
       alt=""
-      class="w-full h-full object-cover object-center"
+      class="w-full h-full object-cover object-center brightness-110 saturate-105"
       fetchpriority="high"
       decoding="async"
       onerror="this.style.display='none'"
     />
-    <!-- Dark overlay — matches design -->
-    <div class="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/40"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent"></div>
+    <!-- Dark overlay — kept only as a left-side gradient for white-text contrast; right side is bright -->
+    <div class="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/65 to-primary/25"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-primary/45 via-transparent to-transparent"></div>
   </div>
 
   <!-- Content -->
@@ -62,7 +62,7 @@ const servicesPath = lang === "es" ? `/${lang}/servicios/` : `/${lang}/services/
       </p>
 
       <!-- Description -->
-      <p class="text-white/75 text-base leading-relaxed mb-8 max-w-lg">
+      <p class="text-white/90 text-base leading-relaxed mb-8 max-w-lg">
         {lang === "es"
           ? `GY Roadside Solutions LLC brinda asistencia en carretera profesional y servicios de reparación para camiones comerciales en todo Estados Unidos.`
           : `GY Roadside Solutions LLC provides professional roadside assistance and repair services for commercial trucks across the United States.`}

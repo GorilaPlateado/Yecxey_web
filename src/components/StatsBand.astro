@@ -1,0 +1,107 @@
+---
+import type { Lang } from "@/i18n/index";
+
+export interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+// Qualitative facts only — no fabricated metrics or counts.
+const facts = [
+  {
+    big: lang === "es" ? "24/7" : "24/7",
+    label: lang === "es" ? "Disponibilidad" : "Availability",
+    desc:
+      lang === "es"
+        ? "Atención todos los días del año, a cualquier hora."
+        : "Every day of the year, at any hour.",
+  },
+  {
+    big: lang === "es" ? "Rápido" : "Fast",
+    label: lang === "es" ? "Despacho" : "Dispatch",
+    desc:
+      lang === "es"
+        ? "Enviamos al técnico disponible más cercano a su punto."
+        : "We send the nearest available technician to your location.",
+  },
+  {
+    big: lang === "es" ? "En Sitio" : "On-Site",
+    label: lang === "es" ? "Servicio Móvil" : "Mobile Service",
+    desc:
+      lang === "es"
+        ? "Reparamos en carretera para reducir su tiempo inactivo."
+        : "We repair at the roadside to cut your downtime.",
+  },
+  {
+    big: lang === "es" ? "Nacional" : "Nationwide",
+    label: lang === "es" ? "Cobertura" : "Coverage",
+    desc:
+      lang === "es"
+        ? "Asistencia para camiones comerciales en todo EE.UU."
+        : "Commercial truck assistance across the United States.",
+  },
+];
+---
+
+<section class="section bg-light" aria-labelledby="stats-heading">
+  <div class="container">
+    <h2 id="stats-heading" class="sr-only">
+      {lang === "es" ? "Por qué los conductores nos eligen" : "Why drivers choose us"}
+    </h2>
+    <dl class="stats-band">
+      {facts.map((f) => (
+        <div class="stats-item">
+          <dt class="stats-big">{f.big}</dt>
+          <dd class="stats-label">{f.label}</dd>
+          <dd class="stats-desc">{f.desc}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<style>
+  .stats-band {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1px;
+    background: #e2e8f0;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    box-shadow: 0 20px 45px -30px rgba(13, 27, 46, 0.45);
+    border: 1px solid #e2e8f0;
+  }
+  @media (min-width: 640px) {
+    .stats-band { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .stats-band { grid-template-columns: repeat(4, 1fr); }
+  }
+  .stats-item {
+    margin: 0;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: background 0.25s ease;
+  }
+  .stats-item:hover { background: #fffdf2; }
+  .stats-big {
+    font-weight: 900;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    line-height: 1;
+    color: #0d1b2e;
+    letter-spacing: -0.02em;
+  }
+  .stats-label {
+    margin-top: 0.5rem;
+    font-weight: 800;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #c8102e;
+  }
+  .stats-desc {
+    margin-top: 0.6rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #556374;
+  }
+</style>

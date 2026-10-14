@@ -1,0 +1,124 @@
+---
+import type { Lang } from "@/i18n/index";
+
+export interface Props { lang: Lang; }
+const { lang } = Astro.props;
+---
+
+<section class="section bg-light" aria-labelledby="about-teaser-heading">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-media">
+        <img
+          src="/images/about/about-us.webp"
+          alt={lang === "es"
+            ? "Equipo de GY Roadside Solutions asistiendo un camión comercial"
+            : "GY Roadside Solutions team assisting a commercial truck"}
+          loading="lazy"
+          width="800"
+          height="600"
+        />
+        <div class="about-badge" aria-hidden="true">
+          <span class="about-badge-strong">GY</span>
+          <span>{lang === "es" ? "A su lado" : "By your side"}</span>
+        </div>
+      </div>
+
+      <div class="about-copy">
+        <span class="section-label">
+          {lang === "es" ? "Sobre Nosotros" : "About Us"}
+        </span>
+        <h2 id="about-teaser-heading" class="text-primary">
+          {lang === "es"
+            ? "Gente real que entiende la carretera"
+            : "Real people who understand the road"}
+        </h2>
+        <p class="text-muted text-base leading-relaxed mt-4">
+          {lang === "es"
+            ? "GY Roadside Solutions LLC nació para respaldar a los conductores de camiones comerciales que mantienen a Estados Unidos en movimiento. Tratamos cada llamada con urgencia y cada reparación con profesionalismo."
+            : "GY Roadside Solutions LLC was built to back the drivers who keep America moving. We treat every call with urgency and every repair with real professionalism — because your time on the road matters."}
+        </p>
+
+        <ul class="about-list" role="list">
+          <li>
+            <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            {lang === "es" ? "Enfoque total en el conductor" : "Driver-first mindset"}
+          </li>
+          <li>
+            <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            {lang === "es" ? "Servicio móvil en carretera" : "Mobile roadside service"}
+          </li>
+          <li>
+            <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            {lang === "es" ? "Atención bilingüe (ES / EN)" : "Bilingual support (ES / EN)"}
+          </li>
+        </ul>
+
+        <a
+          href={lang === "es" ? "/es/nosotros/" : "/en/about-us/"}
+          class="about-link btn-outline-dark"
+        >
+          {lang === "es" ? "Conozca a la empresa" : "Learn more about us"}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  @media (min-width: 1024px) {
+    .about-grid { grid-template-columns: 0.95fr 1.05fr; gap: 4rem; }
+  }
+  .about-media { position: relative; }
+  .about-media img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 1.25rem;
+    box-shadow: 0 30px 60px -35px rgba(13, 27, 46, 0.6);
+  }
+  .about-badge {
+    position: absolute;
+    bottom: -1rem;
+    left: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: #0D1B2E;
+    color: #fff;
+    padding: 0.7rem 1.1rem;
+    border-radius: 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 16px 30px -16px rgba(13, 27, 46, 0.8);
+  }
+  .about-badge-strong {
+    display: grid; place-items: center;
+    width: 2rem; height: 2rem; border-radius: 0.5rem;
+    background: linear-gradient(135deg, #F5C518 0%, #FFD740 100%);
+    color: #0D1B2E;
+    font-weight: 900;
+  }
+  .about-list {
+    list-style: none;
+    margin: 1.5rem 0 2rem;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+  .about-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: #0D1B2E;
+    font-weight: 600;
+  }
+  .about-list svg { color: #C8102E; flex-shrink: 0; }
+</style>

@@ -1,11 +1,19 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Hero from "@/components/Hero.astro";
+import HowItWorks from "@/components/HowItWorks.astro";
 import ServiceGrid from "@/components/ServiceGrid.astro";
+import StatsBand from "@/components/StatsBand.astro";
 import TrustSection from "@/components/TrustSection.astro";
+import CoverageStrip from "@/components/CoverageStrip.astro";
+import AboutTeaser from "@/components/AboutTeaser.astro";
+import EmergencyBand from "@/components/EmergencyBand.astro";
+import FAQ from "@/components/FAQ.astro";
+import GoogleReviewsCTA from "@/components/GoogleReviewsCTA.astro";
 import { t } from "@/i18n/index";
 import business from "@/data/business";
 import site from "@/config/site";
+import { homeFAQ } from "@/data/homeFAQ";
 
 const lang = "en";
 const tr = t(lang);
@@ -35,13 +43,34 @@ const pageSchema = {
 >
   <Hero lang={lang} />
 
+  <!-- 3-step process -->
+  <HowItWorks lang={lang} />
+
   <!-- Services highlight -->
   <ServiceGrid lang={lang} featuredOnly limit={6} />
+
+  <!-- Qualitative credibility band -->
+  <StatsBand lang={lang} />
 
   <!-- Trust signals + CTA strip -->
   <TrustSection lang={lang} />
 
-  <!-- Second CTA section -->
+  <!-- Coverage + embedded map -->
+  <CoverageStrip lang={lang} />
+
+  <!-- Humanize the brand -->
+  <AboutTeaser lang={lang} />
+
+  <!-- Urgent call CTA -->
+  <EmergencyBand lang={lang} />
+
+  <!-- SEO FAQ -->
+  <FAQ lang={lang} items={homeFAQ} />
+
+  <!-- Google reviews funnel -->
+  <GoogleReviewsCTA lang={lang} />
+
+  <!-- Final CTA section -->
   <section class="section bg-light" aria-labelledby="cta2-heading">
     <div class="container text-center max-w-2xl">
       <h2 id="cta2-heading" class="text-primary mb-4">

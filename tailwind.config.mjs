@@ -24,7 +24,9 @@ export default {
         },
         dark:    "#0D1B2E",
         light:   "#F8FAFC",
-        muted:   "#94A3B8",
+        // Secondary/body text. Darkened from #94A3B8 (~2.3:1) to ~5.6:1 on light
+        // backgrounds so paragraphs meet WCAG AA contrast.
+        muted:   "#556374",
         border:  "#E2E8F0",
         success: "#16A34A",
         error:   "#DC2626",

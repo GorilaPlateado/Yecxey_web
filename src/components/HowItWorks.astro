@@ -1,0 +1,92 @@
+---
+import type { Lang } from "@/i18n/index";
+
+export interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const steps = [
+  {
+    n: "01",
+    title: lang === "es" ? "Llame y diga dónde está" : "Call and tell us where you are",
+    text:
+      lang === "es"
+        ? "Cuéntenos su ubicación y el problema del camión. Atendemos las 24 horas, todos los días."
+        : "Describe your location and the issue with your truck. We answer 24/7, every day of the year.",
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.948V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>`,
+  },
+  {
+    n: "02",
+    title: lang === "es" ? "Despachamos al técnico más cercano" : "We dispatch the nearest technician",
+    text:
+      lang === "es"
+        ? "Enviamos ayuda móvil con el equipo adecuado para camiones comerciales directamente a su punto."
+        : "Mobile help with the right heavy-duty equipment is sent straight to your roadside location.",
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h8m-8 4h8m-9 8h10a2 2 0 002-2v-1M5 20a2 2 0 01-2-2V7a2 2 0 012-2h11l3 4v9a2 2 0 01-2 2H5zm2-4.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm10 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/>`,
+  },
+  {
+    n: "03",
+    title: lang === "es" ? "De vuelta a la carretera" : "Back on the road",
+    text:
+      lang === "es"
+        ? "Reparamos en sitio para minimizar su tiempo inactivo y que continúe su ruta lo antes posible."
+        : "On-site repair designed to minimize downtime so you can get your route moving again fast.",
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>`,
+  },
+];
+---
+
+<section class="section bg-light" aria-labelledby="how-heading">
+  <div class="container">
+    <div class="section-heading">
+      <span class="section-label">
+        {lang === "es" ? "Cómo funciona" : "How it works"}
+      </span>
+      <h2 id="how-heading" class="text-primary">
+        {lang === "es" ? "De varado a rodando en 3 pasos" : "From stranded to rolling in 3 steps"}
+      </h2>
+      <span class="heading-accent" aria-hidden="true"></span>
+    </div>
+
+    <ol class="relative grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-12 list-none p-0" role="list">
+      {steps.map((s, i) => (
+        <li class="hiw-card card relative flex flex-col p-7 md:p-8">
+          <span class="hiw-num" aria-hidden="true">{s.n}</span>
+          <div class="hiw-icon">
+            <svg aria-hidden="true" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <Fragment set:html={s.icon} />
+            </svg>
+          </div>
+          <h3 class="mt-5 text-lg font-extrabold text-dark">{s.title}</h3>
+          <p class="mt-2 text-muted leading-relaxed">{s.text}</p>
+          {i < steps.length - 1 && (
+            <span class="hiw-arrow hidden md:block" aria-hidden="true">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </span>
+          )}
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .hiw-card { overflow: hidden; }
+  .hiw-num {
+    position: absolute; top: -0.35rem; right: 0.75rem;
+    font-weight: 900; font-size: 4.5rem; line-height: 1;
+    color: rgba(13, 27, 46, 0.05); pointer-events: none;
+  }
+  .hiw-icon {
+    display: grid; place-items: center;
+    width: 3.5rem; height: 3.5rem; border-radius: 0.9rem;
+    color: #0D1B2E;
+    background: linear-gradient(135deg, #F5C518 0%, #FFD740 100%);
+    box-shadow: 0 8px 22px -8px rgba(245, 197, 24, 0.7);
+  }
+  .hiw-arrow {
+    position: absolute; top: 50%; right: -1.65rem; transform: translateY(-50%);
+    color: rgba(13, 27, 46, 0.25); z-index: 2;
+  }
+</style>

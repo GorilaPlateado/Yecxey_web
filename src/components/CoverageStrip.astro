@@ -1,0 +1,137 @@
+---
+import business from "@/data/business";
+import type { Lang } from "@/i18n/index";
+
+export interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const points = [
+  {
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>`,
+    title: lang === "es" ? "Cobertura Nacional" : "Nationwide Reach",
+    desc:
+      lang === "es"
+        ? "Brindamos asistencia a camiones comerciales en todo Estados Unidos."
+        : "We support commercial truck drivers across the United States.",
+  },
+  {
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V7.618a1 1 0 01.553-.894L9 4m0 16l6-3m-6 3V4m6 0l5.447 2.724A1 1 0 0121 7.382v8.764a1 1 0 01-.553.894L15 17m0-13v13"/>`,
+    title: lang === "es" ? "Principales Rutas" : "Major Highways",
+    desc:
+      lang === "es"
+        ? "Atención en autopistas y corredores de carga de alta demanda."
+        : "Help along interstate and high-traffic freight corridors.",
+  },
+  {
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>`,
+    title: lang === "es" ? "Despacho 24/7" : "24/7 Dispatch",
+    desc:
+      lang === "es"
+        ? "Sin importar la hora o el día, siempre hay alguien disponible."
+        : "No matter the hour or day, someone is always on call.",
+  },
+];
+---
+
+<section class="section bg-white" aria-labelledby="coverage-heading">
+  <div class="container">
+    <div class="coverage-grid">
+      <div class="coverage-copy">
+        <span class="section-label">
+          {lang === "es" ? "Dónde Estamos" : "Where We Serve"}
+        </span>
+        <h2 id="coverage-heading" class="text-primary">
+          {lang === "es" ? "Donde haya un camión varado, ahí estamos" : "Wherever a truck is stranded, we're there"}
+        </h2>
+        <p class="text-muted text-base leading-relaxed mt-4">
+          {lang === "es"
+            ? "Nuestro despacho móvil lleva ayuda profesional directamente a su ubicación, desde la autopista hasta el patios de carga."
+            : "Our mobile dispatch brings professional help straight to your location — from the interstate to the loading yard."}
+        </p>
+
+        <ul class="coverage-points" role="list">
+          {points.map((p) => (
+            <li class="coverage-point">
+              <span class="coverage-icon">
+                <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <Fragment set:html={p.icon} />
+                </svg>
+              </span>
+              <span>
+                <span class="coverage-point-title">{p.title}</span>
+                <span class="coverage-point-desc">{p.desc}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
+
+        <a href={lang === "es" ? "/es/area-de-servicio/" : "/en/service-area/"} class="coverage-link">
+          {lang === "es" ? "Ver área de servicio" : "View service area"}
+          <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="coverage-map">
+        <iframe
+          title={lang === "es" ? "Mapa de cobertura de GY Roadside Solutions" : "GY Roadside Solutions coverage map"}
+          src={business.googleMapsUrl}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .coverage-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  @media (min-width: 1024px) {
+    .coverage-grid { grid-template-columns: 1fr 1fr; gap: 3.5rem; }
+  }
+  .coverage-points {
+    list-style: none;
+    margin: 1.75rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+  .coverage-point { display: flex; gap: 0.9rem; align-items: flex-start; }
+  .coverage-icon {
+    flex-shrink: 0;
+    display: grid; place-items: center;
+    width: 2.5rem; height: 2.5rem; border-radius: 0.7rem;
+    color: #0D1B2E;
+    background: linear-gradient(135deg, #F5C518 0%, #FFD740 100%);
+    box-shadow: 0 8px 20px -10px rgba(245, 197, 24, 0.75);
+  }
+  .coverage-point-title { display: block; font-weight: 800; color: #0D1B2E; font-size: 1rem; }
+  .coverage-point-desc { display: block; color: #556374; font-size: 0.9rem; line-height: 1.5; margin-top: 0.15rem; }
+  .coverage-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    margin-top: 1.75rem;
+    font-weight: 800; color: #C8102E;
+  }
+  .coverage-link:hover { color: #E8253F; }
+  .coverage-map {
+    border-radius: 1.25rem;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -25px rgba(13, 27, 46, 0.5);
+    border: 1px solid #E2E8F0;
+    background: #F8FAFC;
+    aspect-ratio: 4 / 3;
+    min-height: 320px;
+  }
+  .coverage-map iframe {
+    width: 100%; height: 100%; border: 0; display: block;
+    filter: grayscale(0.1) contrast(1.02);
+  }
+</style>

@@ -1,11 +1,19 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Hero from "@/components/Hero.astro";
+import HowItWorks from "@/components/HowItWorks.astro";
 import ServiceGrid from "@/components/ServiceGrid.astro";
+import StatsBand from "@/components/StatsBand.astro";
 import TrustSection from "@/components/TrustSection.astro";
+import CoverageStrip from "@/components/CoverageStrip.astro";
+import AboutTeaser from "@/components/AboutTeaser.astro";
+import EmergencyBand from "@/components/EmergencyBand.astro";
+import FAQ from "@/components/FAQ.astro";
+import GoogleReviewsCTA from "@/components/GoogleReviewsCTA.astro";
 import { t } from "@/i18n/index";
 import business from "@/data/business";
 import site from "@/config/site";
+import { homeFAQ } from "@/data/homeFAQ";
 
 const lang = "es";
 const tr = t(lang);
@@ -34,10 +42,34 @@ const pageSchema = {
 >
   <Hero lang={lang} />
 
+  <!-- Proceso en 3 pasos -->
+  <HowItWorks lang={lang} />
+
+  <!-- Servicios destacados -->
   <ServiceGrid lang={lang} featuredOnly limit={6} />
 
+  <!-- Banda de credibilidad -->
+  <StatsBand lang={lang} />
+
+  <!-- Señales de confianza + CTA -->
   <TrustSection lang={lang} />
 
+  <!-- Cobertura + mapa -->
+  <CoverageStrip lang={lang} />
+
+  <!-- Humanizar la marca -->
+  <AboutTeaser lang={lang} />
+
+  <!-- CTA de emergencia -->
+  <EmergencyBand lang={lang} />
+
+  <!-- FAQ para SEO -->
+  <FAQ lang={lang} items={homeFAQ} />
+
+  <!-- Embudo de reseñas de Google -->
+  <GoogleReviewsCTA lang={lang} />
+
+  <!-- CTA final -->
   <section class="section bg-light" aria-labelledby="cta2-heading">
     <div class="container text-center max-w-2xl">
       <h2 id="cta2-heading" class="text-primary mb-4">
