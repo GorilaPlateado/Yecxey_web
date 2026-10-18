@@ -134,8 +134,8 @@ const services: Service[] = [
     image: "/images/services/fuel-delivery.webp",
     imageWide: "/images/services/fuel-delivery-wide.webp",
     imageAlt: {
-      en: "3D illustration of a fuel nozzle with a diesel drop for emergency fuel delivery",
-      es: "Ilustración 3D de una boquilla de combustible con una gota de diésel para entrega de emergencia",
+      en: "GY Roadside fuel delivery truck pumping diesel into a commercial truck at sunset",
+      es: "Camión de entrega de combustible GY Roadside surtiendo diésel a un camión comercial al atardecer",
     },
     icon: "⛽",
     active: true,
@@ -212,8 +212,8 @@ const services: Service[] = [
     image: "/images/services/reefer-maintenance.webp",
     imageWide: "/images/services/reefer-maintenance-wide.webp",
     imageAlt: {
-      en: "3D illustration of a refrigeration unit with an ice crystal snowflake",
-      es: "Ilustración 3D de una unidad de refrigeración con un copo de hielo",
+      en: "Technician servicing a refrigerated truck unit with gauges and a refrigerant tank at sunset",
+      es: "Técnico dando servicio a una unidad de refrigeración de camión con manómetros y un tanque de refrigerante al atardecer",
     },
     icon: "❄️",
     active: true,
@@ -251,8 +251,8 @@ const services: Service[] = [
     image: "/images/services/oil-change-service.webp",
     imageWide: "/images/services/oil-change-service-wide.webp",
     imageAlt: {
-      en: "3D illustration of an oil jug with a wrench for a truck oil change",
-      es: "Ilustración 3D de un bidón de aceite con una llave para cambio de aceite de camión",
+      en: "Technician kneeling beside a commercial truck using an air compressor at sunset",
+      es: "Técnico arrodillado junto a un camión comercial usando un compresor de aire al atardecer",
     },
     icon: "🛢️",
     active: true,

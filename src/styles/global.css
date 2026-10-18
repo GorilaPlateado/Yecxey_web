@@ -23,6 +23,19 @@
     line-height: 1.6;
   }
 
+  /* Native-feeling taps on iOS (we provide our own :focus-visible + active states) */
+  a, button, [role="button"], input[type="submit"] {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Reserve space so the fixed MobileActionBar (visible below lg) never covers
+     the footer. Matches the bar height + iOS home-indicator safe area. */
+  @media (max-width: 1023px) {
+    body {
+      padding-bottom: calc(3.5rem + env(safe-area-inset-bottom));
+    }
+  }
+
   :focus-visible {
     outline: 2px solid #F5C518;
     outline-offset: 3px;

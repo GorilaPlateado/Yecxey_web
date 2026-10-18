@@ -38,3 +38,11 @@ const contactPath = lang === "es" ? `/${lang}/contacto/` : `/${lang}/contact-us/
     {lang === "es" ? "Contáctenos" : "Contact Us"}
   </a>
 </div>
+
+<style>
+  /* Extend each button's own background behind the iOS home indicator so the
+     bar is full-bleed and tap targets clear the gesture area. */
+  a {
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+  }
+</style>
