@@ -5,26 +5,22 @@
  * verified Google Business Profile. No hardcoded / sample / fictional reviews
  * are used anywhere.
  *
- * This file is the single, easy-to-find place to wire up the real links once
- * the client provides their verified Google Business Profile.
+ * Links provided by the client (2026-10-16) — both resolve to the SAME
+ * verified place ID 0x856c95d652d66a25:0x89fb99e8ac8030cd (GY Roadside
+ * Solutions LLC), confirmed by following both URLs:
+ *   - https://maps.app.goo.gl/S5onnHeCMHEaWCXi8?g_st=ic  (Maps short link)
+ *   - https://g.page/r/Cc0wgKzomfuJEBM/review            (direct review link)
  *
- * ┌─────────────────────────────────────────────────────────────────────────┐
- * │  TODO — CLIENT HANDOFF                                                    │
- * │  1. Replace GOOGLE_BUSINESS_PROFILE_URL with the client's verified       │
- * │     Google Business Profile URL (where reviews are shown).               │
- * │  2. Replace GOOGLE_REVIEW_LINK with the client's direct                  │
- * │     "Write a review" URL (https://g.page/r/.../review or similar).       │
- * │                                                                          │
- * │  Until then both stay as "#" — the buttons render but do not navigate,   │
- * │  and the pages automatically show a "coming soon" placeholder state.     │
- * └─────────────────────────────────────────────────────────────────────────┘
+ * The g.page/r/... short URLs are Google's official, stable Business Profile
+ * links, so they are used below (the maps.app.goo.gl link is a user-generated
+ * short link that can be regenerated).
  */
 
-// TODO: Replace with client's Google Business Profile URL (e.g. "https://www.google.com/maps/place/...")
-export const GOOGLE_BUSINESS_PROFILE_URL = "#";
+// Business Profile on Google Maps ("Read Our Google Reviews" / "Ver reseñas").
+export const GOOGLE_BUSINESS_PROFILE_URL = "https://g.page/r/Cc0wgKzomfuJEBM";
 
-// TODO: Replace with client's Google Review URL (e.g. "https://g.page/r/XXXXXXXX/review")
-export const GOOGLE_REVIEW_LINK = "#";
+// Direct "Write a review" entry point ("Leave a Review" / "Deja una Reseña").
+export const GOOGLE_REVIEW_LINK = "https://g.page/r/Cc0wgKzomfuJEBM/review";
 
 /** True only when a real http(s) profile URL has been set. */
 export function isProfileConfigured(): boolean {

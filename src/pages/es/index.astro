@@ -29,6 +29,7 @@ const pageSchema = {
   email: business.email,
   openingHours: "Mo-Su 00:00-23:59",
   areaServed: { "@type": "Country", name: "United States" },
+  sameAs: [business.googleBusinessProfileUrl, business.social.facebook, business.social.instagram, business.social.tiktok].filter(Boolean),
 };
 ---
 

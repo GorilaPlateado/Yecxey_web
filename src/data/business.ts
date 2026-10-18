@@ -37,7 +37,8 @@ const business = {
   googleMapsLink:
     "https://www.google.com/maps/search/?api=1&query=32.9460607,-96.8216914",
   googleBusinessProfileUrl:
-    import.meta.env.PUBLIC_GOOGLE_BUSINESS_PROFILE_URL || "",
+    import.meta.env.PUBLIC_GOOGLE_BUSINESS_PROFILE_URL ||
+    "https://g.page/r/Cc0wgKzomfuJEBM",
   /** Leave empty until confirmed; will hide WhatsApp button */
   whatsappNumber: "",
   /** Leave empty until confirmed; will hide SMS button */
