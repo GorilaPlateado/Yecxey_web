@@ -17,3 +17,7 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    Cross-Origin-Opener-Policy = "same-origin"
+    # Basic Permissions/Content baseline; CSP intentionally omitted because the
+    # build uses inline styles/scripts, Google Fonts and a Maps iframe.

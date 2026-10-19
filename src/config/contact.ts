@@ -1,20 +1,35 @@
 /**
  * Web3Forms configuration.
- * Replace YOUR_WEB3FORMS_ACCESS_KEY with the real key from https://web3forms.com
- * Replace destinationEmail with the client's actual email.
  *
- * Steps to activate:
- * 1. Go to https://web3forms.com and sign up (free).
- * 2. Enter the client's email → get an Access Key.
- * 3. Replace "YOUR_WEB3FORMS_ACCESS_KEY" below with the real key.
- * 4. Replace "cliente@pendiente.com" with the client's confirmed email.
- * 5. Run npm run build and deploy.
- * 6. Send a test submission and confirm receipt.
+ * SECURITY: the Access Key is NOT hardcoded here. It is injected at build time
+ * from the environment variable PUBLIC_WEB3FORMS_ACCESS_KEY so the real key
+ * never lives in the git repository.
+ *
+ * How to set the key (per host):
+ * - Netlify:  Site configuration → Environment variables → add
+ *             PUBLIC_WEB3FORMS_ACCESS_KEY = <your key>  (then redeploy)
+ * - Local:    copy .env.example to .env and set the value (.env is gitignored)
+ *
+ * IMPORTANT: Web3Forms keys are sent from the browser, so they are always
+ * public at runtime no matter where they are stored. Protect a key by opening
+ * the Web3Forms dashboard → your form → enabling:
+ *   • "Captcha Protection"
+ *   • "Domain Restriction" / allowed domains → gyroadsidesolutions.com
+ *   • (optional) an auto-responder / email confirmation
  */
+
+// Vite replaces `import.meta.env.PUBLIC_*` with the build-time environment value.
+const accessKey = (import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY as string | undefined) ?? "";
+
 export const contactConfig = {
-  accessKey: "REDACTED",
-  destinationEmail: "service@gyroadsidesolutions.com",
+  accessKey,
+  destinationEmail:
+    (import.meta.env.PUBLIC_EMAIL as string | undefined) ?? "service@gyroadsidesolutions.com",
   web3FormsEndpoint: "https://api.web3forms.com/submit",
   formName: "GY Roadside Solutions — Contact Form",
   redirectUrl: "", // optional: URL to redirect after successful submission
+  /** True only when a real key was provided at build time. */
+  get isConfigured(): boolean {
+    return /^[0-9a-f-]{20,}$/i.test(accessKey);
+  },
 };

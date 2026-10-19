@@ -1,5 +1,8 @@
 const site = {
-  url: "https://gyroadsidesolutions.com",
+  // Canonical/site URL. Override at build time with PUBLIC_SITE_URL (e.g. a
+  // Netlify preview URL); defaults to the production domain.
+  url:
+    (import.meta.env.PUBLIC_SITE_URL as string | undefined) ?? "https://gyroadsidesolutions.com",
   defaultLang: "en" as const,
   supportedLangs: ["en", "es"] as const,
   twitterHandle: "",

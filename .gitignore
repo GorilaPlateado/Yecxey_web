@@ -19,6 +19,9 @@ node_modules/
 # Local QA screenshots
 screenshots/
 
+# Internal reports / notes — never publish
+reports/
+
 # OS
 .DS_Store
 Thumbs.db
