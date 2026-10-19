@@ -89,12 +89,15 @@ const points = [
 <style>
   .coverage-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    /* minmax(0, 1fr): el iframe del mapa tiene ancho intrínseco (~425px);
+       sin el mínimo en 0, la pista fr no puede encogerse por debajo de él y
+       desborda el viewport (scroll horizontal en móvil). */
+    grid-template-columns: minmax(0, 1fr);
     gap: 2.5rem;
     align-items: center;
   }
   @media (min-width: 1024px) {
-    .coverage-grid { grid-template-columns: 1fr 1fr; gap: 3.5rem; }
+    .coverage-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 3.5rem; }
   }
   .coverage-points {
     list-style: none;
@@ -122,6 +125,10 @@ const points = [
   }
   .coverage-link:hover { color: #E8253F; }
   .coverage-map {
+    min-width: 0;
+    /* aspect-ratio + min-height transfieren 320px×4/3 = 427px de ancho;
+       max-width lo mantiene dentro de su columna en móvil. */
+    max-width: 100%;
     border-radius: 1.25rem;
     overflow: hidden;
     box-shadow: 0 25px 50px -25px rgba(13, 27, 46, 0.5);
