@@ -133,32 +133,28 @@ const servicesPath = lang === "es" ? `/${lang}/servicios/` : `/${lang}/services/
       </div>
     </div>
   </div>
-</section>
-
-<style>
-  /* Viewport height with a small-viewport (svh) target so the mobile URL bar
-     (Edge / Firefox) doesn't push content — vh is the fallback. */
+</section><style>
+  /* Viewport height with a small-viewport (svh) target so the mobile URL bar     (Edge / Firefox) doesn't push content — vh is the fallback. */
   .hero {
     min-height: clamp(520px, 82vh, 800px);
+  /* Original min-height: 520px floor with 82vh viewport height, capped at 800px */
   }
   @supports (height: 100svh) {
-    .hero { min-height: clamp(520px, 82svh, 800px); }
+    .hero { min-height: clamp(560px, 82svh, 800px); }
   }
 
   .hero-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Landscape art (1536x1024) is cropped vertically inside the wide hero;
-       biasing the crop toward the top keeps headroom so the mechanic's head
-       clears the sticky navbar instead of sitting right under it. */
-    object-position: center 22%;
-    filter: brightness(1.1) saturate(1.05);
+    /* Landscape art (1536x1024) is cropped vertically inside the wide hero;       biasing the crop toward the top keeps headroom so the mechanic's head       clears the sticky navbar instead of sitting right under it. */
+    object-position: center 20%;
+    filter: brightness(1.05) saturate(1.05) contrast(1.05);
   }
 
-  /* Phones use the portrait art (512x1024) which already frames the subject
-     centered top-to-bottom, so keep it centered. */
+  /* Phones use the portrait art (512x1024) — match the same visual weight     by forcing a centered crop that keeps the truck/tire subject prominent. */
   @media (max-width: 640px) {
-    .hero-img { object-position: center center; }
-  }
+    .hero-img {
+      object-position: center center;      /* Ensure portrait art fills the same visual area as wide art */      height: 100%;      width: 100%;
+    }  }
 </style>
