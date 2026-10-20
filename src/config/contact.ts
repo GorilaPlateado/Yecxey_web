@@ -19,7 +19,8 @@
  */
 
 // Vite replaces `import.meta.env.PUBLIC_*` with the build-time environment value.
-const accessKey = (import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY as string | undefined) ?? "";
+// Trim to ensure no leading/trailing whitespace breaks the isConfigured regex
+const accessKey = (import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY as string | undefined)?.trim() ?? "";
 
 export const contactConfig = {
   accessKey,
