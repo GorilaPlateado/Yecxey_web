@@ -12,6 +12,7 @@
  * 5. Send test and confirm receipt
  */
 import { activeServices } from "@/data/services";
+import { confirmedAreas } from "@/data/serviceAreas";
 import { t } from "@/i18n/index";
 import type { Lang } from "@/i18n/index";
 import business from "@/data/business";
@@ -27,12 +28,10 @@ const { lang } = Astro.props;
 const tr = t(lang);
 const f = tr.contact.form;
 
-const usStates = [
-  "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA",
-  "HI","ID","IL","IN","IA","KS","KY","LA","ME","MD",
-  "MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ",
-  "NM","NY","NC","ND","OH","OK","OR","PA","RI","SC",
-  "SD","TN","TX","UT","VT","VA","WA","WV","WI","WY",
+// Service area options — restricted to the Dallas-Fort Worth cities/counties
+// established in src/data/serviceAreas.ts (no nationwide state list).
+const serviceCounties: string[] = [
+  ...new Set(confirmedAreas.map((a) => a.county).filter((c): c is string => Boolean(c))),
 ];
 
 const privacyPath = lang === "es"
@@ -169,7 +168,7 @@ const isConfigured = contactConfig.isConfigured;
       <span id="email-error" class="form-error hidden" role="alert"></span>
     </div>
 
-    <!-- Service type + State -->
+    <!-- Service type + Service Area (DFW cities by county) -->
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
       <div>
         <label for="service-type" class="form-label">
@@ -193,23 +192,32 @@ const isConfigured = contactConfig.isConfigured;
       </div>
 
       <div>
-        <label for="state" class="form-label">
-          {f.state} <span class="text-error" aria-label={f.required}>*</span>
+        <label for="service-area" class="form-label">
+          {f.serviceArea} <span class="text-error" aria-label={f.required}>*</span>
         </label>
         <select
-          id="state"
-          name="state"
+          id="service-area"
+          name="service_area"
           class="form-input"
           required
           aria-required="true"
-          aria-describedby="state-error"
+          aria-describedby="service-area-error"
         >
-          <option value="">{f.statePlaceholder}</option>
-          {usStates.map((s) => (
-            <option value={s}>{s}</option>
+          <option value="">{f.serviceAreaPlaceholder}</option>
+          {serviceCounties.map((county) => (
+            <optgroup label={`${county}, TX`}>
+              {confirmedAreas
+                .filter((a) => a.county === county)
+                .map((a) => (
+                  <option value={a.slug}>{a.city}</option>
+                ))}
+            </optgroup>
           ))}
+          <option value="other-dfw">{lang === "es" ? "Otra ciudad en Dallas-Fort Worth" : "Another Dallas-Fort Worth city"}</option>
         </select>
-        <span id="state-error" class="form-error hidden" role="alert"></span>
+        <!-- Service area is Texas-only; keep state in the payload for email formatting -->
+        <input type="hidden" name="state" value="TX" />
+        <span id="service-area-error" class="form-error hidden" role="alert"></span>
       </div>
     </div>
 
@@ -403,7 +411,7 @@ const isConfigured = contactConfig.isConfigured;
   function validate() {
     let valid = true;
 
-    ["full-name","phone","service-type","state","location","problem-description"].forEach((id) => {
+    ["full-name","phone","service-type","service-area","location","problem-description"].forEach((id) => {
       const el = document.getElementById(id);
       const val = el instanceof HTMLInputElement || el instanceof HTMLSelectElement || el instanceof HTMLTextAreaElement
         ? el.value.trim() : "";
