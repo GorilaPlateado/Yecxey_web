@@ -8,27 +8,27 @@ const { lang } = Astro.props;
 const points = [
   {
     icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>`,
-    title: lang === "es" ? "Cobertura Nacional" : "Nationwide Reach",
+    title: lang === "es" ? "Área de servicio" : "Service Area",
     desc:
       lang === "es"
-        ? "Brindamos asistencia a camiones comerciales en todo Estados Unidos."
-        : "We support commercial truck drivers across the United States.",
+        ? "Brindamos asistencia móvil en Dallas, Irving, Addison, Carrollton y Farmers Branch."
+        : "We provide mobile assistance in Dallas, Irving, Addison, Carrollton, and Farmers Branch.",
   },
   {
     icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V7.618a1 1 0 01.553-.894L9 4m0 16l6-3m-6 3V4m6 0l5.447 2.724A1 1 0 0121 7.382v8.764a1 1 0 01-.553.894L15 17m0-13v13"/>`,
-    title: lang === "es" ? "Principales Rutas" : "Major Highways",
+    title: lang === "es" ? "Asistencia en carretera" : "Roadside Assistance",
     desc:
       lang === "es"
-        ? "Atención en autopistas y corredores de carga de alta demanda."
-        : "Help along interstate and high-traffic freight corridors.",
+        ? "Atendemos camiones comerciales y otros vehículos en carreteras, estacionamientos y patios de carga dentro de nuestra área de servicio."
+        : "We serve commercial trucks and other vehicles on highways, parking lots, and loading yards within our service area.",
   },
   {
-    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>`,
-    title: lang === "es" ? "Despacho 24/7" : "24/7 Dispatch",
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h8m-8 4h8m-9 8h10a2 2 0 002-2v-1M5 20a2 2 0 01-2-2V7a2 2 0 012-2h11l3 4v9a2 2 0 01-2 2H5zm2-4.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm10 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/>`,
+    title: lang === "es" ? "Servicio móvil" : "Mobile Service",
     desc:
       lang === "es"
-        ? "Sin importar la hora o el día, siempre hay alguien disponible."
-        : "No matter the hour or day, someone is always on call.",
+        ? "Nos desplazamos hasta donde se encuentre su vehículo para prestarle el servicio solicitado."
+        : "We come to wherever your vehicle is located to provide the requested service.",
   },
 ];
 ---
@@ -41,12 +41,12 @@ const points = [
           {lang === "es" ? "Dónde Estamos" : "Where We Serve"}
         </span>
         <h2 id="coverage-heading" class="text-primary">
-          {lang === "es" ? "Donde haya un camión varado, ahí estamos" : "Wherever a truck is stranded, we're there"}
+          {lang === "es" ? "Asistencia móvil donde usted la necesita" : "Mobile assistance where you need it"}
         </h2>
         <p class="text-muted text-base leading-relaxed mt-4">
           {lang === "es"
-            ? "Nuestro despacho móvil lleva ayuda profesional directamente a su ubicación, desde la autopista hasta el patios de carga."
-            : "Our mobile dispatch brings professional help straight to your location — from the interstate to the loading yard."}
+            ? "Nuestro servicio móvil ofrece asistencia profesional para camiones comerciales y otros vehículos en el área de Dallas-Fort Worth, Texas, directamente donde se encuentren ubicados."
+            : "Our mobile service provides professional assistance for commercial trucks and other vehicles in the Dallas-Fort Worth, Texas area, right where you are located."}
         </p>
 
         <ul class="coverage-points" role="list">

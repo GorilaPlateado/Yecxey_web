@@ -4,39 +4,31 @@ import type { Lang } from "@/i18n/index";
 export interface Props { lang: Lang; }
 const { lang } = Astro.props;
 
-// Qualitative facts only — no fabricated metrics or counts.
+// Client-approved blocks (2026-10 revision) — no availability or speed promises.
 const facts = [
   {
-    big: lang === "es" ? "24/7" : "24/7",
-    label: lang === "es" ? "Disponibilidad" : "Availability",
+    big: lang === "es" ? "Asistencia móvil" : "Mobile Assistance",
+    label: lang === "es" ? "Servicio directo" : "Direct Service",
     desc:
       lang === "es"
-        ? "Atención todos los días del año, a cualquier hora."
-        : "Every day of the year, at any hour.",
+        ? "Nos desplazamos hasta donde se encuentre su vehículo para prestarle el servicio solicitado."
+        : "We come to wherever your vehicle is located to provide the requested service.",
   },
   {
-    big: lang === "es" ? "Rápido" : "Fast",
-    label: lang === "es" ? "Despacho" : "Dispatch",
+    big: lang === "es" ? "Atención personalizada" : "Personalized Attention",
+    label: lang === "es" ? "Trato directo" : "Clear & Direct Service",
     desc:
       lang === "es"
-        ? "Enviamos al técnico disponible más cercano a su punto."
-        : "We send the nearest available technician to your location.",
+        ? "Atención directa y comunicación clara para comprender las necesidades de su vehículo."
+        : "Direct attention and clear communication to understand your vehicle's needs.",
   },
   {
-    big: lang === "es" ? "En Sitio" : "On-Site",
-    label: lang === "es" ? "Servicio Móvil" : "Mobile Service",
+    big: lang === "es" ? "Dallas-Fort Worth" : "Dallas-Fort Worth",
+    label: lang === "es" ? "Área de servicio" : "Service Area",
     desc:
       lang === "es"
-        ? "Reparamos en carretera para reducir su tiempo inactivo."
-        : "We repair at the roadside to cut your downtime.",
-  },
-  {
-    big: lang === "es" ? "Nacional" : "Nationwide",
-    label: lang === "es" ? "Cobertura" : "Coverage",
-    desc:
-      lang === "es"
-        ? "Asistencia para camiones comerciales en todo EE.UU."
-        : "Commercial truck assistance across the United States.",
+        ? "Asistencia móvil para camiones comerciales y otros vehículos."
+        : "Mobile assistance for commercial trucks and other vehicles.",
   },
 ];
 ---
@@ -44,7 +36,7 @@ const facts = [
 <section class="section bg-light" aria-labelledby="stats-heading">
   <div class="container">
     <h2 id="stats-heading" class="sr-only">
-      {lang === "es" ? "Por qué los conductores nos eligen" : "Why drivers choose us"}
+      {lang === "es" ? "Cómo trabajamos" : "How we work"}
     </h2>
     <dl class="stats-band">
       {facts.map((f) => (
@@ -70,10 +62,7 @@ const facts = [
     border: 1px solid #e2e8f0;
   }
   @media (min-width: 640px) {
-    .stats-band { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (min-width: 1024px) {
-    .stats-band { grid-template-columns: repeat(4, 1fr); }
+    .stats-band { grid-template-columns: repeat(3, 1fr); }
   }
   .stats-item {
     margin: 0;
@@ -85,8 +74,8 @@ const facts = [
   .stats-item:hover { background: #fffdf2; }
   .stats-big {
     font-weight: 900;
-    font-size: clamp(2rem, 4vw, 2.75rem);
-    line-height: 1;
+    font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+    line-height: 1.15;
     color: #0d1b2e;
     letter-spacing: -0.02em;
   }

@@ -35,22 +35,31 @@ const { lang } = Astro.props;
         </h2>
         <p class="text-muted text-base leading-relaxed mt-4">
           {lang === "es"
-            ? "GY Roadside Solutions LLC nació para respaldar a los conductores de camiones comerciales que mantienen a Estados Unidos en movimiento. Tratamos cada llamada con urgencia y cada reparación con profesionalismo."
-            : "GY Roadside Solutions LLC was built to back the drivers who keep America moving. We treat every call with urgency and every repair with real professionalism — because your time on the road matters."}
+            ? "GY Roadside Solutions LLC ofrece asistencia móvil para camiones comerciales y otros vehículos en el área de Dallas-Fort Worth, Texas. Nuestro compromiso es brindar un servicio profesional, responsable y cercano, atendiendo las necesidades de cada cliente directamente donde se encuentre su vehículo."
+            : "GY Roadside Solutions LLC provides mobile assistance for commercial trucks and other vehicles in the Dallas-Fort Worth, Texas area. Our commitment is to deliver professional, responsible, and personal service, addressing each customer's needs right where their vehicle is located."}
         </p>
 
         <ul class="about-list" role="list">
           <li>
             <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-            {lang === "es" ? "Enfoque total en el conductor" : "Driver-first mindset"}
+            <span>
+              <span class="about-point-title">{lang === "es" ? "Atención personalizada" : "Personalized Attention"}</span>
+              <span class="about-point-desc">{lang === "es" ? "Atención directa y comunicación clara con cada cliente." : "Direct service and clear communication with every customer."}</span>
+            </span>
           </li>
           <li>
             <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-            {lang === "es" ? "Servicio móvil en carretera" : "Mobile roadside service"}
+            <span>
+              <span class="about-point-title">{lang === "es" ? "Servicio móvil en carretera" : "Mobile Roadside Service"}</span>
+              <span class="about-point-desc">{lang === "es" ? "Nos desplazamos hasta donde se encuentre su vehículo." : "We come to wherever your vehicle is located."}</span>
+            </span>
           </li>
           <li>
             <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-            {lang === "es" ? "Atención bilingüe (ES / EN)" : "Bilingual support (ES / EN)"}
+            <span>
+              <span class="about-point-title">{lang === "es" ? "Atención bilingüe (ES / EN)" : "Bilingual Support (ES / EN)"}</span>
+              <span class="about-point-desc">{lang === "es" ? "Comunicación en español e inglés para facilitar la atención al cliente." : "Communication in Spanish and English for better customer service."}</span>
+            </span>
           </li>
         </ul>
 
@@ -115,10 +124,12 @@ const { lang } = Astro.props;
   }
   .about-list li {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 0.6rem;
     color: #0D1B2E;
-    font-weight: 600;
   }
-  .about-list svg { color: #C8102E; flex-shrink: 0; }
+  .about-list svg { color: #C8102E; flex-shrink: 0; margin-top: 0.15rem; }
+  .about-list li > span:not(:first-child) { flex: 1; min-width: 0; }
+  .about-point-title { display: block; font-weight: 800; font-size: 1rem; line-height: 1.3; }
+  .about-point-desc { display: block; color: #556374; font-size: 0.9rem; font-weight: 400; line-height: 1.5; margin-top: 0.15rem; }
 </style>

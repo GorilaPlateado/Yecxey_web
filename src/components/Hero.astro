@@ -50,13 +50,13 @@ const servicesPath = lang === "es" ? `/${lang}/servicios/` : `/${lang}/services/
       <h1 id="hero-heading" class="text-white text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.05] mb-4">
         {lang === "es" ? (
           <>
-            Mantén tu Camión<br />
-            <span class="text-accent">En Movimiento</span>
+            ¡Te Mantenemos<br />
+            <span class="text-accent">en Movimiento!</span>
           </>
         ) : (
           <>
-            Keep Your Truck<br />
-            <span class="text-accent">Moving</span>
+            We Keep You<br />
+            <span class="text-accent">Moving!</span>
           </>
         )}
       </h1>
@@ -64,19 +64,19 @@ const servicesPath = lang === "es" ? `/${lang}/servicios/` : `/${lang}/services/
       <!-- Subheadline -->
       <p class="text-white text-lg sm:text-xl font-semibold mb-3">
         {lang === "es"
-          ? "Rápido. Confiable. De Regreso a la Carretera."
-          : "Fast. Reliable. On the Road Again."}
+          ? "Rapidez y compromiso respaldan nuestro trabajo."
+          : "Speed and commitment back up everything we do."}
       </p>
 
       <!-- Description -->
       <p class="text-white/90 text-base leading-relaxed mb-8 max-w-lg">
         {lang === "es"
-          ? `GY Roadside Solutions LLC brinda asistencia en carretera profesional y servicios de reparación para camiones comerciales en todo Estados Unidos.`
-          : `GY Roadside Solutions LLC provides professional roadside assistance and repair services for commercial trucks across the United States.`}
+          ? `GY Roadside Solutions LLC ofrece asistencia móvil para camiones comerciales y otros vehículos en el área de Dallas-Fort Worth, Texas, directamente donde se encuentren ubicados.`
+          : `GY Roadside Solutions LLC provides mobile assistance for commercial trucks and other vehicles in the Dallas-Fort Worth, Texas area, right where you are located.`}
       </p>
 
       <!-- CTAs -->
-      <div class="flex flex-col sm:flex-row gap-3 mb-10">
+      <div class="flex flex-col sm:flex-row gap-3">
         <a
           href={`tel:${business.phone}`}
           class="btn bg-accent text-dark hover:bg-accent-light shadow-cta text-base sm:text-lg py-4 px-8 font-bold"
@@ -99,42 +99,11 @@ const servicesPath = lang === "es" ? `/${lang}/servicios/` : `/${lang}/services/
         </a>
       </div>
 
-      <!-- Trust badges row -->
-      <div class="flex flex-wrap gap-6 sm:gap-10" role="list" aria-label={lang === "es" ? "Garantías" : "Trust signals"}>
-        {[
-          {
-            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>`,
-            label: lang === "es" ? "Respuesta Rápida" : "Fast Response",
-            sub: lang === "es" ? "De regreso a la ruta" : "Get back on the road",
-          },
-          {
-            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>`,
-            label: lang === "es" ? "Servicio Profesional" : "Professional Service",
-            sub: lang === "es" ? "Técnicos con experiencia" : "Experienced technicians",
-          },
-          {
-            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>`,
-            label: lang === "es" ? "Para Camiones Comerciales" : "For Commercial Trucks",
-            sub: lang === "es" ? "Hecho para su negocio" : "Built for your business",
-          },
-        ].map((item) => (
-          <div class="flex items-center gap-3" role="listitem">
-            <div class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">
-              <svg aria-hidden="true" class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <Fragment set:html={item.icon} />
-              </svg>
-            </div>
-            <div>
-              <p class="text-white text-sm font-bold leading-none mb-0.5">{item.label}</p>
-              <p class="text-white/60 text-xs">{item.sub}</p>
-            </div>
-          </div>
-        ))}
-      </div>
     </div>
   </div>
 </section><style>
-  /* Viewport height with a small-viewport (svh) target so the mobile URL bar     (Edge / Firefox) doesn't push content — vh is the fallback. */
+  /* Viewport height with a small-viewport (svh) target so the mobile URL bar
+     (Edge / Firefox) doesn't push content — vh is the fallback. */
   .hero {
     min-height: clamp(520px, 82vh, 800px);
   /* Original min-height: 520px floor with 82vh viewport height, capped at 800px */
@@ -147,14 +116,21 @@ const servicesPath = lang === "es" ? `/${lang}/servicios/` : `/${lang}/services/
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Landscape art (1536x1024) is cropped vertically inside the wide hero;       biasing the crop toward the top keeps headroom so the mechanic's head       clears the sticky navbar instead of sitting right under it. */
+    /* Landscape art (1536x1024) is cropped vertically inside the wide hero;
+       biasing the crop toward the top keeps headroom so the mechanic's head
+       clears the sticky navbar instead of sitting right under it. */
     object-position: center 20%;
     filter: brightness(1.05) saturate(1.05) contrast(1.05);
   }
 
-  /* Phones use the portrait art (512x1024) — match the same visual weight     by forcing a centered crop that keeps the truck/tire subject prominent. */
+  /* Phones use the portrait art (512x1024) — match the same visual weight
+     by forcing a centered crop that keeps the truck/tire subject prominent. */
   @media (max-width: 640px) {
     .hero-img {
-      object-position: center center;      /* Ensure portrait art fills the same visual area as wide art */      height: 100%;      width: 100%;
-    }  }
+      object-position: center center;
+      /* Ensure portrait art fills the same visual area as wide art */
+      height: 100%;
+      width: 100%;
+    }
+  }
 </style>

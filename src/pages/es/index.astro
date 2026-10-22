@@ -7,7 +7,6 @@ import StatsBand from "@/components/StatsBand.astro";
 import TrustSection from "@/components/TrustSection.astro";
 import CoverageStrip from "@/components/CoverageStrip.astro";
 import AboutTeaser from "@/components/AboutTeaser.astro";
-import EmergencyBand from "@/components/EmergencyBand.astro";
 import FAQ from "@/components/FAQ.astro";
 import GoogleReviewsCTA from "@/components/GoogleReviewsCTA.astro";
 import { t } from "@/i18n/index";
@@ -27,15 +26,14 @@ const pageSchema = {
   url: site.url,
   telephone: business.phone,
   email: business.email,
-  openingHours: "Mo-Su 00:00-23:59",
-  areaServed: { "@type": "Country", name: "United States" },
+  areaServed: ["Dallas", "Irving", "Addison", "Carrollton", "Farmers Branch"].map((city) => ({ "@type": "City", name: `${city}, TX` })),
   sameAs: [business.googleBusinessProfileUrl, business.social.facebook, business.social.instagram, business.social.tiktok].filter(Boolean),
 };
 ---
 
 <BaseLayout
-  title={`${business.name} — Asistencia en Carretera para Camiones Comerciales 24/7`}
-  description="GY Roadside Solutions LLC ofrece asistencia en carretera 24/7 para camiones comerciales en todo EE.UU. Cambio de llanta, arranque, entrega de combustible, frenos, mantenimiento reefer y más."
+  title={`${business.name} — Asistencia en Carretera para Camiones Comerciales y Otros Vehículos`}
+  description="GY Roadside Solutions LLC ofrece asistencia móvil para camiones comerciales y otros vehículos en el área de Dallas-Fort Worth, Texas: neumáticos, frenos, combustible, unidades refrigeradas, aceite y arranque de emergencia."
   lang={lang}
   canonicalUrl={canonicalUrl}
   alternateUrl={alternateUrl}
@@ -61,9 +59,6 @@ const pageSchema = {
   <!-- Humanizar la marca -->
   <AboutTeaser lang={lang} />
 
-  <!-- CTA de emergencia -->
-  <EmergencyBand lang={lang} />
-
   <!-- FAQ para SEO -->
   <FAQ lang={lang} items={homeFAQ} />
 
@@ -74,10 +69,10 @@ const pageSchema = {
   <section class="section bg-light" aria-labelledby="cta2-heading">
     <div class="container text-center max-w-2xl">
       <h2 id="cta2-heading" class="text-primary mb-4">
-        ¿Listo para Regresar a la Carretera?
+        ¿Necesita asistencia para su vehículo?
       </h2>
       <p class="text-muted text-lg mb-8">
-        No espere en la orilla de la autopista. Llame a GY Roadside Solutions LLC para asistencia rápida y profesional para camiones comerciales — las 24 horas del día.
+        Comuníquese con GY Roadside Solutions LLC para solicitar servicio móvil para camiones comerciales y otros vehículos en el área de Dallas-Fort Worth, Texas.
       </p>
       <div class="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center">
         <a href={`tel:${business.phone}`} class="btn-primary self-center text-center text-base sm:text-lg sm:whitespace-nowrap py-4 px-6 sm:px-10">
@@ -88,7 +83,7 @@ const pageSchema = {
           Llamar Ahora — {business.phoneDisplay}
         </a>
         <a href="/es/contacto/" class="btn-outline-dark text-lg py-4 px-10">
-          Solicitar Asistencia en Carretera
+          Solicitar Asistencia
         </a>
       </div>
     </div>

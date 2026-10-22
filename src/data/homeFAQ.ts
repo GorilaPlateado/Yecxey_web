@@ -1,57 +1,57 @@
 /**
- * Homepage FAQ — general questions about the roadside assistance service.
+ * Homepage FAQ — updated per client revision document (2026-10).
  * Structure matches the `FAQItem` type in `@/components/FAQ.astro`.
- * Answers stay factual (no fabricated metrics or unverified claims).
+ * Answers stay factual (no availability promises or unverified claims).
  */
 export const homeFAQ = [
   {
     q: {
-      en: "What types of trucks do you service?",
-      es: "¿Qué tipo de camiones atienden?",
+      en: "What vehicles do you service?",
+      es: "¿Qué vehículos atienden?",
     },
     a: {
-      en: "We provide roadside assistance for commercial trucks — from tractors and straight trucks to reefers and heavy-duty rigs.",
-      es: "Brindamos asistencia en carretera para camiones comerciales, desde tractocamiones y camiones rectos hasta reefer y unidades de servicio pesado.",
+      en: "We provide mobile assistance to commercial trucks and other vehicles, including refrigerated trailers, within our Dallas-Fort Worth, Texas service area.",
+      es: "Brindamos asistencia móvil a camiones comerciales y otros vehículos, así como tráileres refrigerados, dentro de nuestra área de servicio en Dallas-Fort Worth, Texas.",
     },
   },
   {
     q: {
-      en: "How fast can you reach me?",
-      es: "¿Qué tan rápido pueden llegarme?",
+      en: "How long does it take for service to arrive?",
+      es: "¿Cuánto tiempo tarda en llegar el servicio?",
     },
     a: {
-      en: "We dispatch 24/7 and send the nearest available technician. Time to arrival depends on your location and current traffic conditions.",
-      es: "Despachamos las 24 horas y enviamos al técnico disponible más cercano. El tiempo de llegada depende de su ubicación y las condiciones del tráfico.",
+      en: "Arrival time depends on your location, traffic conditions, and availability to respond to your request. Contact us to check service availability in your area.",
+      es: "El tiempo de llegada depende de su ubicación, las condiciones del tráfico y la disponibilidad para atender su solicitud. Contáctenos para consultar la disponibilidad del servicio en su zona.",
     },
   },
   {
     q: {
-      en: "What services do you offer on the roadside?",
-      es: "¿Qué servicios ofrecen en carretera?",
+      en: "What services do you offer?",
+      es: "¿Qué servicios ofrecen?",
     },
     a: {
-      en: "Tire changes, jump starts, fuel delivery, brake service, reefer maintenance, and more. See our services page for the full list.",
-      es: "Cambio de llantas, arranque de emergencia, entrega de combustible, servicio de frenos, mantenimiento reefer y más. Vea nuestra página de servicios.",
+      en: "We offer mobile tire change and repair, refrigeration unit maintenance and repair, brake inspection and repair, fuel delivery, oil change, and emergency jump start and battery replacement. See our Services section for more details.",
+      es: "Ofrecemos servicios móviles de cambio y reparación de neumáticos, mantenimiento y reparación de unidades refrigeradas, inspección y reparación de frenos, entrega de combustible, cambio de aceite, arranque de emergencia y reemplazo de baterías. Consulte nuestra sección de Servicios para conocer más detalles.",
     },
   },
   {
     q: {
-      en: "Are you available at night and on weekends?",
-      es: "¿Están disponibles de noche y en fines de semana?",
+      en: "What are your service hours?",
+      es: "¿Qué horarios de atención tienen?",
     },
     a: {
-      en: "Yes. Our dispatch is available 24 hours a day, 7 days a week, every day of the year.",
-      es: "Sí. Nuestro despacho está disponible las 24 horas del día, los 7 días de la semana, todos los días del año.",
+      en: "Our service hours may vary. Contact us to check service availability and coordinate the assistance you need.",
+      es: "Nuestro horario de atención puede variar. Contáctenos para consultar la disponibilidad del servicio y coordinar la asistencia que necesita.",
     },
   },
   {
     q: {
-      en: "How do I request assistance?",
-      es: "¿Cómo solicito asistencia?",
+      en: "How can I request service?",
+      es: "¿Cómo puedo solicitar el servicio?",
     },
     a: {
-      en: "Call us directly with your location and the problem, or use our contact form. Speaking with our team by phone is always the fastest option.",
-      es: "Llámenos directamente con su ubicación y el problema, o use nuestro formulario de contacto. Hablar por teléfono con nuestro equipo siempre es la opción más rápida.",
+      en: "You can call us at (214) 302-7757 or use our contact form. Tell us your location and your vehicle's problem so we can check availability and coordinate the service.",
+      es: "Puede llamarnos al (214) 302-7757 o utilizar nuestro formulario de contacto. Indíquenos su ubicación y el problema de su vehículo para que podamos consultar la disponibilidad y coordinar el servicio.",
     },
   },
 ];
