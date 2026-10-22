@@ -38,13 +38,13 @@ const privacyPath  = lang === "es" ? `/es/politica-de-privacidad/` : `/en/privac
         </a>
         <p class="text-white/75 text-sm leading-relaxed mb-5">
           {lang === "es"
-            ? "Asistencia en carretera profesional para camiones comerciales en todo Estados Unidos."
-            : "Professional roadside assistance for commercial trucks across the United States."}
+            ? "Asistencia móvil en carretera para camiones comerciales y otros vehículos en el área de Dallas-Fort Worth, Texas."
+            : "Mobile roadside assistance for commercial trucks and other vehicles in the Dallas-Fort Worth, Texas area."}
         </p>
-        <!-- 24/7 pill -->
+        <!-- Service area pill -->
         <div class="inline-flex items-center gap-2 bg-accent/15 border border-accent/30 text-accent text-xs font-bold px-3 py-1.5 rounded-full">
-          <span class="w-2 h-2 bg-accent rounded-full animate-pulse" aria-hidden="true"></span>
-          24/7 {lang === "es" ? "Disponible" : "Available"}
+          <span class="w-2 h-2 bg-accent rounded-full" aria-hidden="true"></span>
+          {lang === "es" ? "Área: Dallas-Fort Worth, TX" : "Area: Dallas-Fort Worth, TX"}
         </div>
 
         <!-- Social links -->
@@ -98,7 +98,7 @@ const privacyPath  = lang === "es" ? `/es/politica-de-privacidad/` : `/en/privac
               </div>
               <div>
                 <p class="text-white text-sm font-bold">{business.phoneDisplay}</p>
-                <p class="text-white/60 text-xs">{lang === "es" ? "Disponible 24/7" : "Available 24/7"}</p>
+                <p class="text-white/60 text-xs">{lang === "es" ? "Llámenos para coordinar el servicio" : "Call us to coordinate service"}</p>
               </div>
             </a>
           </li>

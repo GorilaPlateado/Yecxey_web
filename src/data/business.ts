@@ -79,8 +79,8 @@ const business = {
     es: "Asistencia en Carretera Confiable para Camiones Comerciales",
   },
   description: {
-    en: "GY Roadside Solutions LLC provides professional roadside assistance and mobile repair services for commercial trucks across the United States.",
-    es: "GY Roadside Solutions LLC ofrece asistencia en carretera profesional y servicios de reparación móvil para camiones comerciales en todo Estados Unidos.",
+    en: "GY Roadside Solutions LLC provides mobile roadside assistance for commercial trucks and other vehicles in the Dallas-Fort Worth, Texas area, right where you are located.",
+    es: "GY Roadside Solutions LLC ofrece asistencia móvil en carretera para camiones comerciales y otros vehículos en el área de Dallas-Fort Worth, Texas, directamente donde se encuentren ubicados.",
   },
 } as const;
 
