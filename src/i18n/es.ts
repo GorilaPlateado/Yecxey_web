@@ -15,14 +15,9 @@ const es = {
     callNow: "Llamar Ahora",
   },
 
+  // Título/subtítulo/descripción están en línea en Hero.astro (revisión del cliente 2026-10).
   hero: {
-    headline: "Asistencia en Carretera para Camiones Comerciales",
-    subheadline: "Servicios de Reparación Móvil Profesional — Disponible 24/7",
-    description:
-      "¿Varado en la carretera? GY Roadside Solutions LLC envía técnicos experimentados para regresar su camión comercial a la ruta rápidamente.",
     ctaCall: "Llamar Ahora",
-    ctaContact: "Solicitar Asistencia en Carretera",
-    trustedBy: "Confiado por conductores de camiones comerciales en EE.UU.",
   },
 
   services: {
@@ -34,26 +29,6 @@ const es = {
     callForService: "Llamar para Este Servicio",
     requestService: "Solicitar Este Servicio",
     relatedServices: "Servicios Relacionados",
-  },
-
-  serviceArea: {
-    title: "Área de Servicio",
-    subtitle: "Zonas que Atendemos",
-    description:
-      "GY Roadside Solutions LLC brinda asistencia en carretera para camiones comerciales en múltiples estados. Contáctenos para confirmar cobertura en su ubicación específica.",
-    confirmCoverage: "Confirmar Cobertura en Su Área",
-    getDirections: "Cómo Llegar",
-    callUs: "Llámenos",
-  },
-
-  about: {
-    title: "Sobre GY Roadside Solutions LLC",
-    subtitle: "Su Socio de Confianza para Asistencia de Camiones Comerciales",
-    ourMission: "Nuestra Misión",
-    ourValues: "Nuestros Valores",
-    whyChooseUs: "¿Por Qué Elegirnos?",
-    ourTeam: "Nuestro Equipo",
-    contentPlaceholder: "[CONTENIDO A PROPORCIONAR POR EL CLIENTE]",
   },
 
   reviews: {
@@ -161,17 +136,6 @@ const es = {
     openInMaps: "Abrir en Google Maps",
     callPhone: "Llamar",
     sendEmail: "Enviar Correo",
-  },
-
-  trust: {
-    fastResponse: "Respuesta Rápida",
-    fastResponseDesc: "Disponibles las 24 horas para emergencias en carretera",
-    licensed: "Licenciados y Asegurados",
-    licensedDesc: "[CONFIRMAR CON CLIENTE — detalles de licencia]",
-    experienced: "Técnicos Experimentados",
-    experiencedDesc: "[CONFIRMAR CON CLIENTE — detalles de experiencia]",
-    nationwide: "Cobertura Amplia",
-    nationwideDesc: "[CONFIRMAR CON CLIENTE — detalles de cobertura]",
   },
 } as const;
 

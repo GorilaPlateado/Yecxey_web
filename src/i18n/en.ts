@@ -17,14 +17,9 @@ const en = {
   },
 
   // ── Hero ─────────────────────────────────────────────────
+  // Headline/subheadline/description are inlined in Hero.astro (client revision 2026-10).
   hero: {
-    headline: "Commercial Truck Roadside Assistance",
-    subheadline: "Professional Mobile Repair Services Across the United States",
-    description:
-      "Stranded on the road? GY Roadside Solutions LLC dispatches experienced technicians to get your commercial truck back on the road fast.",
     ctaCall: "Call Now",
-    ctaContact: "Request Roadside Assistance",
-    trustedBy: "Trusted by commercial truck drivers across the US",
   },
 
   // ── Services ─────────────────────────────────────────────
@@ -39,29 +34,7 @@ const en = {
     relatedServices: "Related Services",
   },
 
-  // ── Service Areas ─────────────────────────────────────────
-  serviceArea: {
-    title: "Service Area",
-    subtitle: "Areas We Serve",
-    description:
-      "GY Roadside Solutions LLC provides commercial truck roadside assistance across multiple states. Contact us to confirm coverage in your specific location.",
-    confirmCoverage: "Confirm Coverage in Your Area",
-    getDirections: "Get Directions",
-    callUs: "Call Us",
-  },
-
-  // ── About ─────────────────────────────────────────────────
-  about: {
-    title: "About GY Roadside Solutions LLC",
-    subtitle: "Your Trusted Partner for Commercial Truck Assistance",
-    ourMission: "Our Mission",
-    ourValues: "Our Values",
-    whyChooseUs: "Why Choose Us",
-    ourTeam: "Our Team",
-    contentPlaceholder: "[CONTENT TO BE PROVIDED BY CLIENT]",
-  },
-
-  // ── Reviews ───────────────────────────────────────────────
+  // ── Reviews ────────────────────────────────────────────────
   reviews: {
     title: "Customer Reviews",
     subtitle: "What Our Customers Say",
@@ -175,18 +148,6 @@ const en = {
     openInMaps: "Open in Google Maps",
     callPhone: "Call",
     sendEmail: "Send Email",
-  },
-
-  // ── Trust signals ─────────────────────────────────────────
-  trust: {
-    fastResponse: "Fast Response",
-    fastResponseDesc: "[CONFIRM WITH CLIENT — response time]",
-    licensed: "Licensed & Insured",
-    licensedDesc: "[CONFIRM WITH CLIENT — license details]",
-    experienced: "Experienced Technicians",
-    experiencedDesc: "[CONFIRM WITH CLIENT — experience details]",
-    nationwide: "Nationwide Coverage",
-    nationwideDesc: "[CONFIRM WITH CLIENT — coverage details]",
   },
 } as const;
 
