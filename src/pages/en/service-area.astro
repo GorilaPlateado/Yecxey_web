@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
-import serviceAreas from "@/data/serviceAreas";
+import { confirmedAreas } from "@/data/serviceAreas";
 import business from "@/data/business";
 import site from "@/config/site";
 
@@ -12,7 +12,7 @@ const alternateUrl = `${site.url}/es/area-de-servicio/`;
 
 <BaseLayout
   title={`Service Area — ${business.name}`}
-  description="GY Roadside Solutions LLC provides commercial truck roadside assistance across multiple US states. Call (214) 302-7757 to confirm coverage in your area."
+  description="GY Roadside Solutions LLC provides roadside assistance for commercial trucks and other vehicles in the Dallas-Fort Worth, Texas area: Dallas, Irving, Addison, Carrollton, and Farmers Branch. Call (214) 302-7757."
   lang={lang}
   canonicalUrl={canonicalUrl}
   alternateUrl={alternateUrl}
@@ -24,7 +24,7 @@ const alternateUrl = `${site.url}/es/area-de-servicio/`;
       <div class="section-heading">
         <h1 id="area-heading" class="text-primary">Service Area</h1>
         <p class="text-muted text-lg max-w-2xl mx-auto">
-          GY Roadside Solutions LLC provides commercial truck roadside assistance across the United States. Contact us to confirm coverage in your specific location.
+          GY Roadside Solutions LLC provides roadside assistance for commercial trucks and other vehicles in the Dallas-Fort Worth, Texas area.
         </p>
         <span class="heading-accent" aria-hidden="true"></span>
       </div>
@@ -39,26 +39,27 @@ const alternateUrl = `${site.url}/es/area-de-servicio/`;
           </a>
         </div>
 
-        {serviceAreas.length > 0 && serviceAreas.some(a => a.confirmed) ? (
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {serviceAreas.filter(a => a.confirmed).map((area) => (
-              <div class="card p-5 flex items-center gap-3">
-                <div class="w-10 h-10 bg-secondary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <svg aria-hidden="true" class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        {confirmedAreas.length > 0 ? (
+          <div class="bg-white border border-border rounded-2xl p-6 text-center">
+            <p class="font-bold text-primary text-lg mb-1">Service Areas</p>
+            <p class="text-muted text-sm mb-4">We provide mobile assistance in the following Dallas-Fort Worth, Texas cities.</p>
+            <ul class="flex flex-wrap justify-center gap-2" role="list">
+              {confirmedAreas.map((area) => (
+                <li class="inline-flex items-center gap-2 bg-primary/5 border border-primary/20 rounded-full px-4 py-2">
+                  <svg aria-hidden="true" class="w-4 h-4 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                   </svg>
-                </div>
-                <div>
-                  <p class="font-semibold text-dark">{area.city}</p>
-                  <p class="text-muted text-sm">{area.state}</p>
-                </div>
-              </div>
-            ))}
+                  <span class="font-semibold text-dark">{area.city}</span>
+                  <span class="text-muted text-xs">{area.stateCode}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         ) : (
           <div class="bg-yellow-50 border border-yellow-200 rounded-2xl p-6 text-sm text-yellow-800">
             <p class="font-bold mb-2">📋 Service areas pending confirmation from client.</p>
-            <p>Once confirmed, specific cities and states will be listed here. Call us to verify coverage in your location.</p>
+            <p>Once confirmed, specific cities will be listed here. Call us to verify coverage in your location.</p>
           </div>
         )}
 
