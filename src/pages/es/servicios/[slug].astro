@@ -33,13 +33,13 @@ const serviceSchema = {
     name: business.name,
     telephone: business.phone,
   },
-  areaServed: { "@type": "Country", name: "United States" },
+  areaServed: ["Dallas", "Irving", "Addison", "Carrollton", "Farmers Branch"].map((city) => ({ "@type": "City", name: `${city}, TX` })),
 };
 ---
 
 <BaseLayout
   title={`${service.title.es} — ${business.name}`}
-  description={`${service.shortDescription.es} Llame a GY Roadside Solutions LLC al (214) 302-7757 — disponible 24/7.`}
+  description={`${service.shortDescription.es} Contáctenos al (214) 302-7757 para coordinar el servicio móvil en el área de Dallas-Fort Worth, Texas.`}
   lang={lang}
   canonicalUrl={canonicalUrl}
   alternateUrl={alternateUrl}
@@ -98,8 +98,8 @@ const serviceSchema = {
       </div>
       <div class="mt-10 p-6 bg-primary/5 border border-primary/20 rounded-2xl flex flex-col sm:flex-row items-center gap-4">
         <div class="flex-1">
-          <p class="font-bold text-dark">¿Necesita este servicio ahora?</p>
-          <p class="text-muted text-sm">Llámenos las 24 horas para asistencia inmediata en carretera.</p>
+          <p class="font-bold text-dark">¿Necesita este servicio?</p>
+          <p class="text-muted text-sm">Contáctenos para coordinar el servicio móvil en el área de Dallas-Fort Worth.</p>
         </div>
         <a href={`tel:${business.phone}`} class="btn-primary flex-shrink-0">{business.phoneDisplay}</a>
       </div>
