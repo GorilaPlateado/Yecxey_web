@@ -52,7 +52,6 @@ const localBizSchema = {
   url: site.url,
   telephone: business.phone,
   email: business.email,
-  openingHours: "Mo-Su 00:00-23:59",
   priceRange: "$$",
   currenciesAccepted: "USD",
   paymentAccepted: "Cash, Credit Card",
@@ -70,7 +69,11 @@ const localBizSchema = {
     longitude: business.longitude,
   },
   hasMap: business.googleMapsLink,
-  areaServed: { "@type": "Country", name: "United States" },
+  // Service area limited to the confirmed Dallas-Fort Worth cities (src/data/serviceAreas.ts)
+  areaServed: ["Dallas", "Irving", "Addison", "Carrollton", "Farmers Branch"].map((city) => ({
+    "@type": "City",
+    name: `${city}, TX`,
+  })),
   sameAs,
 };
 
