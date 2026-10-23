@@ -39,8 +39,8 @@ const services: Service[] = [
       es: "Cambio y Reparación de Neumáticos",
     },
     shortDescription: {
-      en: "Mobile tire change and repair service for commercial trucks and trailers, right at the vehicle's location or at the customer's facilities.",
-      es: "Servicio móvil de cambio y reparación de neumáticos para camiones comerciales y tráileres, directamente donde se encuentre el vehículo o en las instalaciones del cliente.",
+      en: "Mobile tire change and repair service for commercial trucks and other vehicles, right at the vehicle's location or at the customer's facilities.",
+      es: "Servicio móvil de cambio y reparación de neumáticos para camiones comerciales y otros vehículos, directamente en el lugar donde se encuentre o en las instalaciones del cliente.",
     },
     description: {
       en: "GY Roadside Solutions LLC provides mobile tire change and repair service for commercial trucks and trailers in the Dallas-Fort Worth, Texas area. We come directly to where your vehicle is located — highway, parking lot, or loading yard — or to the customer's facilities, with the tools and equipment needed to service commercial tire sizes. Contact us with your location and the situation to coordinate the requested service.",
@@ -89,8 +89,8 @@ const services: Service[] = [
       es: "Mantenimiento y Reparación de Unidades Refrigeradas",
     },
     shortDescription: {
-      en: "Mobile diagnosis, maintenance, and repair of refrigeration units on refrigerated trailers, right at the vehicle's location or at the customer's facilities.",
-      es: "Servicio móvil de diagnóstico, mantenimiento y reparación de unidades en tráileres refrigerados, directamente donde se encuentre el vehículo o en las instalaciones del cliente.",
+      en: "Mobile diagnosis, maintenance, and repair of refrigeration units on refrigerated trailers, right at their location or at the customer's facilities.",
+      es: "Servicio móvil de diagnóstico, mantenimiento y reparación de unidades en tráileres refrigerados, directamente en el lugar donde se encuentren o en las instalaciones del cliente.",
     },
     description: {
       en: "GY Roadside Solutions LLC provides mobile diagnosis, maintenance, and repair of refrigeration units on refrigerated trailers in the Dallas-Fort Worth, Texas area. We go directly to where your vehicle is located or to the customer's facilities to service the reefer unit and help protect your refrigerated cargo. Contact us to describe the issue and coordinate the service.",
@@ -169,8 +169,8 @@ const services: Service[] = [
       es: "Inspección y Reparación de Frenos",
     },
     shortDescription: {
-      en: "Mobile brake inspection, diagnosis, and repair service for commercial trucks and trailers, right at the vehicle's location or at the customer's facilities.",
-      es: "Servicio móvil de inspección, diagnóstico y reparación de frenos para camiones comerciales y tráileres, directamente donde se encuentre el vehículo o en las instalaciones del cliente.",
+      en: "Mobile brake inspection, diagnosis, and repair service for commercial trucks and other vehicles, right at the vehicle's location or at the customer's facilities.",
+      es: "Servicio móvil de inspección, diagnóstico y reparación de frenos para camiones comerciales y otros vehículos, directamente en el lugar donde se encuentre o en las instalaciones del cliente.",
     },
     description: {
       en: "GY Roadside Solutions LLC provides mobile brake inspection, diagnosis, and repair for commercial trucks and trailers in the Dallas-Fort Worth, Texas area. We go directly to where your vehicle is located or to the customer's facilities to assess the braking system and perform the requested service, helping you resume your route with peace of mind. Contact us to describe the issue and coordinate the service.",
@@ -210,7 +210,7 @@ const services: Service[] = [
     },
     shortDescription: {
       en: "Mobile oil change service for commercial trucks and other vehicles, right at the vehicle's location or at the customer's facilities.",
-      es: "Servicio móvil de cambio de aceite para camiones comerciales y otros vehículos, directamente donde se encuentre el vehículo o en las instalaciones del cliente.",
+      es: "Servicio móvil de cambio de aceite para camiones comerciales y otros vehículos, directamente en el lugar donde se encuentre o en las instalaciones del cliente.",
     },
     description: {
       en: "GY Roadside Solutions LLC provides mobile oil change service for commercial trucks and other vehicles in the Dallas-Fort Worth, Texas area. We come directly to where your vehicle is located or to the customer's facilities to perform the oil change with commercial-grade oils and filters suitable for heavy-duty diesel engines. Contact us to coordinate the service.",
@@ -250,7 +250,7 @@ const services: Service[] = [
     },
     shortDescription: {
       en: "Mobile emergency jump start and battery replacement service for commercial trucks and other vehicles, right at the vehicle's location or at the customer's facilities.",
-      es: "Servicio móvil de arranque de emergencia y reemplazo de baterías para camiones comerciales y otros vehículos, directamente donde se encuentre el vehículo o en las instalaciones del cliente.",
+      es: "Servicio móvil de arranque de emergencia y reemplazo de baterías para camiones comerciales y otros vehículos, directamente en el lugar donde se encuentre o en las instalaciones del cliente.",
     },
     description: {
       en: "GY Roadside Solutions LLC provides mobile emergency jump start and battery replacement for commercial trucks and other vehicles in the Dallas-Fort Worth, Texas area. We come directly to where your vehicle is located or to the customer's facilities with heavy-duty equipment designed for commercial vehicles. Contact us to describe the situation and coordinate the service.",
