@@ -45,17 +45,18 @@ const business = {
   smsNumber: "",
 
   // ── Hours ────────────────────────────────────────────────
-  // 24/7 confirmed per business card
+  // No fixed-hours / 24/7 promise (client revision 2026-10). Availability
+  // depends on the schedule and the conditions of each request.
   hours: {
-    monday:    "24 hours",
-    tuesday:   "24 hours",
-    wednesday: "24 hours",
-    thursday:  "24 hours",
-    friday:    "24 hours",
-    saturday:  "24 hours",
-    sunday:    "24 hours",
+    monday:    "By request",
+    tuesday:   "By request",
+    wednesday: "By request",
+    thursday:  "By request",
+    friday:    "By request",
+    saturday:  "By request",
+    sunday:    "By request",
   },
-  available24h: true,
+  available24h: false,
 
   // ── Social ───────────────────────────────────────────────
   social: {
