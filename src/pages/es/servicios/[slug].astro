@@ -4,6 +4,7 @@ import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import ServiceCard from "@/components/ServiceCard.astro";
 import FAQ from "@/components/FAQ.astro";
 import { activeServices } from "@/data/services";
+import { confirmedAreas } from "@/data/serviceAreas";
 import business from "@/data/business";
 import site from "@/config/site";
 
@@ -33,7 +34,7 @@ const serviceSchema = {
     name: business.name,
     telephone: business.phone,
   },
-  areaServed: ["Dallas", "Irving", "Addison", "Carrollton", "Farmers Branch"].map((city) => ({ "@type": "City", name: `${city}, TX` })),
+  areaServed: confirmedAreas.map((area) => ({ "@type": "City", name: `${area.city}, ${area.stateCode}` })),
 };
 ---
 

@@ -1,6 +1,7 @@
 ---
 import site from "@/config/site";
 import business from "@/data/business";
+import { confirmedAreas } from "@/data/serviceAreas";
 
 export interface Props {
   title: string;
@@ -70,9 +71,9 @@ const localBizSchema = {
   },
   hasMap: business.googleMapsLink,
   // Service area limited to the confirmed Dallas-Fort Worth cities (src/data/serviceAreas.ts)
-  areaServed: ["Dallas", "Irving", "Addison", "Carrollton", "Farmers Branch"].map((city) => ({
+  areaServed: confirmedAreas.map((area) => ({
     "@type": "City",
-    name: `${city}, TX`,
+    name: `${area.city}, ${area.stateCode}`,
   })),
   sameAs,
 };
