@@ -39,12 +39,12 @@ const services: Service[] = [
       es: "Cambio y Reparación de Neumáticos",
     },
     shortDescription: {
-      en: "Mobile tire change and repair service for commercial trucks and other vehicles, right at the vehicle's location or at the customer's facilities.",
-      es: "Servicio móvil de cambio y reparación de neumáticos para camiones comerciales y otros vehículos, directamente en el lugar donde se encuentre o en las instalaciones del cliente.",
-    },
-    description: {
       en: "We repair tires on commercial trucks and other vehicles when it is viable, or replace them, helping you resolve the problem and get back on the road as quickly as possible.",
       es: "Ofrecemos reparación de neumáticos a camiones comerciales y otros vehículos cuando sea viable, o los reemplazamos, ayudándole a resolver el problema y volver a la carretera lo antes posible.",
+    },
+    description: {
+      en: "We repair tires on commercial trucks and other vehicles when it is viable, or replace them, helping you resolve the problem and get back on the road as quickly as possible. Our service is mobile, provided in the Dallas-Fort Worth, Texas area — contact us to coordinate it.",
+      es: "Ofrecemos reparación de neumáticos a camiones comerciales y otros vehículos cuando sea viable, o los reemplazamos, ayudándole a resolver el problema y volver a la carretera lo antes posible. Nuestro servicio es móvil, en el área de Dallas-Fort Worth, Texas; contáctenos para coordinarlo.",
     },
     image: "/images/services/tire-change.webp",
     imageWide: "/images/services/tire-change-wide.webp",
@@ -89,12 +89,12 @@ const services: Service[] = [
       es: "Mantenimiento y Reparación de Unidades Refrigeradas",
     },
     shortDescription: {
-      en: "Mobile diagnosis, maintenance, and repair of refrigeration units on refrigerated trailers, right at their location or at the customer's facilities.",
-      es: "Servicio móvil de diagnóstico, mantenimiento y reparación de unidades en tráileres refrigerados, directamente en el lugar donde se encuentren o en las instalaciones del cliente.",
-    },
-    description: {
       en: "We perform emergency repairs and light maintenance on commercial truck refrigeration (reefer) units, including repair or replacement of damaged lines, refrigerant recharge, oil and filter changes, belt replacement, and cleaning of the components. Our goal is to help you keep your equipment running and protect your cargo.",
       es: "Realizamos reparaciones de emergencia y mantenimiento ligero de unidades refrigeradas de camiones comerciales, incluyendo reparación o reemplazo de tuberías dañadas, recarga de refrigerante, cambio de aceite y filtros, reemplazo de correas y limpieza de los componentes. Nuestro objetivo es ayudarle a mantener su equipo funcionando y proteger su carga.",
+    },
+    description: {
+      en: "We perform emergency repairs and light maintenance on commercial truck refrigeration (reefer) units, including repair or replacement of damaged lines, refrigerant recharge, oil and filter changes, belt replacement, and cleaning of the components. Our goal is to help you keep your equipment running and protect your cargo. Our service is mobile, provided in the Dallas-Fort Worth, Texas area — contact us to coordinate it.",
+      es: "Realizamos reparaciones de emergencia y mantenimiento ligero de unidades refrigeradas de camiones comerciales, incluyendo reparación o reemplazo de tuberías dañadas, recarga de refrigerante, cambio de aceite y filtros, reemplazo de correas y limpieza de los componentes. Nuestro objetivo es ayudarle a mantener su equipo funcionando y proteger su carga. Nuestro servicio es móvil, en el área de Dallas-Fort Worth, Texas; contáctenos para coordinarlo.",
     },
     image: "/images/services/reefer-maintenance.webp",
     imageWide: "/images/services/reefer-maintenance-wide.webp",
@@ -129,12 +129,12 @@ const services: Service[] = [
       es: "Entrega de Combustible",
     },
     shortDescription: {
-      en: "Mobile diesel or gasoline delivery service for commercial trucks and other vehicles, right where they are located.",
-      es: "Servicio móvil de entrega de diésel o gasolina para camiones comerciales y otros vehículos, directamente donde se encuentren ubicados.",
-    },
-    description: {
       en: "We deliver up to 30 gallons of diesel or 5 gallons of gasoline directly to your location to help you continue your trip to a service station.",
       es: "Entregamos hasta 30 galones de diésel o 5 galones de gasolina directamente en su ubicación para ayudarle a continuar su viaje hasta una estación de servicio.",
+    },
+    description: {
+      en: "We deliver up to 30 gallons of diesel or 5 gallons of gasoline directly to your location to help you continue your trip to a service station. Our service is mobile, provided in the Dallas-Fort Worth, Texas area — contact us to coordinate it.",
+      es: "Entregamos hasta 30 galones de diésel o 5 galones de gasolina directamente en su ubicación para ayudarle a continuar su viaje hasta una estación de servicio. Nuestro servicio es móvil, en el área de Dallas-Fort Worth, Texas; contáctenos para coordinarlo.",
     },
     image: "/images/services/fuel-delivery.webp",
     imageWide: "/images/services/fuel-delivery-wide.webp",
@@ -169,12 +169,12 @@ const services: Service[] = [
       es: "Inspección y Reparación de Frenos",
     },
     shortDescription: {
-      en: "Mobile brake inspection, diagnosis, and repair service for commercial trucks and other vehicles, right at the vehicle's location or at the customer's facilities.",
-      es: "Servicio móvil de inspección, diagnóstico y reparación de frenos para camiones comerciales y otros vehículos, directamente en el lugar donde se encuentre o en las instalaciones del cliente.",
-    },
-    description: {
       en: "We inspect the braking system to identify damaged components and replace them as needed, right where you are broken down.",
       es: "Inspeccionamos el sistema de frenos para identificar componentes dañados y realizamos su reemplazo según las necesidades, directamente donde se encuentre averiado.",
+    },
+    description: {
+      en: "We inspect the braking system to identify damaged components and replace them as needed, right where you are broken down. Our service is mobile, provided in the Dallas-Fort Worth, Texas area — contact us to coordinate it.",
+      es: "Inspeccionamos el sistema de frenos para identificar componentes dañados y realizamos su reemplazo según las necesidades, directamente donde se encuentre averiado. Nuestro servicio es móvil, en el área de Dallas-Fort Worth, Texas; contáctenos para coordinarlo.",
     },
     image: "/images/services/brake-service.webp",
     imageWide: "/images/services/brake-service-wide.webp",
@@ -209,12 +209,12 @@ const services: Service[] = [
       es: "Cambio de Aceite",
     },
     shortDescription: {
-      en: "Mobile oil change service for commercial trucks and other vehicles, right at the vehicle's location or at the customer's facilities.",
-      es: "Servicio móvil de cambio de aceite para camiones comerciales y otros vehículos, directamente en el lugar donde se encuentre o en las instalaciones del cliente.",
-    },
-    description: {
       en: "We provide oil change service for commercial trucks and other vehicles right where they are located. We use oil and filters compatible with manufacturer specifications.",
       es: "Brindamos servicio de cambio de aceite para camiones comerciales y otros vehículos directamente donde se encuentren. Utilizamos aceite y filtros compatibles con las especificaciones del fabricante.",
+    },
+    description: {
+      en: "We provide oil change service for commercial trucks and other vehicles right where they are located. We use oil and filters compatible with manufacturer specifications. Our service is mobile, provided in the Dallas-Fort Worth, Texas area — contact us to coordinate it.",
+      es: "Brindamos servicio de cambio de aceite para camiones comerciales y otros vehículos directamente donde se encuentren. Utilizamos aceite y filtros compatibles con las especificaciones del fabricante. Nuestro servicio es móvil, en el área de Dallas-Fort Worth, Texas; contáctenos para coordinarlo.",
     },
     image: "/images/services/oil-change-service.webp",
     imageWide: "/images/services/oil-change-service-wide.webp",
@@ -249,12 +249,12 @@ const services: Service[] = [
       es: "Arranque de Emergencia y Reemplazo de Baterías",
     },
     shortDescription: {
-      en: "Mobile emergency jump start and battery replacement service for commercial trucks and other vehicles, right at the vehicle's location or at the customer's facilities.",
-      es: "Servicio móvil de arranque de emergencia y reemplazo de baterías para camiones comerciales y otros vehículos, directamente en el lugar donde se encuentre o en las instalaciones del cliente.",
-    },
-    description: {
       en: "We provide jump start assistance or battery replacement for all types of vehicles, helping you regain your mobility and continue your trip.",
       es: "Proporcionamos asistencia de arranque o reemplazo de baterías a todo tipo de vehículos, ayudándole a recuperar su movilidad y continuar su viaje.",
+    },
+    description: {
+      en: "We provide jump start assistance or battery replacement for all types of vehicles, helping you regain your mobility and continue your trip. Our service is mobile, provided in the Dallas-Fort Worth, Texas area — contact us to coordinate it.",
+      es: "Proporcionamos asistencia de arranque o reemplazo de baterías a todo tipo de vehículos, ayudándole a recuperar su movilidad y continuar su viaje. Nuestro servicio es móvil, en el área de Dallas-Fort Worth, Texas; contáctenos para coordinarlo.",
     },
     image: "/images/services/jump-start.webp",
     imageWide: "/images/services/jump-start-wide.webp",
