@@ -73,7 +73,13 @@ const es = {
       contactPreferenceText: "Mensaje de Texto",
       contactPreferenceEmail: "Correo Electrónico",
       privacyConsent:
-        "Acepto la Política de Privacidad y doy mi consentimiento para ser contactado sobre mi solicitud.",
+        "He leído y acepto la Política de Privacidad.",
+      // Consentimiento TCPA afirmativo y separado — se recoge de forma
+      // independiente del checkbox de privacidad para conservar un registro claro
+      // del consentimiento de llamadas y mensajes de texto.
+      tcpaConsent:
+        "Acepto ser contactado al número de teléfono que proporciono, mediante llamada telefónica, mensaje de texto (SMS) o buzón de voz, con el fin de coordinar el servicio que solicito. Pueden aplicarse tarifas de mensaje y datos. El consentimiento no es una condición de compra y puedo retirarlo en cualquier momento.",
+      consentRequired: "Debe otorgar este consentimiento para enviar la solicitud.",
       submit: "Enviar Solicitud",
       submitting: "Enviando...",
       successTitle: "Solicitud Enviada Exitosamente",

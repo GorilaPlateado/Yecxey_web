@@ -78,7 +78,12 @@ const en = {
       contactPreferenceText: "Text Message",
       contactPreferenceEmail: "Email",
       privacyConsent:
-        "I agree to the Privacy Policy and consent to being contacted regarding my request.",
+        "I have read and agree to the Privacy Policy.",
+      // Separate, affirmative TCPA consent — collected independently from the
+      // privacy checkbox so the business holds a clear record of phone/SMS consent.
+      tcpaConsent:
+        "I consent to be contacted at the phone number I provide, by phone call, text message (SMS) or voicemail, for the purpose of coordinating the service I request. Message and data rates may apply. Consent is not a condition of any purchase, and I may withdraw it at any time.",
+      consentRequired: "You must provide this consent to submit the request.",
       submit: "Send Request",
       submitting: "Sending...",
       successTitle: "Request Sent Successfully",

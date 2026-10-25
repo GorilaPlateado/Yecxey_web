@@ -39,6 +39,12 @@ const privacyPath = lang === "es"
   : `/${lang}/privacy-policy/`;
 
 const isConfigured = contactConfig.isConfigured;
+
+// Version of the Privacy Policy / TCPA wording the user is consenting to.
+// Keep this in sync with LAST_UPDATED in src/pages/en/privacy-policy.astro and
+// src/pages/es/politica-de-privacidad.astro. Stored with every submission so a
+// consent record can be proven even after the policy text changes.
+const CONSENT_POLICY_VERSION = "2026-10-25";
 ---
 
 {!isConfigured && (
@@ -292,8 +298,13 @@ const isConfigured = contactConfig.isConfigured;
       </div>
     </fieldset>
 
-    <!-- Privacy consent -->
-    <div>
+    <!-- ── Consent block ──────────────────────────────────────
+         Two independent affirmative consents:
+         • privacy_consent  → acknowledges the Privacy Policy
+         • tcpa_consent     → TCPA phone/SMS/voicemail contact consent
+         Hidden fields record WHICH policy version was accepted and WHEN the
+         consent was given, so each submission email is a consent evidence record. -->
+    <div class="space-y-4">
       <label class="flex items-start gap-3 cursor-pointer">
         <input
           type="checkbox"
@@ -318,7 +329,26 @@ const isConfigured = contactConfig.isConfigured;
         </span>
       </label>
       <span id="privacy-consent-error" class="form-error hidden" role="alert"></span>
+
+      <label class="flex items-start gap-3 cursor-pointer">
+        <input
+          type="checkbox"
+          id="tcpa-consent"
+          name="tcpa_consent"
+          value="yes"
+          class="mt-0.5 w-4 h-4 accent-primary flex-shrink-0"
+          required
+          aria-required="true"
+          aria-describedby="tcpa-consent-error"
+        />
+        <span class="text-sm text-muted leading-relaxed">{f.tcpaConsent}</span>
+      </label>
+      <span id="tcpa-consent-error" class="form-error hidden" role="alert"></span>
     </div>
+
+    <!-- Consent evidence, sent with every submission -->
+    <input type="hidden" name="consent_policy_version" value={CONSENT_POLICY_VERSION} />
+    <input type="hidden" name="consent_timestamp_utc" id="consent-timestamp" value="" />
 
     <!-- Submit -->
     <button
@@ -364,6 +394,7 @@ const isConfigured = contactConfig.isConfigured;
   msgEmail:     lang === "es" ? "Ingrese un correo electrónico válido." : "Please enter a valid email address.",
   msgPhone:     lang === "es" ? "Ingrese un número de teléfono válido." : "Please enter a valid phone number.",
   msgPrivacy:   lang === "es" ? "Debe aceptar la política de privacidad." : "You must accept the privacy policy.",
+  msgConsent:   f.consentRequired,
   msgSubmitting: lang === "es" ? "Enviando..." : "Sending...",
   web3FormsEndpoint: contactConfig.web3FormsEndpoint,
 }}>
@@ -435,11 +466,16 @@ const isConfigured = contactConfig.isConfigured;
       }
     }
 
-    // Privacy
+    // Consent checkboxes — both must be affirmatively checked.
     const privacyEl = document.getElementById("privacy-consent");
     if (!(privacyEl instanceof HTMLInputElement) || !privacyEl.checked) {
       showFieldError("privacy-consent", msgPrivacy); valid = false;
     } else clearFieldError("privacy-consent");
+
+    const tcpaEl = document.getElementById("tcpa-consent");
+    if (!(tcpaEl instanceof HTMLInputElement) || !tcpaEl.checked) {
+      showFieldError("tcpa-consent", msgConsent); valid = false;
+    } else clearFieldError("tcpa-consent");
 
     return valid;
   }
@@ -458,6 +494,10 @@ const isConfigured = contactConfig.isConfigured;
     errorEl?.classList.add("hidden");
 
     try {
+      // Record the moment consent was given (UTC) before building the payload.
+      const tsEl = document.getElementById("consent-timestamp");
+      if (tsEl instanceof HTMLInputElement) tsEl.value = new Date().toISOString();
+
       const data = new FormData(form);
       const res = await fetch(web3FormsEndpoint, {
         method: "POST",
