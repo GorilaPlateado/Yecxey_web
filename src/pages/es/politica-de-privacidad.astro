@@ -7,62 +7,208 @@ import site from "@/config/site";
 const lang = "es";
 const canonicalUrl = `${site.url}/es/politica-de-privacidad/`;
 const alternateUrl = `${site.url}/en/privacy-policy/`;
-const today = new Date().toLocaleDateString("es-US", { year: "numeric", month: "long", day: "numeric" });
+
+// Fecha fija de vigencia — NO derivarla de la fecha de build. Actualizar esta
+// cadena solo cuando cambie el texto de la política (y volver a publicar).
+const LAST_UPDATED = "25 de octubre de 2026";
+
+// Dirección postal para notificaciones legales / de privacidad
+// (requisito de CAN-SPAM §316).
+const mailingAddress = `${business.address}, ${business.city}, ${business.state} ${business.zipCode}, ${business.country}`;
 ---
 
 <BaseLayout
   title={`Política de Privacidad — ${business.name}`}
-  description="Política de Privacidad del sitio web de GY Roadside Solutions LLC."
+  description="Política de Privacidad del sitio web de GY Roadside Solutions LLC: qué datos recopilamos, cómo los usamos, sus derechos de privacidad de California y otros estados, retención de datos y cómo contactarnos."
   lang={lang}
   canonicalUrl={canonicalUrl}
   alternateUrl={alternateUrl}
+  noIndex={false}
 >
   <Breadcrumbs lang={lang} items={[{ label: "Política de Privacidad" }]} />
 
   <section class="section">
     <div class="container max-w-3xl">
       <h1 class="text-primary mb-2">Política de Privacidad</h1>
-      <p class="text-muted text-sm mb-10">Última Actualización: {today}</p>
-
-      <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-10 text-sm text-yellow-800">
-        ⚠️ Esta política de privacidad es una plantilla. Revise con asesor legal antes de publicar.
-      </div>
+      <p class="text-muted text-sm mb-10">Última Actualización: {LAST_UPDATED}</p>
 
       <div class="prose space-y-6 text-dark">
         <section>
-          <h2 class="text-primary">1. Información que Recopilamos</h2>
-          <p>Cuando utiliza nuestro formulario de contacto, podemos recopilar la siguiente información: su nombre, número de teléfono, dirección de correo electrónico, ubicación, información del vehículo y descripción del servicio. Esta información se utiliza únicamente para responder a su solicitud de servicio.</p>
-        </section>
-
-        <section>
-          <h2 class="text-primary">2. Cómo Usamos su Información</h2>
-          <p>Utilizamos la información que proporciona para contactarle en relación con su solicitud de asistencia en carretera. No vendemos, alquilamos ni compartimos su información personal con terceros con fines de marketing.</p>
-        </section>
-
-        <section>
-          <h2 class="text-primary">3. Formulario de Contacto</h2>
-          <p>Los envíos del formulario de contacto son procesados por Web3Forms. Consulte la <a href="https://web3forms.com/privacy" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Política de Privacidad de Web3Forms</a> para obtener información sobre cómo se manejan los datos del formulario.</p>
-        </section>
-
-        <section>
-          <h2 class="text-primary">4. Cookies</h2>
-          <p>Este sitio web no utiliza cookies de seguimiento por defecto. Si se habilitan herramientas de análisis (Google Analytics, Google Tag Manager), estas pueden establecer cookies. Los análisis solo están activos cuando se configuran con un ID de seguimiento válido.</p>
-        </section>
-
-        <section>
-          <h2 class="text-primary">5. Enlaces a Terceros</h2>
-          <p>Nuestro sitio web puede contener enlaces a Google Maps, Google Business Profile, Facebook, Instagram y TikTok. Estos servicios tienen sus propias políticas de privacidad y no somos responsables de sus prácticas.</p>
-        </section>
-
-        <section>
-          <h2 class="text-primary">6. Seguridad de los Datos</h2>
-          <p>Tomamos precauciones razonables para proteger su información. Sin embargo, ningún método de transmisión por Internet es 100% seguro.</p>
-        </section>
-
-        <section>
-          <h2 class="text-primary">7. Contacto</h2>
+          <h2 class="text-primary">1. Introducción</h2>
           <p>
-            Si tiene preguntas sobre esta Política de Privacidad, contáctenos en:<br />
+            Esta Política de Privacidad explica cómo {business.name} ("nosotros")
+            recopila, usa, divulga y protege su información cuando visita nuestro
+            sitio web ({site.url}) (el "Sitio") o solicita nuestros servicios de
+            asistencia en carretera. Al usar el Sitio, usted acepta las prácticas
+            descritas en este documento. Si no está de acuerdo, por favor no utilice
+            el Sitio.
+          </p>
+          <p>
+            Nosotros somos el responsable del tratamiento (data controller) de la
+            información descrita en esta política. Nuestros datos de contacto están
+            en la Sección 13.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">2. Información que Recopilamos</h2>
+          <p>Recopilamos únicamente la información necesaria para responder a su solicitud de servicio y operar el Sitio:</p>
+          <ul class="list-disc pl-6 space-y-1">
+            <li><strong>Información que usted nos proporciona.</strong> Al usar el formulario de contacto o llamarnos, puede facilitarnos su nombre, teléfono, correo electrónico, ubicación actual, servicio solicitado, datos del camión/vehículo y una descripción del problema.</li>
+            <li><strong>Comunicaciones.</strong> Registros de las llamadas, mensajes de texto o correos que intercambiamos con usted para coordinar la asistencia.</li>
+            <li><strong>Información recopilada automáticamente.</strong> Datos técnicos básicos como el tipo de dispositivo/navegador y la página de origen, solo en la medida en que alguna herramienta de análisis esté habilitada. Actualmente las herramientas de análisis están deshabilitadas en este Sitio (ver Sección 6).</li>
+          </ul>
+          <p class="mt-3 text-sm text-muted">No recopilamos información personal sensible (como números de Seguro Social, cuentas financieras, datos de salud o biométricos) a través del Sitio.</p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">3. Cómo Usamos su Información</h2>
+          <p>Usamos su información para:</p>
+          <ul class="list-disc pl-6 space-y-1">
+            <li>Responder y coordinar su solicitud de asistencia en carretera.</li>
+            <li>Contactarle por teléfono, mensaje de texto o correo electrónico sobre el servicio solicitado.</li>
+            <li>Mantener registros de las solicitudes de servicio para fines propios de nuestro negocio.</li>
+            <li>Mejorar nuestros servicios y nuestro sitio web, cumplir obligaciones legales, prevenir fraudes y hacer valer nuestros derechos.</li>
+          </ul>
+          <p class="mt-3">No <strong>vendemos</strong> su información personal y no la compartimos con terceros para su marketing.</p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">4. Consentimiento de Llamadas y Mensajes de Texto (TCPA)</h2>
+          <p>
+            Si usted proporciona un número de teléfono, acepta ser contactado en ese
+            número mediante llamada telefónica y/o mensaje de texto (SMS) con el fin
+            de coordinar el servicio que solicita. Pueden aplicarse tarifas de mensaje
+            y datos. El consentimiento no es una condición de compra. Puede retirar su
+            consentimiento en cualquier momento respondiendo "STOP" a un mensaje o
+            contactándonos según la Sección 13. No usamos su número para marketing
+            automatizado sin un consentimiento aparte.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">5. Cómo Compartimos la Información</h2>
+          <p>
+            Compartimos información solo con proveedores de confianza que nos ayudan a
+            operar el Sitio y responder a las solicitudes (por ejemplo, el servicio de
+            envío de formularios descrito en la Sección 8, y proveedores de hosting y
+            correo). Estos proveedores solo pueden procesar su información para
+            prestarnos servicios y deben mantenerla confidencial. También podemos
+            divulgar información si la ley lo exige, para responder a un proceso legal
+            válido o para proteger nuestros derechos, seguridad o propiedad.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">6. Cookies y Análisis</h2>
+          <p>
+            Este Sitio no utiliza cookies publicitarias ni de seguimiento por defecto.
+            Si más adelante se habilitan herramientas de análisis (como Google
+            Analytics o Google Tag Manager), estas pueden establecer cookies para
+            ayudarnos a entender el uso del sitio. El análisis solo está activo cuando
+            se configura un ID de seguimiento válido, y se usa la anonimización de IP
+            cuando es compatible. Si se habilita el análisis, actualizaremos el aviso
+            de cookies de este Sitio. La mayoría de los navegadores permiten rechazar
+            cookies en su configuración.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">7. Retención de Datos</h2>
+          <p>
+            Conservamos los envíos del formulario de contacto y las comunicaciones
+            relacionadas solo el tiempo necesario para prestar el servicio, resolver
+            disputas, cumplir requisitos legales, fiscales y contables, y operar
+            nuestro negocio. Usted puede solicitarnos eliminar su información
+            (ver Sección 9).
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">8. Servicios y Enlaces de Terceros</h2>
+          <p>
+            Nuestro formulario de contacto es procesado por Web3Forms. Consulte la
+            <a href="https://web3forms.com/privacy" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Política de Privacidad de Web3Forms</a>
+            para conocer cómo maneja los datos del formulario. El Sitio también puede
+            enlazar a Google Maps, Google Business Profile, Facebook, Instagram y
+            TikTok. Estos servicios tienen sus propias políticas de privacidad, no
+            somos responsables de sus prácticas y esta política se aplica solo a la
+            información que nosotros recopilamos.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">9. Sus Derechos de Privacidad (California y Otros Estados)</h2>
+          <p>
+            Si usted es residente de California, Colorado, Connecticut, Texas,
+            Virginia u otro estado de EE. UU. con una ley integral de privacidad del
+            consumidor, puede tener los siguientes derechos sobre la información
+            personal que conservamos acerca de usted. No "vendemos" ni "compartimos"
+            información personal según esos términos definidos por la CCPA/CPRA de
+            California u otras leyes estatales.
+          </p>
+          <ul class="list-disc pl-6 space-y-1">
+            <li><strong>Derecho a saber</strong> las categorías, fuentes, fines y destinatarios de la información personal que recopilamos.</li>
+            <li><strong>Derecho de acceso</strong> a una copia de la información personal que conservamos sobre usted.</li>
+            <li><strong>Derecho de eliminación</strong> de la información personal recopilada de usted (salvo excepciones legales).</li>
+            <li><strong>Derecho de corrección</strong> de información personal inexacta.</li>
+            <li><strong>Derecho a oponerse</strong> a la venta o el intercambio de información personal (no vendemos ni compartimos) y a la creación de perfiles automatizados que afecten decisiones sobre usted.</li>
+            <li><strong>Derecho a no ser discriminado</strong> por ejercer estos derechos.</li>
+          </ul>
+          <p class="mt-3">
+            Para ejercer un derecho, use los datos de contacto de la Sección 13 o
+            escríbanos con el asunto "Solicitud de Privacidad". Podemos necesitar
+            verificar su identidad antes de atender una solicitud. Puede usar un
+            agente autorizado; podemos pedir prueba de esa autorización. Responderemos
+            dentro del plazo que exija la ley aplicable (generalmente 45 días,
+            prorrogables una vez por 45 días más).
+          </p>
+          <div class="rounded-lg bg-light border border-border p-4 text-sm">
+            <strong>Categorías de información personal recopilada en los últimos 12 meses:</strong>
+            identificadores (nombre, teléfono, correo), geolocalización (ubicación actual
+            que usted facilite), información comercial (servicio solicitado, datos del
+            vehículo) y actividad de internet/uso (solo si el análisis está habilitado).
+            No recopilamos información personal sensible. Esta información se obtiene
+            directamente de usted y se usa para las finalidades de las Secciones 3 y 4.
+          </div>
+        </section>
+
+        <section>
+          <h2 class="text-primary">10. Privacidad de Menores</h2>
+          <p>
+            El Sitio no está dirigido a menores de 16 años y no recopilamos
+            conscientemente información personal de menores. Si cree que un menor nos
+            ha proporcionado información, contáctenos para eliminarla.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">11. Seguridad de los Datos</h2>
+          <p>
+            Adoptamos medidas administrativas, técnicas y organizativas razonables
+            para proteger su información. Sin embargo, ningún método de transmisión
+            por Internet o de almacenamiento electrónico es completamente seguro, por
+            lo que no podemos garantizar una seguridad absoluta.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">12. Cambios y Ley Aplicable</h2>
+          <p>
+            Podemos actualizar esta Política de Privacidad periódicamente. Los cambios
+            importantes se publicarán en esta página con una fecha de "Última
+            Actualización" renovada. Esta política se rige por las leyes del Estado de
+            Texas, EE. UU., sin respecto a las normas de conflicto de leyes.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">13. Contacto</h2>
+          <p>
+            Si tiene preguntas sobre esta Política de Privacidad o desea ejercer un
+            derecho de privacidad, contáctenos en:<br />
+            <strong>{business.name}</strong><br />
+            {mailingAddress}<br />
             <a href={`mailto:${business.email}`} class="text-primary hover:underline">{business.email}</a><br />
             <a href={`tel:${business.phone}`} class="text-primary hover:underline">{business.phoneDisplay}</a>
           </p>
