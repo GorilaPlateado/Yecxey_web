@@ -171,5 +171,29 @@
     <xhtml:link rel="alternate" hreflang="es-US" href="https://gyroadsidesolutions.com/es/politica-de-privacidad/"/>
     <changefreq>yearly</changefreq><priority>0.3</priority>
   </url>
+  <url>
+    <loc>https://gyroadsidesolutions.com/en/terms-of-use/</loc>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://gyroadsidesolutions.com/en/terms-of-use/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://gyroadsidesolutions.com/es/terminos-de-uso/"/>
+    <changefreq>yearly</changefreq><priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://gyroadsidesolutions.com/es/terminos-de-uso/</loc>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://gyroadsidesolutions.com/en/terms-of-use/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://gyroadsidesolutions.com/es/terminos-de-uso/"/>
+    <changefreq>yearly</changefreq><priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://gyroadsidesolutions.com/en/accessibility/</loc>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://gyroadsidesolutions.com/en/accessibility/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://gyroadsidesolutions.com/es/accesibilidad/"/>
+    <changefreq>yearly</changefreq><priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://gyroadsidesolutions.com/es/accesibilidad/</loc>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://gyroadsidesolutions.com/en/accessibility/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://gyroadsidesolutions.com/es/accesibilidad/"/>
+    <changefreq>yearly</changefreq><priority>0.3</priority>
+  </url>
 
 </urlset>

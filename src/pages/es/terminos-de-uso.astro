@@ -1,0 +1,280 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import business from "@/data/business";
+import site from "@/config/site";
+
+const lang = "es";
+const canonicalUrl = `${site.url}/es/terminos-de-uso/`;
+const alternateUrl = `${site.url}/en/terms-of-use/`;
+
+// Fecha fija de vigencia — actualizar solo cuando cambie el texto de los términos.
+const LAST_UPDATED = "25 de octubre de 2026";
+
+// Dirección postal para notificaciones legales.
+const mailingAddress = `${business.address}, ${business.city}, ${business.state} ${business.zipCode}, ${business.country}`;
+
+const privacyPath = "/es/politica-de-privacidad/";
+const accessPath  = "/es/accesibilidad/";
+const contactPath = "/es/contacto/";
+---
+
+<BaseLayout
+  title={`Términos de Uso — ${business.name}`}
+  description="Términos de Uso del sitio web de GY Roadside Solutions LLC: solicitudes de servicio, precios y cotizaciones, responsabilidades del cliente, avisos legales, limitación de responsabilidad y ley aplicable (Texas)."
+  lang={lang}
+  canonicalUrl={canonicalUrl}
+  alternateUrl={alternateUrl}
+  noIndex={false}
+>
+  <Breadcrumbs lang={lang} items={[{ label: "Términos de Uso" }]} />
+
+  <section class="section">
+    <div class="container max-w-3xl">
+      <h1 class="text-primary mb-2">Términos de Uso</h1>
+      <p class="text-muted text-sm mb-10">Última Actualización: {LAST_UPDATED}</p>
+
+      <div class="prose space-y-6 text-dark">
+        <section>
+          <h2 class="text-primary">1. Aceptación de Estos Términos</h2>
+          <p>
+            Estos Términos de Uso (los "Términos") rigen el acceso y uso del sitio web
+            ubicado en {site.url} (el "Sitio"), operado por {business.name} (la
+            "Empresa", "nosotros"), una compañía de responsabilidad limitada (LLC)
+            constituida en Texas. Al usar el Sitio, usted acepta estos Términos. Si no
+            está de acuerdo con alguna parte de los mismos, por favor deje de usar el
+            Sitio.
+          </p>
+          <p>
+            Estos Términos se aplican al uso del Sitio y a la información publicada en él.
+            No sustituyen una orden de servicio, factura o contrato firmado con nosotros;
+            si un documento firmado entra en conflicto con estos Términos, el documento
+            firmado prevalece para ese trabajo.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">2. El Sitio Es Informativo, No un Contrato</h2>
+          <p>
+            Enviar nuestro formulario de contacto es una <strong>solicitud de
+            servicio</strong>, no una orden aceptada ni una cita confirmada. Revisamos cada
+            solicitud y le contactamos para verificar disponibilidad y coordinar el
+            trabajo. Ningún servicio queda programado, y ningún precio queda acordado,
+            hasta que lo confirmamos con usted directamente por teléfono, mensaje o correo
+            electrónico.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">3. Precios y Cotizaciones</h2>
+          <ul class="list-disc pl-6 space-y-1">
+            <li>Los precios que aparezcan en el Sitio son <strong>solo indicativos</strong> y no constituyen una oferta vinculante.</li>
+            <li>El precio final se cotiza antes de iniciar el trabajo, según el servicio requerido, el tipo de vehículo, la ubicación y el horario (día o noche).</li>
+            <li>Se le informará el precio cotizado antes de despachar una unidad, y puede rechazarlo sin cargo por la cotización en sí.</li>
+            <li>Las formas de pago, los montos mínimos y cualquier cargo por desplazamiento o diagnóstico se explican al momento de cotizar.</li>
+            <li>Se aplican los impuestos que exija la ley de Texas.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-primary">4. Disponibilidad, Tiempos de Respuesta y Despacho</h2>
+          <p>
+            Brindamos asistencia móvil en carretera en el área de Dallas&ndash;Fort Worth,
+            Texas. <strong>No prometemos disponibilidad de 24 horas ni un horario de llegada
+            fijo.</strong> El tiempo de respuesta depende de su ubicación, el tráfico, el
+            clima, las condiciones de la vía y del lugar, y de la agenda y carga de trabajo
+            de nuestros técnicos en el momento de la solicitud. Cualquier estimación de
+            tiempo es una estimación de buena fe, no una garantía, y pueden ocurrir demoras.
+            Si no podemos comunicarnos con usted al número o ubicación proporcionados,
+            podemos cerrar la solicitud.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">5. Sus Responsabilidades</h2>
+          <p>Para cuidar la seguridad suya, de los demás usuarios de la vía y de nuestros técnicos, usted se compromete a:</p>
+          <ul class="list-disc pl-6 space-y-1">
+            <li>Proporcionar información veraz sobre su vehículo, la falla y su ubicación.</li>
+            <li>Asegurar que el lugar de detención sea tan seguro y legal como sea posible — luces de emergencia encendidas, vehículo asegurado y usted y sus acompañantes fuera de los carriles de circulación.</li>
+            <li>Estar localizable por teléfono en el número que proporcione y, cuando sea posible, permanecer junto al vehículo.</li>
+            <li>Informar de antemano sobre riesgos en el lugar (fugas de combustible u otros fluidos, carga, altura libre insuficiente, carga inestable, animales, tráfico agresivo).</li>
+            <li>Seguir las instrucciones de seguridad del técnico y no operar equipos para los que no esté calificado.</li>
+            <li>Pagar el precio acordado por el servicio realizado.</li>
+          </ul>
+          <p class="mt-3">
+            Podemos rechazar o suspender una solicitud cuando razonablemente exista un riesgo
+            para la seguridad, cuando el lugar sea inaccesible, cuando el trabajo requiera
+            especialistas licenciados que no somos, o cuando el vehículo o la situación
+            queden fuera de los servicios que anunciamos.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">6. Alcance del Trabajo; No Somos Grúa Ni Taller</h2>
+          <p>
+            Realizamos asistencia móvil en carretera tal como se describe en nuestras
+            páginas de Servicios. No somos grúa de arrastre, taller de carrocería,
+            concesionario ni autoridad de certificación eléctrica, y no somos una
+            aseguradora. Algunos problemas requieren reparaciones que no pueden hacerse en
+            ruta; en ese caso se lo informaremos y podemos sugerir un destino de arrastre o
+            un taller, pero no somos responsables de terceros que usted decida contratar.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">7. Contenido del Sitio y Propiedad Intelectual</h2>
+          <p>
+            Todos los textos, gráficos, logotipos, imágenes y el diseño de este Sitio son
+            propiedad de {business.name} o se usan con autorización, y están protegidos por
+            las leyes de derechos de autor y marcas de EE. UU. No puede copiarlos,
+            republicarlos, extraerlos por scraping ni usarlos comercialmente sin permiso
+            escrito previo. El nombre y las marcas de la Empresa no pueden imitarse ni
+            usarse de un modo que sugiera aval o patrocinio.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">8. Uso Prohibido del Sitio</h2>
+          <p>Usted acepta no:</p>
+          <ul class="list-disc pl-6 space-y-1">
+            <li>Enviar solicitudes de servicio falsas, duplicadas o de mala fe, ni solicitudes en nombre de terceros sin su conocimiento.</li>
+            <li>Interferir, sobrecargar, sondear o intentar vulnerar la seguridad o el funcionamiento del Sitio.</li>
+            <li>Usar scripts automatizados, bots o scrapers para extraer contenido o datos personales del Sitio.</li>
+            <li>Cargar malware, ni usar el formulario de contacto para transmitir contenido ilícito, dañino o spam.</li>
+            <li>Usar el Sitio en violación de alguna ley federal, del Estado de Texas o local aplicable.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-primary">9. Reseñas y Testimonios</h2>
+          <p>
+            Mostramos opiniones de clientes obtenidas de plataformas verificadas de terceros,
+            como Google Business Profile. Nunca publicamos reseñas inventadas, no pagamos ni
+            ofrecemos descuentos, regalos ni ningún otro incentivo a cambio de una reseña, y
+            no filtramos qué clientes pueden escribir una. Las reseñas expresan la opinión de
+            los clientes que las escribieron, no declaraciones de hecho de la Empresa, y los
+            resultados descritos en una reseña pueden no ser típicos de cada trabajo.
+          </p>
+          <p class="mt-3">
+            Si usted nos envía contenido (una reseña, un mensaje, una foto), conserva su
+            propiedad y nos otorga una licencia no exclusiva para mostrarlo en el Sitio y en
+            nuestros perfiles sociales. Usted confirma que su contenido es veraz, le
+            pertenece y no contiene datos personales de terceros.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">10. Enlaces a Sitios y Servicios de Terceros</h2>
+          <p>
+            El Sitio enlaza a terceros como Google Maps, Google Business Profile, Facebook,
+            Instagram, TikTok y el proveedor que procesa nuestro formulario. No los
+            controlamos, no somos responsables de su contenido, precios, seguridad o
+            políticas, y usted los usa bajo su propio riesgo. Se aplican sus propios términos
+            y políticas de privacidad.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">11. Privacidad y Consentimiento de Contacto</h2>
+          <p>
+            La forma en que recopilamos y usamos su información personal se describe en la
+            <a href={privacyPath} class="text-primary hover:underline font-medium">Política de Privacidad</a>,
+            que forma parte de estos Términos. Al enviar el formulario de contacto usted
+            otorga además un consentimiento separado y explícito para ser contactado al
+            número de teléfono que proporcione, por llamada, mensaje de texto (SMS) o buzón
+            de voz, con el fin de coordinar el servicio solicitado; pueden aplicarse tarifas
+            de mensaje y datos, y puede retirar ese consentimiento en cualquier momento.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">12. Avisos Legales ("Tal Cual")</h2>
+          <p>
+            El Sitio y su contenido se proporcionan "tal cual" y "según disponibilidad", sin
+            garantías de ningún tipo, expresas o implícitas, incluidas las garantías
+            implícitas de comercialización, aptitud para un propósito particular y no
+            violación. No garantizamos que el Sitio funcione sin interrupciones o errores, ni
+            que la información publicada esté siempre actualizada. Las condiciones en carretera
+            pueden ser peligrosas; usted es responsable de su propia seguridad y de cumplir
+            las normas de tránsito.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">13. Limitación de Responsabilidad</h2>
+          <p>
+            En la máxima medida permitida por la ley, {business.name} no será responsable de
+            daños indirectos, incidentales, especiales, punitivos o consecuentes — incluidos
+            carga perdida, flete perdido, ingresos perdidos, entregas retrasadas, tiempo de
+            inactividad o costos de alquiler — que surjan del uso del Sitio o de una
+            solicitud de servicio, incluso si se nos informó de la posibilidad de dichos
+            daños. Nuestra responsabilidad total por cualquier reclamación relacionada con un
+            trabajo de servicio concreto se limita al monto que usted realmente nos pagó por
+            ese trabajo. Nada de lo dispuesto en estos Términos limita la responsabilidad que
+            no puede limitarse según la ley de Texas, incluida la negligencia grave o la
+            conducta alevosa, ni afecta sus derechos legales como consumidor.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">14. Indemnización</h2>
+          <p>
+            Usted acepta mantener indemne y defender a {business.name}, sus miembros y
+            empleados frente a reclamaciones, daños o gastos (incluidos honorarios
+            razonables de abogados) que surjan de su uso indebido del Sitio, del
+            incumplimiento de estos Términos, o de la información falsa o engañosa que
+            proporcione.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">15. Resolución de Controversias</h2>
+          <p>
+            La mayoría de los problemas se resuelven rápido hablando con nosotros, por lo
+            que usted acepta contactarnos primero y darnos una oportunidad razonable de
+            resolver cualquier controversia antes de tomar otras medidas. Estos Términos se
+            rigen por las leyes del <strong>Estado de Texas</strong>, excluyendo sus normas
+            de conflicto de leyes, y usted acepta que cualquier reclamación derivada del
+            Sitio o de nuestros servicios se resuelva exclusivamente ante los tribunales
+            estatales o federales ubicados en el <strong>condado de Dallas, Texas</strong>.
+            No le cobramos por una cotización ni por retirar una solicitud antes del despacho.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">16. Cambios en Estos Términos</h2>
+          <p>
+            Podemos actualizar estos Términos periódicamente. La fecha de "Última
+            Actualización" indicada arriba muestra cuándo se publicó la versión vigente. El
+            uso continuado del Sitio después de publicar cambios significa que acepta los
+            Términos actualizados.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">17. Divisibilidad y Renuncia</h2>
+          <p>
+            Si alguna disposición de estos Términos resulta inaplicable, las demás mantienen
+            su efecto. Nuestra omisión en hacer valer un derecho no constituye renuncia al
+            mismo.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">18. Contacto</h2>
+          <p>
+            Sus preguntas sobre estos Términos pueden enviarse a:<br />
+            <strong>{business.name}</strong><br />
+            {mailingAddress}<br />
+            <a href={`mailto:${business.email}`} class="text-primary hover:underline">{business.email}</a><br />
+            <a href={`tel:${business.phone}`} class="text-primary hover:underline">{business.phoneDisplay}</a>
+          </p>
+          <p class="mt-3 text-sm text-muted">
+            Solicitudes de servicio: <a href={contactPath} class="text-primary hover:underline">contáctenos</a>.
+            Comentarios de accesibilidad: <a href={accessPath} class="text-primary hover:underline">Declaración de Accesibilidad</a>.
+          </p>
+        </section>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

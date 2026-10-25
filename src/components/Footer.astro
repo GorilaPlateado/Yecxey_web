@@ -12,6 +12,8 @@ const tr = t(lang);
 const currentYear = new Date().getFullYear();
 const servicesPath = lang === "es" ? `/es/servicios/` : `/en/services/`;
 const privacyPath  = lang === "es" ? `/es/politica-de-privacidad/` : `/en/privacy-policy/`;
+const termsPath    = lang === "es" ? `/es/terminos-de-uso/` : `/en/terms-of-use/`;
+const accessPath   = lang === "es" ? `/es/accesibilidad/` : `/en/accessibility/`;
 ---
 
 <footer class="bg-primary text-white" role="contentinfo">
@@ -129,9 +131,25 @@ const privacyPath  = lang === "es" ? `/es/politica-de-privacidad/` : `/en/privac
     <!-- Bottom bar -->
     <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/50">
       <p>&copy; {currentYear} {business.name}. {lang === "es" ? "Todos los derechos reservados." : "All rights reserved."}</p>
-      <a href={privacyPath} class="hover:text-white transition-colors">
-        {lang === "es" ? "Política de Privacidad" : "Privacy Policy"}
-      </a>
+      <nav aria-label={lang === "es" ? "Enlaces legales" : "Legal links"}>
+        <ul class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 list-none m-0 p-0" role="list">
+          <li>
+            <a href={privacyPath} class="hover:text-white transition-colors">
+              {lang === "es" ? "Política de Privacidad" : "Privacy Policy"}
+            </a>
+          </li>
+          <li>
+            <a href={termsPath} class="hover:text-white transition-colors">
+              {lang === "es" ? "Términos de Uso" : "Terms of Use"}
+            </a>
+          </li>
+          <li>
+            <a href={accessPath} class="hover:text-white transition-colors">
+              {lang === "es" ? "Accesibilidad" : "Accessibility"}
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
 </footer>

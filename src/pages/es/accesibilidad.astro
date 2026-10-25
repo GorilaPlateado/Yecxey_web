@@ -1,0 +1,155 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import business from "@/data/business";
+import site from "@/config/site";
+
+const lang = "es";
+const canonicalUrl = `${site.url}/es/accesibilidad/`;
+const alternateUrl = `${site.url}/en/accessibility/`;
+
+// Fechas fijas — REVISADA es la fecha de nuestra última verificación interna.
+const LAST_UPDATED = "25 de octubre de 2026";
+const REVIEWED = "25 de octubre de 2026";
+
+const mailingAddress = `${business.address}, ${business.city}, ${business.state} ${business.zipCode}, ${business.country}`;
+const privacyPath = "/es/politica-de-privacidad/";
+const termsPath   = "/es/terminos-de-uso/";
+---
+
+<BaseLayout
+  title={`Declaración de Accesibilidad — ${business.name}`}
+  description="Declaración de accesibilidad del sitio web de GY Roadside Solutions LLC: nuestro compromiso con WCAG 2.1 AA, las funciones implementadas, las limitaciones conocidas y cómo reportar una barrera de accesibilidad."
+  lang={lang}
+  canonicalUrl={canonicalUrl}
+  alternateUrl={alternateUrl}
+  noIndex={false}
+>
+  <Breadcrumbs lang={lang} items={[{ label: "Accesibilidad" }]} />
+
+  <section class="section">
+    <div class="container max-w-3xl">
+      <h1 class="text-primary mb-2">Declaración de Accesibilidad</h1>
+      <p class="text-muted text-sm mb-10">Última Actualización: {LAST_UPDATED}</p>
+
+      <div class="prose space-y-6 text-dark">
+        <section>
+          <h2 class="text-primary">1. Nuestro Compromiso</h2>
+          <p>
+            {business.name} quiere que cada conductor, despachador y operador de flota que
+            visite {site.url} pueda usarlo sin dificultades — incluidas las personas que
+            navegan solo con teclado, con lector de pantalla, con lupa o amplificación de
+            pantalla, con control por voz, o que tienen baja visión, daltonismo, o
+            discapacidades cognitivas o motoras. Acceder a la asistencia en carretera puede
+            ser un tema de seguridad, por eso tratamos la accesibilidad como parte del
+            servicio y no como una función adicional.
+          </p>
+          <p>
+            Nuestro objetivo es cumplir con las <strong>Pautas de Accesibilidad para el
+            Contenido Web (WCAG) 2.1 Nivel AA</strong>, el estándar reconocido que se usa en
+            la legislación y litigios de accesibilidad en EE. UU., y seguimos además las
+            guías de la Sección 508.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">2. Estado de Conformidad</h2>
+          <p>
+            Este Sitio está <strong>parcialmente conforme</strong> con WCAG 2.1 Nivel AA. Fue
+            diseñado y construido según los criterios listados en la Sección 3, y lo
+            revisamos internamente por última vez el {REVIEWED}. Aún no ha sido auditado por
+            un tercero independiente usando tecnología de asistencia, y algunas partes del
+            Sitio controladas por terceros (en particular los mapas de Google incrustados)
+            están fuera de nuestro control directo.
+          </p>
+          <p class="text-sm text-muted">
+            Preferimos decirle con precisión dónde estamos antes que afirmar más de lo que
+            es cierto. Si encuentra una barrera, avísenos — ver Sección 5 — y la corregiremos
+            o le daremos la información por otro medio.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">3. Funciones de Accesibilidad Ya Implementadas</h2>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><strong>Navegación por teclado.</strong> El enlace "Ir al contenido principal" es el primer elemento enfocable de cada página, y todos los controles interactivos son alcanzables y operables solo con el teclado.</li>
+            <li><strong>Foco visible.</strong> Los elementos enfocados muestran un contorno claro (2&nbsp;px, amarillo de la marca, con separación de 3&nbsp;px) para que siempre sepa dónde está — con contraste muy superior al mínimo WCAG de 3:1 para elementos no textuales.</li>
+            <li><strong>Contraste del texto.</strong> El texto del cuerpo usa azul marino oscuro sobre fondo claro, con una relación de contraste de aproximadamente 12.5:1, que supera el umbral AAA de WCAG (7:1).</li>
+            <li><strong>Áreas táctiles.</strong> Botones y enlaces cumplen o superan un área de 44&nbsp;&times;&nbsp;44&nbsp;px (48&nbsp;px en los botones principales), lo que ayuda a personas con discapacidad motora o temblores.</li>
+            <li><strong>Compatibilidad con lectores de pantalla.</strong> Hitos semánticos (header, nav, main, footer), orden correcto de encabezados, etiquetas ARIA en controles solo de ícono, <code>aria-current</code> en el elemento de navegación activo y regiones en vivo que anuncian el estado del envío del formulario.</li>
+            <li><strong>Imágenes.</strong> Toda imagen con contenido informativo tiene texto alternativo descriptivo; las imágenes decorativas se ocultan a la tecnología de asistencia.</li>
+            <li><strong>Formularios.</strong> Cada campo tiene una etiqueta visible, los campos obligatorios están marcados programáticamente, los errores de validación se anuncian y se asocian al campo con <code>aria-invalid</code> y <code>aria-describedby</code>, y los mensajes de error aparecen en el idioma que usted eligió.</li>
+            <li><strong>Movimiento.</strong> Las animaciones y el desplazamiento suave se reducen automáticamente cuando su sistema solicita <em>prefers-reduced-motion</em>.</li>
+            <li><strong>Zoom y reflujo.</strong> Las páginas escalan con el zoom del navegador y se reorganizan en una columna en pantallas pequeñas, por lo que el contenido es legible al 200% de zoom sin desplazamiento horizontal.</li>
+            <li><strong>Idioma.</strong> Cada página declara su idioma a la tecnología de asistencia, y el Sitio está disponible completamente en inglés y en español.</li>
+            <li><strong>Mapas.</strong> Todo marco de mapa incrustado lleva un <code>title</code> descriptivo, y la misma información del área de servicio se entrega además como texto plano, de modo que nadie necesite el mapa para entender dónde trabajamos.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-primary">4. Limitaciones Conocidas y Trabajo en Curso</h2>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><strong>Mapas incrustados de terceros.</strong> La ventana interactiva de Google Maps la renderiza Google y sigue la accesibilidad de Google; no podemos modificar su interior. La lista de ciudades en texto junto a ella es totalmente accesible.</li>
+            <li><strong>Envío de formulario por terceros.</strong> Los envíos del formulario de contacto los procesa Web3Forms. El formulario en sí lo construimos y etiquetamos nosotros; la página de confirmación que aparece después de un envío correcto la maneja ese proveedor.</li>
+            <li><strong>Auditoría independiente pendiente.</strong> Aún no completamos una auditoría formal con lectores de pantalla (NVDA/JAWS/VoiceOver) ni una evaluación profesional de accesibilidad. Ese es el siguiente paso, y actualizaremos esta declaración cuando se realice.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-primary">5. Comentarios y Cómo Contactarnos</h2>
+          <p>
+            Si alguna parte de este Sitio se le dificulta, o si prefiere recibir nuestra
+            información de servicio por teléfono, en letra grande o por correo electrónico,
+            contáctenos y responderemos con prontitud — atenderemos su solicitud de servicio
+            por una alternativa accesible mientras resolvemos el problema.
+          </p>
+          <p class="mt-3">
+            <strong>{business.name}</strong><br />
+            {mailingAddress}<br />
+            <a href={`mailto:${business.email}`} class="text-primary hover:underline">{business.email}</a><br />
+            <a href={`tel:${business.phone}`} class="text-primary hover:underline">{business.phoneDisplay}</a>
+          </p>
+          <p class="mt-3 text-sm text-muted">
+            Nuestro objetivo es acusar recibo de los comentarios de accesibilidad dentro de 2
+            días hábiles y resolverlos, o entregar la información por otro medio, dentro de 10
+            días hábiles.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">6. Estándares Técnicos y Compatibilidad</h2>
+          <ul class="list-disc pl-6 space-y-1">
+            <li>Pautas de Accesibilidad para el Contenido Web (WCAG) 2.1 Nivel AA</li>
+            <li>Sección 508 de la Ley de Rehabilitación de EE. UU. (guías)</li>
+            <li>HTML5, ARIA y CSS según se renderizan en las versiones actuales de Chrome, Edge, Firefox y Safari, en escritorio y móvil.</li>
+          </ul>
+          <p class="mt-3">
+            El Sitio se apoya en estas tecnologías, por lo que quienes las desactiven pueden
+            perder elementos de diseño o funciones interactivas. La información central sigue
+            siendo legible como texto plano en cualquier navegador.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">7. Aplicación de la Ley</h2>
+          <p>
+            En Estados Unidos, las quejas de accesibilidad web se tramitan generalmente bajo
+            el Título III de la Ley de Estadounidenses con Discapacidades (ADA). Si no logra
+            resolver una barrera directamente con nosotros, puede comunicarse con el
+            Departamento de Justicia de EE. UU. Nuestra primera preferencia, sin embargo, es
+            recibir su aviso y corregirlo.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">8. Documentos Relacionados</h2>
+          <p>
+            <a href={termsPath} class="text-primary hover:underline font-medium">Términos de Uso</a>
+            &nbsp;·&nbsp;
+            <a href={privacyPath} class="text-primary hover:underline font-medium">Política de Privacidad</a>
+          </p>
+        </section>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

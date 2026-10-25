@@ -1,0 +1,267 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import business from "@/data/business";
+import site from "@/config/site";
+
+const lang = "en";
+const canonicalUrl = `${site.url}/en/terms-of-use/`;
+const alternateUrl = `${site.url}/es/terminos-de-uso/`;
+
+// Fixed effective date — update only when the terms text actually changes.
+const LAST_UPDATED = "October 25, 2026";
+
+// Mailing address for legal notices.
+const mailingAddress = `${business.address}, ${business.city}, ${business.state} ${business.zipCode}, ${business.country}`;
+
+const privacyPath  = "/en/privacy-policy/";
+const accessPath   = "/en/accessibility/";
+const contactPath  = "/en/contact-us/";
+---
+
+<BaseLayout
+  title={`Terms of Use — ${business.name}`}
+  description="Terms of Use for the GY Roadside Solutions LLC website: service requests, pricing and quotes, customer responsibilities, disclaimers, limitation of liability, and governing law (Texas)."
+  lang={lang}
+  canonicalUrl={canonicalUrl}
+  alternateUrl={alternateUrl}
+  noIndex={false}
+>
+  <Breadcrumbs lang={lang} items={[{ label: "Terms of Use" }]} />
+
+  <section class="section">
+    <div class="container max-w-3xl">
+      <h1 class="text-primary mb-2">Terms of Use</h1>
+      <p class="text-muted text-sm mb-10">Last Updated: {LAST_UPDATED}</p>
+
+      <div class="prose space-y-6 text-dark">
+        <section>
+          <h2 class="text-primary">1. Acceptance of These Terms</h2>
+          <p>
+            These Terms of Use ("Terms") govern your access to and use of the website
+            located at {site.url} (the "Site"), operated by {business.name}
+            ("Company", "we", "us" or "our"), a Texas limited liability company. By
+            using the Site, you agree to these Terms. If you do not agree with any part
+            of them, please stop using the Site.
+          </p>
+          <p>
+            These Terms apply to the use of the Site and to information published on
+            it. They do not replace any written work order, invoice or service agreement
+            you may sign with us; if a signed service document conflicts with these
+            Terms, the signed document controls for that job.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">2. The Site Is Informational, Not a Contract</h2>
+          <p>
+            Submitting our contact form is a <strong>request for service</strong>, not an
+            accepted order or a confirmed appointment. We review each request and contact
+            you to check availability and coordinate the work. No service is scheduled,
+            and no price is agreed, until we confirm it with you directly by phone, text
+            or email.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">3. Pricing and Quotes</h2>
+          <ul class="list-disc pl-6 space-y-1">
+            <li>Prices shown on the Site, if any, are <strong>indicative only</strong> and are not a binding offer.</li>
+            <li>The final price is quoted before work begins, based on the service required, vehicle type, location, and time of day or night.</li>
+            <li>You will be told the quoted price before we dispatch, and you may decline it without charge for the quote itself.</li>
+            <li>Payment methods, minimums and any trip/diagnosis fees are explained when the quote is given.</li>
+            <li>Taxes applicable under Texas law are added as required.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-primary">4. Availability, Response Times and Dispatch</h2>
+          <p>
+            We provide mobile roadside assistance in the Dallas&ndash;Fort Worth, Texas
+            area. <strong>We do not promise round-the-clock availability or a fixed
+            arrival time.</strong> Response depends on your location, traffic, weather,
+            road and site conditions, and the schedule and workload of our technicians at
+            the time of your request. Any time estimate we give is a good-faith estimate,
+            not a guarantee, and delays can occur. If we cannot reach you at the number
+            or location provided, we may close the request.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">5. Your Responsibilities</h2>
+          <p>To keep you, other road users and our technicians safe, you agree to:</p>
+          <ul class="list-disc pl-6 space-y-1">
+            <li>Give accurate information about your vehicle, the problem, and your location.</li>
+            <li>Make sure the stopping location is as safe and legal as possible — hazard lights out, vehicle secured, and you and bystanders away from live traffic lanes.</li>
+            <li>Be reachable by phone at the number you provide and, when possible, remain at the vehicle.</li>
+            <li>Tell us in advance about hazards at the site (fuel or fluid leaks, cargo, low clearance, unstable loads, animals, aggressive traffic).</li>
+            <li>Follow the safety instructions of our technician, and not operate any equipment you are not qualified to operate.</li>
+            <li>Pay the agreed price for the service performed.</li>
+          </ul>
+          <p class="mt-3">
+            We may decline or stop a request where we reasonably believe there is a safety
+            risk, where the location is inaccessible, where the work requires licensed
+            specialists we are not, or where the vehicle or situation is outside the
+            services we advertise.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">6. Scope of Work; Not a Towing or Repair Facility</h2>
+          <p>
+            We perform mobile roadside assistance as described on our Services pages. We
+            are not a tow truck, body shop, dealer, electrical-certification authority, or
+            an insurance carrier. Some problems require repairs that cannot be done on the
+            road; in those cases we will tell you and may recommend a towing or shop
+            destination, but we are not responsible for third parties you choose to hire.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">7. Website Content and Intellectual Property</h2>
+          <p>
+            All text, graphics, logos, images and layout on this Site are the property of
+            {business.name} or are used with permission, and are protected by U.S.
+            copyright and trademark law. You may not copy, republish, scrape, or use them
+            commercially without our prior written permission. The Company name and marks
+            may not be imitated or used in a way that suggests endorsement.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">8. Prohibited Use of the Site</h2>
+          <p>You agree not to:</p>
+          <ul class="list-disc pl-6 space-y-1">
+            <li>Submit false, duplicated or bad-faith service requests, or submit requests on behalf of others without their knowledge.</li>
+            <li>Interfere with, overload, probe or attempt to breach the Site's security or operation.</li>
+            <li>Use automated scripts, bots or scrapers to collect content or personal data from the Site.</li>
+            <li>Upload malware, or use the contact form to transmit unlawful, harmful or spam content.</li>
+            <li>Use the Site in violation of any applicable federal, Texas state or local law.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-primary">9. Reviews and Testimonials</h2>
+          <p>
+            We display customer feedback sourced from verified third-party platforms such
+            as Google Business Profile. We never publish fabricated reviews, we do not pay
+            or offer discounts, gifts or any other incentive in exchange for a review, and
+            we do not filter which customers may leave one. Reviews express the opinions of
+            the individual customers who wrote them, not statements of fact by the Company,
+            and results described in a review may not be typical of every job.
+          </p>
+          <p class="mt-3">
+            If you post content to us (a review, a message, a photo), you keep ownership of
+            it and grant us a non-exclusive license to display it on the Site and our social
+            profiles. You confirm that your content is truthful, is yours to share, and does
+            not contain personal data of third parties.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">10. Links to Third-Party Sites and Services</h2>
+          <p>
+            The Site links to third parties such as Google Maps, Google Business Profile,
+            Facebook, Instagram, TikTok and our form-processing provider. We do not control
+            them, we are not responsible for their content, prices, safety or policies, and
+            you use them at your own risk. Their own terms and privacy policies apply.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">11. Privacy and Contact Consent</h2>
+          <p>
+            Our collection and use of your personal information is described in the
+            <a href={privacyPath} class="text-primary hover:underline font-medium">Privacy Policy</a>,
+            which is part of these Terms. When you submit the contact form you also give
+            separate, explicit consent to be contacted at the phone number you provide by
+            call, text (SMS) or voicemail to coordinate the requested service; message and
+            data rates may apply, and you may withdraw that consent at any time.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">12. Disclaimers ("As Is")</h2>
+          <p>
+            The Site and its content are provided "as is" and "as available" without
+            warranties of any kind, whether express or implied, including implied warranties
+            of merchantability, fitness for a particular purpose and non-infringement. We do
+            not warrant that the Site will be uninterrupted, error-free, or that information
+            on it is always current. Roadside conditions can be hazardous; you are responsible
+            for your own safety and for complying with traffic laws.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">13. Limitation of Liability</h2>
+          <p>
+            To the maximum extent permitted by law, {business.name} will not be liable for
+            indirect, incidental, special, punitive or consequential damages — including lost
+            freight, lost cargo, lost revenue, delayed deliveries, down-time or rental costs —
+            arising out of your use of the Site or out of a service request, even if we have
+            been advised of the possibility of such damages. Our total liability for any claim
+            arising from a particular service job is limited to the amount you actually paid us
+            for that job. Nothing in these Terms limits liability that cannot be limited under
+            Texas law, including for gross negligence or willful misconduct, or affects your
+            statutory consumer rights.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">14. Indemnification</h2>
+          <p>
+            You agree to hold harmless and indemnify {business.name}, its members and
+            employees from claims, damages or expenses (including reasonable attorney fees)
+            arising from your misuse of the Site, your breach of these Terms, or information
+            you provide that is false or misleading.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">15. Dispute Resolution</h2>
+          <p>
+            Most problems can be solved quickly by talking to us, so you agree to contact us
+            first and give us a reasonable opportunity to resolve any dispute before taking
+            other action. These Terms are governed by the laws of the <strong>State of
+            Texas</strong>, excluding its conflict-of-law rules, and you agree that any claim
+            arising from the Site or our services will be resolved exclusively in the state or
+            federal courts located in <strong>Dallas County, Texas</strong>. We do not charge
+            you for a quote or for withdrawing a request before dispatch.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">16. Changes to These Terms</h2>
+          <p>
+            We may update these Terms from time to time. The "Last Updated" date above shows
+            when the current version was published. Continued use of the Site after changes
+            are posted means you accept the updated Terms.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">17. Severability and Waiver</h2>
+          <p>
+            If any provision of these Terms is held unenforceable, the rest remains in effect.
+            Our failure to enforce a right does not waive it.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-primary">18. Contact Us</h2>
+          <p>
+            Questions about these Terms can be sent to:<br />
+            <strong>{business.name}</strong><br />
+            {mailingAddress}<br />
+            <a href={`mailto:${business.email}`} class="text-primary hover:underline">{business.email}</a><br />
+            <a href={`tel:${business.phone}`} class="text-primary hover:underline">{business.phoneDisplay}</a>
+          </p>
+          <p class="mt-3 text-sm text-muted">
+            Service requests: <a href={contactPath} class="text-primary hover:underline">Contact us</a>.
+            Accessibility feedback: <a href={accessPath} class="text-primary hover:underline">Accessibility Statement</a>.
+          </p>
+        </section>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -27,6 +27,8 @@ const PAGE_SLUG_EN_TO_ES: Record<string, string> = {
   "service-area": "area-de-servicio",
   "reviews": "resenas",
   "privacy-policy": "politica-de-privacidad",
+  "terms-of-use": "terminos-de-uso",
+  "accessibility": "accesibilidad",
   "services": "servicios",
 };
 const PAGE_SLUG_ES_TO_EN: Record<string, string> = Object.fromEntries(
